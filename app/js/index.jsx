@@ -5,8 +5,9 @@ if (process.env.BROWSER) {
 import React from 'react';
 import Component from './component';
 
-export default class App extends React.Component {
+export default class App extends React.Component {  
   render() {
+    var bundle = this.props.bundle ? this.props.bundle : 'build/bundle.js'
     return (
       <html>
         <head>
@@ -14,7 +15,7 @@ export default class App extends React.Component {
         </head>
         <body>          
           <div id="root"></div>
-          <script src='bundle.js'></script>
+          <script src={bundle}></script>
         </body>
       </html>      
     );

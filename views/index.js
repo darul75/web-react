@@ -50,7 +50,7 @@ var App = (function (_React$Component) {
           'body',
           null,
           _React2['default'].createElement('div', { id: 'root' }),
-          _React2['default'].createElement('script', { src: 'bundle.js' })
+          _React2['default'].createElement('script', { src: 'bundle-prod.js' })
         )
       );
     }
