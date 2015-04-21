@@ -24,20 +24,21 @@ if (process.env.BROWSER) {
   require('../stylesheets/styles.sass');
 }
 
-var App = (function (_React$Component) {
-  function App() {
-    _classCallCheck(this, App);
+var Html = (function (_React$Component) {
+  function Html() {
+    _classCallCheck(this, Html);
 
     if (_React$Component != null) {
       _React$Component.apply(this, arguments);
     }
   }
 
-  _inherits(App, _React$Component);
+  _inherits(Html, _React$Component);
 
-  _createClass(App, [{
+  _createClass(Html, [{
     key: 'render',
     value: function render() {
+      var bundle = this.props.bundle ? this.props.bundle : 'build/bundle.js';
       return _React2['default'].createElement(
         'html',
         null,
@@ -49,22 +50,23 @@ var App = (function (_React$Component) {
         _React2['default'].createElement(
           'body',
           null,
-          _React2['default'].createElement('div', { id: 'root' }),
-          _React2['default'].createElement('script', { src: 'bundle-prod.js' })
+          _React2['default'].createElement(_Component2['default'], null),
+          _React2['default'].createElement('script', { src: bundle })
         )
       );
     }
   }]);
 
-  return App;
+  return Html;
 })(_React2['default'].Component);
 
-exports['default'] = App;
+exports['default'] = Html;
 ;
 
 if (typeof document !== 'undefined' && window) {
   window.onload = function () {
-    _React2['default'].render(_React2['default'].createElement(_Component2['default'], null), document.getElementById('root'));
+    //React.render(<Component />, document.getElementById('root'));
+    _React2['default'].render(_React2['default'].createElement(Html, { bundle: 'bundle-prod.js' }), document);
   };
 };
 module.exports = exports['default'];

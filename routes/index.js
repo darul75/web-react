@@ -7,15 +7,19 @@ exports.index = function(req, res){
 
   console.log(markup);*/  
 
+  var markup = '';
+
   try {
-      var markup = '';
+      
       
       markup +=
-        React.renderToStaticMarkup(React.createElement(APP, {}));
+        React.renderToString(React.createElement(APP, {bundle: 'bundle-prod.js'}));
       console.log(markup);
     } catch (e) {
       return cb(e);
     }
 
-  res.render('index', { bundle: 'bundle-prod.js' });
+  res.send(markup);  
+
+  //res.render('index', { bundle: 'bundle-prod.js' });
 };

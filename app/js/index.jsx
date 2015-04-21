@@ -5,7 +5,7 @@ if (process.env.BROWSER) {
 import React from 'react';
 import Component from './component';
 
-export default class App extends React.Component {  
+export default class Html extends React.Component {  
   render() {
     var bundle = this.props.bundle ? this.props.bundle : 'build/bundle.js'
     return (
@@ -14,7 +14,7 @@ export default class App extends React.Component {
           <title></title>          
         </head>
         <body>          
-          <div id="root"></div>
+          <Component />
           <script src={bundle}></script>
         </body>
       </html>      
@@ -24,7 +24,8 @@ export default class App extends React.Component {
 
 if(typeof document !== 'undefined' && window) {
   window.onload = function() {
-    React.render(<Component />, document.getElementById('root'));
+    //React.render(<Component />, document.getElementById('root'));
+    React.render(<Html bundle='bundle-prod.js' />, document);
   }
 };
 
