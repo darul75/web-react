@@ -51,9 +51,10 @@ module.exports = function(options) {
     new HtmlWebpackPlugin({
       filename: 'index'+suffix+'.html',
       template: 'assets/index'+suffix+'.html'
-    }),
-    new Clean(cleanDirectories)
-  );        
+    })    
+  );
+
+  // new Clean(cleanDirectories)        
 
   publicPath = '/app/js/';
 
