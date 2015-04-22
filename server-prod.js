@@ -12,19 +12,6 @@ var path = require('path');
 var app = express();
 
 app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '\\views');
-
-app.set('view engine', 'js');
-
-var options = {
-  jsx: {
-    extension: '.js'    
-  }  
-};
-
-/* */
-
-app.engine('js', require('express-react-views').createEngine(options));
 
 app.use(express.static(__dirname + '/dist/'));
 

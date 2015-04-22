@@ -1,10 +1,12 @@
 var React = require('react');
 //var App = require('../views/index-prod');
-var App = require('../views/app');
+require('babel/register');
+
+var App = require('../app/js/app');
+//var App = require('../views/app');
 var fs = require('fs');
 
 var html = fs.readFileSync('./dist/index-prod.html', {encoding:'utf8'});
-console.log(html);
 
 exports.index = function(req, res){
 

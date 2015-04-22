@@ -63,7 +63,7 @@ module.exports = function(options) {
   return {
     devtool: 'eval',
     entry: [    
-      './app/js/index'+suffix
+      './app/js/index'
     ],  
     output: {
         path: path,

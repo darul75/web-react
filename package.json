@@ -23,6 +23,7 @@
     "html-webpack-plugin": "^1.2.0",
     "node-sass": "^2.1.1",
     "react-hot-loader": "^1.2.5",
+    "react-router": "^0.13.2",
     "sass-loader": "^0.6.0",
     "style-loader": "^0.10.2",
     "url-loader": "^0.5.5",
@@ -30,6 +31,8 @@
     "webpack-dev-server": "^1.8.2"
   },
   "dependencies": {
+    "babel": "^5.1.11",
+    "express": "^4.12.3",
     "react": "^0.13.2"
   }
 }
