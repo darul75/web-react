@@ -16,31 +16,57 @@ var _React = require('react');
 
 var _React2 = _interopRequireWildcard(_React);
 
-var Component = (function (_React$Component) {
-  function Component() {
-    _classCallCheck(this, Component);
+var _App = require('./app');
+
+var _App2 = _interopRequireWildcard(_App);
+
+if (!process.env) {
+  require('../stylesheets/styles.sass');
+}
+
+var Html = (function (_React$Component) {
+  function Html() {
+    _classCallCheck(this, Html);
 
     if (_React$Component != null) {
       _React$Component.apply(this, arguments);
     }
   }
 
-  _inherits(Component, _React$Component);
+  _inherits(Html, _React$Component);
 
-  _createClass(Component, [{
+  _createClass(Html, [{
     key: 'render',
     value: function render() {
+      var bundle = this.props.bundle ? this.props.bundle : 'build/bundle.js';
       return _React2['default'].createElement(
-        'h1',
+        'html',
         null,
-        'ca va ?'
+        _React2['default'].createElement(
+          'head',
+          null,
+          _React2['default'].createElement('title', null)
+        ),
+        _React2['default'].createElement(
+          'body',
+          null,
+          _React2['default'].createElement(_App2['default'], null),
+          _React2['default'].createElement('script', { src: bundle })
+        )
       );
     }
   }]);
 
-  return Component;
+  return Html;
 })(_React2['default'].Component);
 
-exports['default'] = Component;
+exports['default'] = Html;
 ;
+
+if (typeof document !== 'undefined' && window) {
+  window.onload = function () {
+    //React.render(<Html bundle='bundle-prod.js' />, document);   
+    _React2['default'].render(_React2['default'].createElement(_App2['default'], null), document.getElementById('app'));
+  };
+};
 module.exports = exports['default'];

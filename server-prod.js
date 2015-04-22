@@ -1,5 +1,9 @@
 // app.js
 
+// https://github.com/webpack/react-starter/blob/master/config/prerender.jsx
+
+// https://github.com/webpack/react-starter/blob/5f910d23e8f1f36f9f66e5b3ed756c37bfc11c17/NOTES/HowStuffWorks.md
+
 var express = require('express');
 var routes = require('./routes');
 var http = require('http');
@@ -22,7 +26,7 @@ var options = {
 
 app.engine('js', require('express-react-views').createEngine(options));
 
-app.use(express.static(__dirname + '/build'));
+app.use(express.static(__dirname + '/dist/'));
 
 app.get('/', routes.index);
 
