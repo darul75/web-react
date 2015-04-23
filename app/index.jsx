@@ -1,13 +1,11 @@
 import React from 'react';
-import App from './app';
 import Router from 'react-router';
 
 const routes = require('./routes');
 
 
-
 if (!process.env) {
-  require('../stylesheets/styles.sass');
+  require('./stylesheets/styles.sass');  
 }
 
 if(typeof document !== 'undefined' && window) {

@@ -4,7 +4,7 @@ require('babel/register');
 
 /*in the client you need to use Router.run(routes, Router.HistoryLocation, callback), and on the server Router.run(routes, req.path, callback).*/
 
-var App = require('../app/js/app');
+var App = require('../app/components/app');
 //var App = require('../views/app');
 var fs = require('fs');
 
@@ -24,7 +24,7 @@ exports.index = function(req, res){
 
       });
 
-      
+
       /*markup += 
         React.renderToString(React.createElement(, { bundle: 'bundle-prod.js' }));
       */      

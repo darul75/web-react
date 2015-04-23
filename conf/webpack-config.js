@@ -56,14 +56,14 @@ module.exports = function(options) {
 
   // new Clean(cleanDirectories)        
 
-  publicPath = '/app/js/';
+  //publicPath = '/app/js/';
 
   var hash = production ? '-[hash]': '';  
 
   return {
     devtool: 'eval',
     entry: [    
-      './app/js/index'
+      './app/index'
     ],  
     output: {
         path: path,
@@ -78,7 +78,8 @@ module.exports = function(options) {
       loaders: [
         { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
         { test: /\.sass$/, loader: sassLoaders },
-        { test: /\.css$/, loader: cssLoaders }
+        { test: /\.css$/, loader: cssLoaders },
+        { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
       ],    
     }
   }
