@@ -1,14 +1,14 @@
-'use strict';
-
 import React from 'react';
-import Router from 'react-router';
-import App from './app';
-import Home from './home';
 import {Route, DefaultRoute, NotFoundRoute} from 'react-router';
 
+import Application from './application';
+import Home from './home';
+import Contact from './contact';
+
 export default (
-  <Route name="app" path="/" handler={App}>
-    <Route name="home" path="/home" handler={Home}/>    
-    <DefaultRoute handler={Home}/>
+  <Route name="app" path="/" handler={Application}>
+    <Route name="home" path="/home" handler={Home}/>
+    <Route name="contact" path="/contact" handler={Contact}/>
+    <DefaultRoute handler={Home} />
   </Route>
 );
