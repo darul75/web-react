@@ -54,6 +54,14 @@ module.exports = function(options) {
     })    
   );
 
+  plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        BROWSER: JSON.stringify(true)  
+      }
+    })
+  );
+
   // new Clean(cleanDirectories)        
 
   //publicPath = '/app/js/';

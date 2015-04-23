@@ -3,8 +3,7 @@ import Router from 'react-router';
 
 const routes = require('./routes');
 
-
-if (!process.env) {
+if (process.env.BROWSER) {
   require('./stylesheets/styles.sass');  
 }
 
