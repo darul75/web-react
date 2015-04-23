@@ -3,10 +3,13 @@ import Router from 'react-router';
 
 const routes = require('./routes');
 
-Router.run(routes, Router.HistoryLocation, function(Application, state) {  
-  React.render(<Application/>, document.getElementById('app'));
-  //React.render(<App />, document.getElementById('app'));
-});
+/*in the client you need to use Router.run(routes, Router.HistoryLocation, callback), 
+and on the server Router.run(routes, req.path, callback).*/
+
+export default function(req, cb) {
+  Router.run(routes, req.path, cb);
+}
+
 
 
 /*Router.run(routes, Router.HistoryLocation, function (Handler) {
