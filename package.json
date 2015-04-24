@@ -31,8 +31,10 @@
     "webpack-dev-server": "^1.8.2"
   },
   "dependencies": {
+    "alt": "^0.15.6",
     "babel": "^5.1.11",
     "express": "^4.12.3",
+    "object-assign": "^2.0.0",
     "react": "^0.13.2"
   }
 }

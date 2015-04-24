@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, DefaultRoute, NotFoundRoute} from 'react-router';
 
-import Application from './components/application';
-import Home from './components/home';
-import Contact from './components/contact';
+import Application from './components/Application';
+import Home from './components/Home';
+import Contact from './components/Contact';
 
 export default (
   <Route name="app" path="/" handler={Application}>
