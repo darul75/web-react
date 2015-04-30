@@ -23,13 +23,22 @@ var mainWrapper = class MainWrapper extends React.Component {
   }
   render() {
     return (
-      <MainSection allTodos={this.state.allTodos} areAllComplete={this.state.areAllComplete} />
+      <MainSection allData={this.state.allData} areAllComplete={this.state.areAllComplete} />
     );
   }
+
+  forceRerender() {
+    this.setState(getDataState());
+  }  
+
+  componentDidMount() {
+    AppStore.listen(this.forceRerender.bind(this));
+  }
+
 }
 
 export default (
-  <Route name="app" path="/" handler={Application}>
+  <Route name="app" path="/" handler={Application}>    
     <Route name="home" path="/home" handler={Home}/>
     <Route name="contact" path="/contact" handler={Contact}/>
     <DefaultRoute handler={mainWrapper} />

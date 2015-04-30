@@ -12,24 +12,14 @@ if (process.env.BROWSER) {
 }
 
 export default class Header extends React.Component {  
-    /**
-   * Event handler called within TodoTextInput.
-   * Defining this here allows TodoTextInput to be used in multiple places
-   * in different ways.
-   * @param {string} text
-   */
-  _onSave(text) {
-    if (text.trim()){
-      console.log(text);
-      //AppActions.create(text);
-    }
-  }
+     
   render() {
     return (
     	<div>
         <img src={reactLogo} height="60" />
 				<header>
 					<ul>                        
+            <li><Link to="app">Home</Link></li>
 					  <li><Link to="home">Inbox</Link></li>            
             <li><Link to="contact">Contact</Link></li>
 					</ul>          
@@ -39,5 +29,10 @@ export default class Header extends React.Component {
     );
   }
 
+  _onSave(text) {
+    if (text.trim()){      
+      AppActions.create(text);
+    }
+  }
 
 };
