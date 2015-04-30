@@ -1,23 +1,23 @@
 var alt = require('../alt')
 var merge = require('object-assign')
 
-var TodoActions = require('../actions/TodoActions')
+var AppActions = require('../actions/AppActions')
 
-var todoStore = alt.createStore(class TodoStore {
+var appStore = alt.createStore(class AppStore {
   constructor() {
-    this.bindActions(TodoActions)
+    this.bindActions(AppActions)
 
-    this.todos = {}
+    this.data = {}
   }
 
   update(id, updates) {
-    if(this.todos[id] && updates){
-      this.todos[id] = merge(this.todos[id], updates)
+    if(this.data[id] && updates){
+      this.data[id] = merge(this.data[id], updates)
     }
   }
 
   updateAll(updates) {
-    for (var id in this.todos) {
+    for (var id in this.data) {
       this.update(id, updates)
     }
   }
@@ -29,7 +29,7 @@ var todoStore = alt.createStore(class TodoStore {
     }
     // hand waving of course.
     var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36)
-    this.todos[id] = {
+    this.data[id] = {
       id: id,
       complete: false,
       text: text
@@ -46,7 +46,7 @@ var todoStore = alt.createStore(class TodoStore {
   }
 
   onToggleComplete(id) {
-    var complete = !this.todos[id].complete
+    var complete = !this.data[id].complete
     this.update(id, { complete })
   }
 
@@ -56,21 +56,21 @@ var todoStore = alt.createStore(class TodoStore {
   }
 
   onDestroy(id) {
-    delete this.todos[id]
+    delete this.data[id]
   }
 
   onDestroyCompleted() {
-    for (var id in this.todos) {
-      if (this.todos[id].complete) {
+    for (var id in this.data) {
+      if (this.data[id].complete) {
         this.onDestroy(id)
       }
     }
   }
 
   static areAllComplete() {
-    var { todos } = this.getState()
-    for (var id in todos) {
-      if (!todos[id].complete) {
+    var { data } = this.getState()
+    for (var id in data) {
+      if (!data[id].complete) {
         return false
       }
     }
@@ -78,4 +78,4 @@ var todoStore = alt.createStore(class TodoStore {
   }
 })
 
-module.exports = todoStore
+module.exports = appStore

@@ -1,25 +1,24 @@
 import React from 'react'
 import { RouteHandler } from "react-router"
-import TodoStore from '../stores/TodoStore'
+import AppStore from '../stores/AppStore'
 
 import Header from './header'
 
 /**
- * Retrieve the current TODO data from the TodoStore
+ * Retrieve the current TODO data from the AppStore
  */
-function getTodoState() {
+function getDataState() {
   return {
-    allTodos: TodoStore.getState().todos,
-    areAllComplete: TodoStore.areAllComplete()
+    allTodos: AppStore.getState().data,
+    areAllComplete: AppStore.areAllComplete()
   };
 }
 
-console.log(getTodoState());
-
 export default class Application extends React.Component {  
-  getInitialState() {    
-    return getTodoState();
-  }
+  constructor() {
+    super();
+    this.state = getDataState();
+  }  
   render() {
     return (
       <div>
