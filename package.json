@@ -22,6 +22,7 @@
     "gulp-webpack": "^1.4.0",
     "html-webpack-plugin": "^1.2.0",
     "node-sass": "^2.1.1",
+    "object-assign": "^2.0.0",
     "react-hot-loader": "^1.2.5",
     "react-router": "^0.13.2",
     "sass-loader": "0.4.2",
