@@ -4,7 +4,6 @@ var webpack = require('webpack');
 
 var node_modules_dir = path.resolve(__dirname, '../node_modules');
 var pathToReact = path.resolve(node_modules_dir, 'react/dist/react.min.js');
-console.log(pathToReact);
 
 // PLUGINS
 // html / clean / extract css
