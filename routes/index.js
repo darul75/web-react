@@ -7,6 +7,8 @@ require('babel/register');
 var App = require('../app/components/application');
 //var App = require('../views/app');
 var fs = require('fs');
+var routes = require('../app/routes');
+var Router = require('react-router');
 
 var html = fs.readFileSync('./dist/index-prod.html', {encoding:'utf8'});
 
@@ -16,23 +18,33 @@ exports.index = function(req, res){
   
   var markup = '';  
 
-  try {
+  try {      
 
-      App(req, function(toto, tutu) {
+       Router.run(routes, req.path, function (Root, state) {
+        
+        markup += 
+          React.renderToString(React.createElement(Root, { bundle: 'bundle-prod.js' }));
+
+        console.log(markup);
+
+        markup = html.replace('CONTENT', markup);
+        res.send(markup); 
+      });
+
+      /*App(req, function(toto, tutu) {
         markup += 
         React.renderToString(React.createElement(toto, { bundle: 'bundle-prod.js' }));
 
-      });
+      });*/
 
 
       /*markup += 
         React.renderToString(React.createElement(, { bundle: 'bundle-prod.js' }));
       */      
-      /*markup += 
-        React.renderToString(React.createElement(App(req), { bundle: 'bundle-prod.js' }));*/
-      markup = html.replace('CONTENT', markup);
+      /**/
+//      markup = html.replace('CONTENT', markup);
     } catch (e) {
-      console.log(e);
+      console.log('error '+ e);
       return cb(e);
     }
 
@@ -41,7 +53,4 @@ exports.index = function(req, res){
     //React.render(<App />, document.getElementById('app'));
   })*/
 
-  res.send(markup);
-
-  //res.render('index', { bundle: 'bundle-prod.js' });
 };
