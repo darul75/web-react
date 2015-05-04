@@ -9,7 +9,7 @@ let reactLogo;
 
 if (process.env.BROWSER) {
   reactLogo = require('../images/react-logo.png');
-  /*<img src={reactLogo} height="60" />*/
+  /**/
 }
 
 export default class Header extends React.Component {  
@@ -17,6 +17,7 @@ export default class Header extends React.Component {
   render() {
     return (
     	<div>        
+        <img src={reactLogo} height="60" />
 				<header>
 					<ul>                        
             <li><Link to="app">Home</Link></li>
