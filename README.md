@@ -8,3 +8,5 @@ https://github.com/badsyntax/react-seed/blob/master/app/components/App/App.jsx
 
 https://christianalfoni.github.io/react-webpack-cookbook/Optimizing-rebundling.html
 
+http://christianalfoni.github.io/javascript/2014/12/13/did-you-know-webpack-and-react-is-awesome.html#lazyload
+

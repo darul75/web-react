@@ -2,7 +2,9 @@
 var path = require('path');
 var webpack = require('webpack');
 
-// node_modules = path.resolve(__dirname, 'node_modules'),
+var node_modules_dir = path.resolve(__dirname, '../node_modules');
+var pathToReact = path.resolve(node_modules_dir, 'react/dist/react.min.js');
+console.log(pathToReact);
 
 // PLUGINS
 // html / clean / extract css
@@ -62,6 +64,8 @@ module.exports = function(options) {
     })
   );
 
+  plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
+
   // new Clean(cleanDirectories)        
 
   //publicPath = '/app/js/';
@@ -70,9 +74,10 @@ module.exports = function(options) {
 
   return {
     devtool: 'eval',
-    entry: [    
-      './app/index'
-    ],  
+    entry: {    
+      app: './app/index',
+      vendors: ['react', 'react-router', 'react-hot-loader']
+    },    
     output: {
         path: path,
         filename: 'app'+hash+'.js',
@@ -84,7 +89,7 @@ module.exports = function(options) {
     },
     module: {
       loaders: [
-        { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
+        { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: [node_modules_dir] },
         { test: /\.sass$/, loader: sassLoaders },
         { test: /\.css$/, loader: cssLoaders },
         { test: /\.scss$/, loader: cssLoaders },

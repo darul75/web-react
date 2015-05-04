@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'react';
-import TodoItem from './TodoItem';
+import TodoItem from './Todo/TodoItem';
 
 export default class MainSection extends React.Component {  
   constructor() {

@@ -9,6 +9,8 @@
     // var __StoreData = DATA;
   </script>
   <div id="app">CONTENT</div>
-  <script src="{%=o.htmlWebpackPlugin.files.chunks.main.entry%}"></script>
+  {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+    <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
+  {% } %}  
 </body>
 </html>

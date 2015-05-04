@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 import AppActions from '../../actions/AppActions';
-import TextInput from '../TextInput';
+import TextInput from '../Todo/TextInput';
 
-import './_Header.scss';
+
 
 let reactLogo;
 
@@ -11,6 +11,7 @@ let reactLogo;
 
 if (process.env.BROWSER) {
   reactLogo = require('../../images/react-logo.png');    
+  require('./_Header.scss');
 }
 
 export default class Header extends React.Component {  
@@ -21,7 +22,7 @@ export default class Header extends React.Component {
         <img src={reactLogo} height="60" />
 				<header>
 					<ul>                        
-            <li><Link to="app">Home</Link></li>
+            <li><Link to="app">Home1</Link></li>
 					  <li><Link to="home">Inbox</Link></li>            
             <li><Link to="contact">Contact</Link></li>
 					</ul>          

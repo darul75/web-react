@@ -1,7 +1,6 @@
-var alt = require('../alt')
-var merge = require('object-assign')
-
-var AppActions = require('../actions/AppActions')
+import alt from '../alt';
+import merge from 'object-assign';
+import AppActions from '../actions/AppActions';
 
 var appStore = alt.createStore(class AppStore {
   constructor() {

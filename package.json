@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --config conf/webpack-dev.js --hot --progress --colors --inline --content-base ./build",
-    "build": "./node_modules/.bin/webpack --config conf/webpack-prod.js | node server-prod.js"
+    "deploy": "./node_modules/.bin/webpack --config conf/webpack-prod.js | node server-prod.js"
   },
   "devDependencies": {
     "babel-core": "^5.1.11",
