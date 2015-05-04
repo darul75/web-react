@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router';
-import AppActions from '../actions/AppActions';
-import TextInput from './TextInput';
+import AppActions from '../../actions/AppActions';
+import TextInput from '../TextInput';
+
+import './_Header.scss';
 
 let reactLogo;
 
 // https://github.com/iam4x/isomorphic-flux-boilerplate/blob/e45e5a8595652a84f09c403e8b15519dbbb4fc3f/webpack/dev.config.js
 
 if (process.env.BROWSER) {
-  reactLogo = require('../images/react-logo.png');
-  /**/
+  reactLogo = require('../../images/react-logo.png');    
 }
 
 export default class Header extends React.Component {  

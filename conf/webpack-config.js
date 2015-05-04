@@ -87,6 +87,7 @@ module.exports = function(options) {
         { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
         { test: /\.sass$/, loader: sassLoaders },
         { test: /\.css$/, loader: cssLoaders },
+        { test: /\.scss$/, loader: cssLoaders },
         { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
       ],    
     }
