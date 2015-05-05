@@ -39,7 +39,7 @@ var config = {
       { test: /\.sass$/, loader: sassLoaders },
       { test: /\.css$/, loader: cssLoaders },
       { test: /\.scss$/, loader: cssLoaders },
-      { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=dist/[hash].[ext]' }
+      { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000' }
     ]
   }
 };
@@ -60,8 +60,7 @@ var clientApp = function(options) {
 
     cssLoaders = extractForProduction(cssLoaders);
     sassLoaders = extractForProduction(sassLoaders);
-
-    console.log("prod: " + options.hash);
+    
     suffix = '-prod';    
     plugins.push(new ExtractTextPlugin("app-[hash].css"));
     plugins.push(new StatsPlugin(path.join(__dirname, '../dist/', "stats.prerender.json"), {
@@ -101,7 +100,7 @@ var clientApp = function(options) {
   return _.merge({}, config, {
     devtool: 'eval',
     entry: {    
-      app: './app/index',
+      app: './app/app',
       vendors: ['react', 'react-router', 'react-hot-loader']
     },    
     output: {
@@ -122,26 +121,17 @@ var serverApp = function(options) {
   var cleanDirectories = [];
 
   // html template  
-  var suffix = '';
-  var outputPath = './build/';
-
-  if (production) {
-
-    cssLoaders = extractForProduction(cssLoaders);
-    sassLoaders = extractForProduction(sassLoaders);
-
-    console.log("prod");
-    suffix = '-prod';        
-    plugins.push(new StatsPlugin(path.join(__dirname, '../dist/', "stats.prerender.json"), {
-      chunkModules: true,
-      exclude: excludeFromStats
-    }));
-
-    outputPath = './dist/';
-
-    cleanDirectories.push('../dist');
-  }  
-
+  var suffix = '';  
+  
+  cssLoaders = extractForProduction(cssLoaders);
+  sassLoaders = extractForProduction(sassLoaders);
+  
+  suffix = '-prod';        
+  plugins.push(new StatsPlugin(path.join(__dirname, '../dist/', "stats.prerender.json"), {
+    chunkModules: true,
+    exclude: excludeFromStats
+  }));
+  
   plugins.push(
     new webpack.DefinePlugin({
       'process.env': {
@@ -157,9 +147,10 @@ var serverApp = function(options) {
   return _.merge({}, {}, {
     devtool: 'eval',
     entry: {    
-      server: './server-prod'
+      server: './app/server'
     },    
-     output: {      
+     output: {
+      path: './dist/',
       filename: 'server.js',
       libraryTarget: 'commonjs2'
     },
@@ -180,7 +171,7 @@ var serverApp = function(options) {
       loaders: [
         { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
         { test: /\.jsx?$/, loaders: ['babel'], exclude: /node_modules/ },
-        { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=dist/[hash].[ext]' }
+        { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000' }
       ]
     },
 
@@ -189,5 +180,7 @@ var serverApp = function(options) {
 };
 
 // { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' }
+
+//&name=dist/[hash].[ext]
 
 module.exports = [clientApp, serverApp];

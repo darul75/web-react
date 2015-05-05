@@ -1,10 +1,10 @@
 import React from 'react';
 import {Route, DefaultRoute, NotFoundRoute} from 'react-router';
-import AppStore from './stores/AppStore'
-import Application from './components/Application'
-import Home from './components/Home'
-import Contact from './components/Contact/Contact'
-import MainSection from './components/MainSection'
+import AppStore from './stores/AppStore';
+import Application from './components/App/App';
+import Home from './components/Home';
+import Contact from './components/Contact/Contact';
+import MainSection from './components/MainSection';
 
 /**
  * Retrieve the current TODO data from the AppStore
