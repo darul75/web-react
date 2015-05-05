@@ -10,7 +10,7 @@ var fs = require('fs');
 var routes = require('../app/routes');
 var Router = require('react-router');
 
-var html = fs.readFileSync('./index-prod.html', {encoding:'utf8'});
+var html = fs.readFileSync('./dist/index-prod.html', {encoding:'utf8'});
 
 exports.index = function(req, res, next){
 

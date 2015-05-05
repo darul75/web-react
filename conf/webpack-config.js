@@ -39,7 +39,7 @@ var config = {
       { test: /\.sass$/, loader: sassLoaders },
       { test: /\.css$/, loader: cssLoaders },
       { test: /\.scss$/, loader: cssLoaders },
-      { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' }
+      { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=dist/[hash].[ext]' }
     ]
   }
 };
@@ -61,7 +61,7 @@ var clientApp = function(options) {
     cssLoaders = extractForProduction(cssLoaders);
     sassLoaders = extractForProduction(sassLoaders);
 
-    console.log("prod");
+    console.log("prod: " + options.hash);
     suffix = '-prod';    
     plugins.push(new ExtractTextPlugin("app-[hash].css"));
     plugins.push(new StatsPlugin(path.join(__dirname, '../dist/', "stats.prerender.json"), {
@@ -141,13 +141,6 @@ var serverApp = function(options) {
 
     cleanDirectories.push('../dist');
   }  
-  
-  plugins.push(
-    new HtmlWebpackPlugin({
-      filename: 'index'+suffix+'.html',
-      template: 'assets/index'+suffix+'.html'
-    })    
-  );
 
   plugins.push(
     new webpack.DefinePlugin({
@@ -164,10 +157,9 @@ var serverApp = function(options) {
   return _.merge({}, {}, {
     devtool: 'eval',
     entry: {    
-      server: './app/server'
+      server: './server-prod'
     },    
-     output: {
-      path: outputPath,
+     output: {      
       filename: 'server.js',
       libraryTarget: 'commonjs2'
     },
@@ -188,12 +180,14 @@ var serverApp = function(options) {
       loaders: [
         { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
         { test: /\.jsx?$/, loaders: ['babel'], exclude: /node_modules/ },
-        { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' }
+        { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=dist/[hash].[ext]' }
       ]
     },
 
     plugins: plugins
   });
 };
+
+// { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' }
 
 module.exports = [clientApp, serverApp];
