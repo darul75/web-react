@@ -9,7 +9,8 @@ var pathToReact = path.resolve(node_modules_dir, 'react/dist/react.min.js');
 // html / clean / extract css
 var HtmlWebpackPlugin = require('html-webpack-plugin'),
     Clean = require("clean-webpack-plugin");    
-    ExtractTextPlugin = require("extract-text-webpack-plugin");
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    StatsPlugin = require("stats-webpack-plugin");
 
 // fixture extract css
 function extractForProduction(loaders) {
@@ -18,6 +19,11 @@ function extractForProduction(loaders) {
 
 var cssLoaders = 'style-loader!css-loader';
 var sassLoaders = 'style!css!sass?indentedSyntax';
+
+// stats
+var excludeFromStats = [
+    /node_modules[\\\/]react(-router)?[\\\/]/
+];
 
 module.exports = function(options) {
   var production = options.production;
@@ -29,7 +35,7 @@ module.exports = function(options) {
 
   // html template  
   var suffix = '';
-  var path = './build/';
+  var outputPath = './build/';
 
   if (production) {
 
@@ -39,8 +45,12 @@ module.exports = function(options) {
     console.log("prod");
     suffix = '-prod';    
     plugins.push(new ExtractTextPlugin("app-[hash].css"));
+    plugins.push(new StatsPlugin(path.join(__dirname, '../dist/', "stats.prerender.json"), {
+      chunkModules: true,
+      exclude: excludeFromStats
+    }));
 
-    path = './dist/';
+    outputPath = './dist/';
 
     cleanDirectories.push('../dist');
   }
@@ -67,8 +77,6 @@ module.exports = function(options) {
 
   // new Clean(cleanDirectories)        
 
-  //publicPath = '/app/js/';
-
   var hash = production ? '-[hash]': '';  
 
   return {
@@ -78,7 +86,7 @@ module.exports = function(options) {
       vendors: ['react', 'react-router', 'react-hot-loader']
     },    
     output: {
-        path: path,
+        path: outputPath,
         filename: 'app'+hash+'.js',
         publicPath: production ? '' : ''
     },
@@ -92,8 +100,8 @@ module.exports = function(options) {
         { test: /\.sass$/, loader: sassLoaders },
         { test: /\.css$/, loader: cssLoaders },
         { test: /\.scss$/, loader: cssLoaders },
-        { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
-      ],    
+        { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' }
+      ]
     }
   }
 };

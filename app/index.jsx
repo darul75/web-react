@@ -7,20 +7,11 @@ if (process.env.BROWSER) {
   require('./stylesheets/styles.sass');  
 }
 
-// load data
-
-var fetcher = require('./utils/TodoFetcher');
-fetcher.getAllTodoByApi();
-
 if(typeof document !== 'undefined' && window) {
-  window.onload = function() {
-    //React.render(<App />, document.getElementById('app'));
-    //React.render(<Html />, document);
+  window.onload = function() {    
     Router.run(routes, Router.HistoryLocation, function(Application, state) {  
-  React.render(<Application/>, document.getElementById('app'));
-  //React.render(<App />, document.getElementById('app'));
-});
-    
+      React.render(<Application/>, document.getElementById('app'));
+    });    
   }
 };
 

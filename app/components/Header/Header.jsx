@@ -4,7 +4,6 @@ import AppActions from '../../actions/AppActions';
 import TextInput from '../Todo/TextInput';
 
 
-
 let reactLogo;
 
 // https://github.com/iam4x/isomorphic-flux-boilerplate/blob/e45e5a8595652a84f09c403e8b15519dbbb4fc3f/webpack/dev.config.js

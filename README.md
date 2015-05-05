@@ -10,3 +10,5 @@ https://christianalfoni.github.io/react-webpack-cookbook/Optimizing-rebundling.h
 
 http://christianalfoni.github.io/javascript/2014/12/13/did-you-know-webpack-and-react-is-awesome.html#lazyload
 
+https://github.com/kriasoft/react-starter-kit
+
