@@ -8,6 +8,8 @@ let reactLogo;
 
 // https://github.com/iam4x/isomorphic-flux-boilerplate/blob/e45e5a8595652a84f09c403e8b15519dbbb4fc3f/webpack/dev.config.js
 
+reactLogo = require('./images/react-logo.png'); 
+
 if (process.env.BROWSER) {
   //reactLogo = require('../../images/react-logo.png');
   reactLogo = require('./images/react-logo.png');    

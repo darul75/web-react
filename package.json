@@ -18,7 +18,7 @@
     "css-loader": "^0.10.1",
     "extract-text-webpack-plugin": "^0.6.0",
     "file-loader": "^0.8.1",
-    "html-webpack-plugin": "^1.2.0",    
+    "html-webpack-plugin": "^1.2.0",
     "node-sass": "^2.1.1",
     "object-assign": "^2.0.0",
     "react-hot-loader": "^1.2.5",
@@ -34,6 +34,7 @@
     "alt": "^0.15.6",
     "babel": "^5.1.11",
     "express": "^4.12.3",
+    "lodash": "^3.8.0",
     "object-assign": "^2.0.0",
     "react": "^0.13.2"
   }
