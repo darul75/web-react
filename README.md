@@ -12,3 +12,5 @@ http://christianalfoni.github.io/javascript/2014/12/13/did-you-know-webpack-and-
 
 https://github.com/kriasoft/react-starter-kit
 
+http://webpack.github.io/docs/code-splitting.html
+
