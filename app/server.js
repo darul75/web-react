@@ -1,12 +1,13 @@
-import express from 'express';
-import routes from './routes';
+import http from 'http';
+import fs from 'fs';
+import path from 'path';  
 
-var http = require('http'),
-	path = require('path'),
-	fs = require('fs'),
-	React = require('react'),
-	App = require('./components/App/App'),	
-	Router = require('react-router');
+import express from 'express';
+import React from 'react';
+import Router from 'react-router';
+
+import routes from './routes';
+import App from './components/App/App';
 
 var html = fs.readFileSync('./dist/index-prod.html', {encoding:'utf8'});
 

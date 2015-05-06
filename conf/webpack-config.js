@@ -35,11 +35,11 @@ var config = {
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
+      { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },      
+      { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000' },
       { test: /\.sass$/, loader: sassLoaders },
       { test: /\.css$/, loader: cssLoaders },
-      { test: /\.scss$/, loader: cssLoaders },
-      { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000' }
+      { test: /\.scss$/, loader: cssLoaders }
     ]
   }
 };
@@ -108,12 +108,11 @@ var clientApp = function(options) {
         filename: 'app'+hash+'.js',
         publicPath: production ? '' : ''
     },
-    plugins: plugins   
+    plugins: plugins    
   });
 };
 
-var serverApp = function(options) {
-  var production = options.production;
+var serverApp = function(options) {  
 
   // webpack plugins
   var plugins = [new webpack.NoErrorsPlugin()];
@@ -122,15 +121,21 @@ var serverApp = function(options) {
 
   // html template  
   var suffix = '';  
+
+  console.log(cssLoaders);
   
   cssLoaders = extractForProduction(cssLoaders);
   sassLoaders = extractForProduction(sassLoaders);
+
+  console.log(cssLoaders);
   
   suffix = '-prod';        
   plugins.push(new StatsPlugin(path.join(__dirname, '../dist/', "stats.prerender.json"), {
     chunkModules: true,
     exclude: excludeFromStats
   }));
+
+  plugins.push(new ExtractTextPlugin("app-[hash].css"));
   
   plugins.push(
     new webpack.DefinePlugin({
@@ -142,7 +147,7 @@ var serverApp = function(options) {
 
   // new Clean(cleanDirectories)        
 
-  var hash = production ? '-[hash]': '';  
+  var hash = '-[hash]';
 
   return _.merge({}, {}, {
     devtool: 'eval',
@@ -171,7 +176,10 @@ var serverApp = function(options) {
       loaders: [
         { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
         { test: /\.jsx?$/, loaders: ['babel'], exclude: /node_modules/ },
-        { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000' }
+        { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000' },
+        { test: /\.sass$/, loader: sassLoaders },
+        { test: /\.css$/, loader: cssLoaders },
+        { test: /\.scss$/, loader: cssLoaders }
       ]
     },
 
