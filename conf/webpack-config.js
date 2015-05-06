@@ -61,7 +61,7 @@ module.exports = function(options) {
 
     outputPath = './dist/';
 
-    plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));    
+    
   } 
 
   // SOME STATS
@@ -75,6 +75,7 @@ module.exports = function(options) {
   
   // HTML TEMPLATE + ENV VARIABLE
   if (client) {
+    plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));    
     plugins.push(new Clean(cleanDirectories));
     plugins.push(
       new HtmlWebpackPlugin({
