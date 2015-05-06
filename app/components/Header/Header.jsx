@@ -19,8 +19,8 @@ export default class Header extends React.Component {
 				<header>
 					<ul>                        
             <li><Link to="app">Home1</Link></li>
-					  <li><Link to="home">Inbox</Link></li>            
-            <li><Link to="contact">Contact</Link></li>
+					  <li><Link to="home">Inboddssdsdx</Link></li>            
+            <li><Link to="contact">Contact ddddd</Link></li>
 					</ul>          
           <TextInput id="new-todo" placeholder="What needs to be done?" onSave={this._onSave} value="todo" />
 				</header>        				

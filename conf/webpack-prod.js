@@ -1,7 +1,9 @@
-module.exports = [require('./webpack-config')[1]({
-    production: true
+module.exports = [require('./webpack-config')({
+    production: false,
+    dev: false
   }),
-  require('./webpack-config')[0]({
-    production: true
+  require('./webpack-config')({
+    production: true,
+    dev: true
   })
 ];

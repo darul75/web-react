@@ -32,20 +32,12 @@ var excludeFromStats = [
 var config = {
   resolve: {
     extensions: ['', '.js', '.jsx']
-  },
-  module: {
-    loaders: [
-      { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },      
-      { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000' },
-      { test: /\.sass$/, loader: sassLoaders },
-      { test: /\.css$/, loader: cssLoaders },
-      { test: /\.scss$/, loader: cssLoaders }
-    ]
   }
 };
 
-var clientApp = function(options) {
+module.exports = function(options) {
   var production = options.production;
+  var dev = options.dev;
 
   // webpack plugins
   var plugins = [new webpack.NoErrorsPlugin()];
@@ -56,7 +48,7 @@ var clientApp = function(options) {
   var suffix = '';
   var outputPath = './build/';
 
-  if (production) {
+  if (!dev) {
 
     cssLoaders = extractForProduction(cssLoaders);
     sassLoaders = extractForProduction(sassLoaders);
@@ -70,9 +62,12 @@ var clientApp = function(options) {
 
     outputPath = './dist/';
 
+    plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
+
     cleanDirectories.push('../dist');
   }
-  else {
+  else {    
+    plugins.push(new ExtractTextPlugin("app-[hash].css"));
     cleanDirectories.push('../build'); 
   }
   
@@ -91,104 +86,79 @@ var clientApp = function(options) {
     })
   );
 
-  plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
+  
 
   // new Clean(cleanDirectories)        
 
-  var hash = production ? '-[hash]': '';  
+  var hash = production || !dev ? '-[hash]': '';  
 
-  return _.merge({}, config, {
-    devtool: 'eval',
-    entry: {    
-      app: './app/app',
-      vendors: ['react', 'react-router', 'react-hot-loader']
-    },    
-    output: {
-        path: outputPath,
-        filename: 'app'+hash+'.js',
-        publicPath: production ? '' : ''
-    },
-    plugins: plugins    
-  });
-};
+  if (!options.production) {
 
-var serverApp = function(options) {  
+    return _.merge({}, config, {
+      devtool: 'eval',
+      entry: {    
+        app: './app/app',
+        vendors: ['react', 'react-router', 'react-hot-loader']
+      },    
+      output: {
+          path: outputPath,
+          filename: 'app'+hash+'.js',
+          publicPath: production ? '' : ''
+      },
+      module: {
+        loaders: [
+          { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },      
+          { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
+          { test: /\.sass$/, loader: sassLoaders },
+          { test: /\.css$/, loader: cssLoaders },
+          { test: /\.scss$/, loader: cssLoaders }
+        ]
+      },
+      plugins: plugins    
+    });
+  }
+  else {
+      // server
+    return _.merge({}, {}, {    
+      entry: {    
+        server: './app/server'
+      },
+       output: {
+        path: './dist/',
+        filename: 'server.js',
+        libraryTarget: 'commonjs2'
+      },
+      resolve: {
+        extensions: ['', '.js', '.jsx']
+      },
+      target: 'node',
+      externals: /^[a-z][a-z\.\-0-9]*$/,
+      node: {
+        console: false,
+        global: false,
+        process: false,
+        Buffer: false,
+        __filename: true,
+        __dirname: true
+      },
+      module : {
+        loaders: [
+          { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+          { test: /\.jsx?$/, loaders: ['babel'], exclude: /node_modules/ },
+          { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
+          { test: /\.sass$/, loader: sassLoaders },
+          { test: /\.css$/, loader: cssLoaders },
+          { test: /\.scss$/, loader: cssLoaders }
+        ]
+      },
+      plugins: plugins
+    });
 
-  // webpack plugins
-  var plugins = [new webpack.NoErrorsPlugin()];
-
-  var cleanDirectories = [];
-
-  // html template  
-  var suffix = '';  
-
-  console.log(cssLoaders);
-  
-  cssLoaders = extractForProduction(cssLoaders);
-  sassLoaders = extractForProduction(sassLoaders);
-
-  console.log(cssLoaders);
-  
-  suffix = '-prod';        
-  plugins.push(new StatsPlugin(path.join(__dirname, '../dist/', "stats.prerender.json"), {
-    chunkModules: true,
-    exclude: excludeFromStats
-  }));
-
-  plugins.push(new ExtractTextPlugin("app-[hash].css"));
-  
-  plugins.push(
-    new webpack.DefinePlugin({
-      'process.env': {
-        BROWSER: JSON.stringify(false)
-      }
-    })
-  );  
-
-  // new Clean(cleanDirectories)        
-
-  var hash = '-[hash]';
-
-  return _.merge({}, {}, {
-    devtool: 'eval',
-    entry: {    
-      server: './app/server'
-    },    
-     output: {
-      path: './dist/',
-      filename: 'server.js',
-      libraryTarget: 'commonjs2'
-    },
-    resolve: {
-      extensions: ['', '.js', '.jsx']
-    },
-    target: 'node',
-    externals: /^[a-z][a-z\.\-0-9]*$/,
-    node: {
-      console: false,
-      global: false,
-      process: false,
-      Buffer: false,
-      __filename: true,
-      __dirname: true
-    },
-    module : {
-      loaders: [
-        { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
-        { test: /\.jsx?$/, loaders: ['babel'], exclude: /node_modules/ },
-        { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000' },
-        { test: /\.sass$/, loader: sassLoaders },
-        { test: /\.css$/, loader: cssLoaders },
-        { test: /\.scss$/, loader: cssLoaders }
-      ]
-    },
-
-    plugins: plugins
-  });
+  }
 };
 
 // { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' }
 
 //&name=dist/[hash].[ext]
 
-module.exports = [clientApp, serverApp];
+//module.exports = [clientApp, serverApp];
