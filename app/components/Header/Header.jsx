@@ -7,8 +7,11 @@ let reactLogo;
 
 // https://github.com/iam4x/isomorphic-flux-boilerplate/blob/e45e5a8595652a84f09c403e8b15519dbbb4fc3f/webpack/dev.config.js
 
-reactLogo = require('./images/react-logo.png'); 
-require('./_Header.scss');
+reactLogo = require('./images/react-logo.png');
+
+if (process.env.BROWSER) {
+  require('./_Header.scss');  
+}
 
 export default class Header extends React.Component {  
      
