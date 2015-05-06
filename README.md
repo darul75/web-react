@@ -14,3 +14,5 @@ https://github.com/kriasoft/react-starter-kit
 
 http://webpack.github.io/docs/code-splitting.html
 
+https://github.com/ThomasDeutsch/react-webpack
+
