@@ -12,7 +12,8 @@ var pathToReact = path.resolve(node_modules_dir, 'react/dist/react.min.js');
 var HtmlWebpackPlugin = require('html-webpack-plugin'),
     Clean = require("clean-webpack-plugin");    
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
-    StatsPlugin = require("stats-webpack-plugin");
+    StatsPlugin = require("stats-webpack-plugin"),
+    UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin();
 
 // Fixture to extract css
 function extractForProduction(loaders) {
@@ -56,12 +57,13 @@ module.exports = function(options) {
     cssLoaders = extractForProduction(cssLoaders);
     sassLoaders = extractForProduction(sassLoaders);
     
-    suffix = '-prod';    
+    suffix = '-prod';
+    //plugins.push(new webpack.PrefetchPlugin("react"));    
     plugins.push(new ExtractTextPlugin("app-[hash].css"));    
 
     outputPath = './dist/';
-
-    
+    config.resolve.alias = { 'react': '../node_modules/react/dist/react.min.js' };
+    config.module.noParse= ['../node_modules/react/dist/react.min.js'];
   } 
 
   // SOME STATS
@@ -75,7 +77,10 @@ module.exports = function(options) {
   
   // HTML TEMPLATE + ENV VARIABLE
   if (client) {
-    plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));    
+    plugins.push(new webpack.optimize.DedupePlugin());
+    plugins.push(new webpack.optimize.UglifyJsPlugin());
+    plugins.push(new webpack.optimize.AggressiveMergingPlugin());    
+    plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
     plugins.push(new Clean(cleanDirectories));
     plugins.push(
       new HtmlWebpackPlugin({
