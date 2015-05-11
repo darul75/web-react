@@ -38,6 +38,8 @@ module.exports = function(options) {
   var server = options.server;
   var prod = options.production;
 
+  config.devtool = !prod ? '#inline-source-map' : false;
+
   // STYLE LOADERS
   var cssLoaders = 'style-loader!css-loader';
   var sassLoaders = 'style!css!sass?indentedSyntax';
@@ -51,6 +53,10 @@ module.exports = function(options) {
   var suffix = '';
   var outputPath = './build/';
 
+  var processVars = {
+    'process.env':{}
+  };
+
   // PRODUCTION CASE
   if (prod) {
     // WRAP INTO CSS FILE
@@ -59,11 +65,10 @@ module.exports = function(options) {
     
     suffix = '-prod';
     //plugins.push(new webpack.PrefetchPlugin("react"));    
-    plugins.push(new ExtractTextPlugin("app-[hash].css"));    
+    plugins.push(new ExtractTextPlugin("app-[hash].css"));  
+    processVars['process.env'].NODE_ENV = JSON.stringify('production');
 
-    outputPath = './dist/';
-    config.resolve.alias = { 'react': '../node_modules/react/dist/react.min.js' };
-    config.module.noParse= ['../node_modules/react/dist/react.min.js'];
+    outputPath = './dist/';    
   } 
 
   // SOME STATS
@@ -76,11 +81,14 @@ module.exports = function(options) {
   cleanDirectories.push('.'+outputPath);
   
   // HTML TEMPLATE + ENV VARIABLE
-  if (client) {
-    plugins.push(new webpack.optimize.DedupePlugin());
-    plugins.push(new webpack.optimize.UglifyJsPlugin());
-    plugins.push(new webpack.optimize.AggressiveMergingPlugin());    
+  if (client) {        
+    processVars['process.env'].BROWSER = JSON.stringify(true);
+    plugins.push(new webpack.DefinePlugin(processVars));
     plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
+    plugins.push(new webpack.optimize.DedupePlugin());
+    plugins.push(new webpack.optimize.OccurenceOrderPlugin(true));
+    plugins.push(new webpack.optimize.UglifyJsPlugin({minimize: true, sourceMap: false}));
+    //plugins.push(new webpack.optimize.AggressiveMergingPlugin());
     plugins.push(new Clean(cleanDirectories));
     plugins.push(
       new HtmlWebpackPlugin({
@@ -88,19 +96,13 @@ module.exports = function(options) {
         template: 'assets/index'+suffix+'.html'
       })    
     );
-    plugins.push(
-      new webpack.DefinePlugin({
-        'process.env': {
-          BROWSER: JSON.stringify(true)  
-        }
-      })
-    );
-  }  
+  }    
 
   // small hash for production resources
   var hash = prod ? '-[hash]': '';  
 
   if (client) {
+    console.log(plugins);
     // CLIENT
     return _.merge({}, config, {
       devtool: 'eval',
@@ -120,7 +122,8 @@ module.exports = function(options) {
           { test: /\.sass$/, loader: sassLoaders },
           { test: /\.css$/, loader: cssLoaders },
           { test: /\.scss$/, loader: cssLoaders }
-        ]
+        ],
+        // noParse: [__dirname+'/../node_modules/react/dist/react.min.js']
       },
       plugins: plugins    
     });
