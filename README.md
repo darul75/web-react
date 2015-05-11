@@ -19,3 +19,5 @@ https://github.com/ThomasDeutsch/react-webpack
 https://github.com/webpack/webpack/tree/master/examples/multi-compiler
 
 https://github.com/webpack/webpack/tree/master/examples
+
+https://github.com/webpack/webpack/issues/615
