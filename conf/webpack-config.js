@@ -68,7 +68,7 @@ module.exports = function(options) {
     plugins.push(new ExtractTextPlugin("app-[hash].css"));  
     processVars['process.env'].NODE_ENV = JSON.stringify('production');
 
-    outputPath = './dist/';    
+    outputPath = './dist/';        
   } 
 
   // SOME STATS
@@ -81,13 +81,13 @@ module.exports = function(options) {
   cleanDirectories.push('.'+outputPath);
   
   // HTML TEMPLATE + ENV VARIABLE
-  if (client) {        
+  if (client) {   
     processVars['process.env'].BROWSER = JSON.stringify(true);
     plugins.push(new webpack.DefinePlugin(processVars));
     plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
     plugins.push(new webpack.optimize.DedupePlugin());
     plugins.push(new webpack.optimize.OccurenceOrderPlugin(true));
-    plugins.push(new webpack.optimize.UglifyJsPlugin({minimize: true, sourceMap: false}));
+    plugins.push(new webpack.optimize.UglifyJsPlugin({warnings: false, minimize: true, sourceMap: false}));
     //plugins.push(new webpack.optimize.AggressiveMergingPlugin());
     plugins.push(new Clean(cleanDirectories));
     plugins.push(
@@ -101,11 +101,9 @@ module.exports = function(options) {
   // small hash for production resources
   var hash = prod ? '-[hash]': '';  
 
-  if (client) {
-    console.log(plugins);
+  if (client) {    
     // CLIENT
-    return _.merge({}, config, {
-      devtool: 'eval',
+    return _.merge({}, config, {      
       entry: {    
         app: './app/app',
         vendors: ['react', 'react-router', 'react-hot-loader']
