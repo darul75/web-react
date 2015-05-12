@@ -4,6 +4,12 @@ ul
 	color: blue;
 }
 
+li {
+	display: inline;
+	padding: 5px;
+	border-left: 1px solid #eee;
+}
+
 li a {
 	font-size: 0.8rem;
 	text-transform: uppercase;
