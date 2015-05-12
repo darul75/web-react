@@ -18,7 +18,7 @@ class TodoItem extends React.Component {
   render() {    
     return (
       <li>
-        hello
+        {this.props.todo.text}
       </li>
     );
   }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import AppActions from '../../actions/AppActions';
 import TextInput from '../Todo/TextInput';
 
 let reactLogo;
@@ -22,19 +21,12 @@ export default class Header extends React.Component {
 				<header>
 					<ul>                        
             <li><Link to="app">Home</Link></li>
-					  <li><Link to="home">Todo</Link></li>            
+					  <li><Link to="todo">Todo</Link></li>
             <li><Link to="contact">Contact</Link></li>
-					</ul>          
-          <TextInput id="new-todo" placeholder="What needs to be done?" onSave={this._onSave} value="todo" />
+					</ul>                    
 				</header>        				
 		  </div> 
     );
-  }
-
-  _onSave(text) {
-    if (text.trim()){      
-      AppActions.create(text);
-    }
   }
 
 };
