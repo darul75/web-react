@@ -25,8 +25,7 @@ class TextInput extends React.Component {
     return (
       <input className={this.props.className}
         id={this.props.id}
-        placeholder={this.props.placeholder}
-        onBlur={this._save.bind(this)}
+        placeholder={this.props.placeholder}        
         onChange={this._onChange.bind(this)}
         onKeyDown={this._onKeyDown.bind(this)}
         value={this.state.value}

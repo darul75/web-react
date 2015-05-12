@@ -26,8 +26,7 @@ export default class MainSection extends React.Component {
     }
 
     return (
-      <div>
-        coucou
+      <div>        
         <ul id="todo-list">{todos}</ul>
       </div>
     );

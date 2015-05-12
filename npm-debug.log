@@ -1,0 +1,38 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\ProgramData\\App-V\\3E42E5D8-26E9-4BFE-8934-FA8CF7F42C87\\3823C655-3E3D-4D96-86AA-E21E98D820D4\\Root\\node.exe',
+1 verbose cli   'C:\\ProgramData\\App-V\\3E42E5D8-26E9-4BFE-8934-FA8CF7F42C87\\3823C655-3E3D-4D96-86AA-E21E98D820D4\\Root\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'start' ]
+2 info using npm@2.7.4
+3 info using node@v0.12.2
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info prestart webeye@
+6 info start webeye@
+7 verbose unsafe-perm in lifecycle true
+8 info webeye@ Failed to exec start script
+9 verbose stack Error: webeye@ start: `webpack --config conf/webpack-dev.js | webpack-dev-server --config conf/webpack-dev.js --hot --progress --colors --inline --content-base ./build`
+9 verbose stack Exit status 1
+9 verbose stack     at EventEmitter.<anonymous> (C:\ProgramData\App-V\3E42E5D8-26E9-4BFE-8934-FA8CF7F42C87\3823C655-3E3D-4D96-86AA-E21E98D820D4\Root\node_modules\npm\lib\utils\lifecycle.js:213:16)
+9 verbose stack     at EventEmitter.emit (events.js:110:17)
+9 verbose stack     at ChildProcess.<anonymous> (C:\ProgramData\App-V\3E42E5D8-26E9-4BFE-8934-FA8CF7F42C87\3823C655-3E3D-4D96-86AA-E21E98D820D4\Root\node_modules\npm\lib\utils\spawn.js:14:12)
+9 verbose stack     at ChildProcess.emit (events.js:110:17)
+9 verbose stack     at maybeClose (child_process.js:1015:16)
+9 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:1087:5)
+10 verbose pkgid webeye@
+11 verbose cwd C:\JUL\DEV\github\webye
+12 error Windows_NT 6.3.9600
+13 error argv "C:\\ProgramData\\App-V\\3E42E5D8-26E9-4BFE-8934-FA8CF7F42C87\\3823C655-3E3D-4D96-86AA-E21E98D820D4\\Root\\node.exe" "C:\\ProgramData\\App-V\\3E42E5D8-26E9-4BFE-8934-FA8CF7F42C87\\3823C655-3E3D-4D96-86AA-E21E98D820D4\\Root\\node_modules\\npm\\bin\\npm-cli.js" "run" "start"
+14 error node v0.12.2
+15 error npm  v2.7.4
+16 error code ELIFECYCLE
+17 error webeye@ start: `webpack --config conf/webpack-dev.js | webpack-dev-server --config conf/webpack-dev.js --hot --progress --colors --inline --content-base ./build`
+17 error Exit status 1
+18 error Failed at the webeye@ start script 'webpack --config conf/webpack-dev.js | webpack-dev-server --config conf/webpack-dev.js --hot --progress --colors --inline --content-base ./build'.
+18 error This is most likely a problem with the webeye package,
+18 error not with npm itself.
+18 error Tell the author that this fails on your system:
+18 error     webpack --config conf/webpack-dev.js | webpack-dev-server --config conf/webpack-dev.js --hot --progress --colors --inline --content-base ./build
+18 error You can get their info via:
+18 error     npm owner ls webeye
+18 error There is likely additional logging output above.
+19 verbose exit [ 1, true ]

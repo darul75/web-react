@@ -1,5 +1,12 @@
 ul
 {
-    list-style-type: none;
-    color: red;
+	list-style-type: none;
+	color: blue;
+}
+
+li a {
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #888;
 }

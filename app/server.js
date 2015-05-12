@@ -7,7 +7,6 @@ import React from 'react';
 import Router from 'react-router';
 
 import routes from './routes';
-import App from './components/App/App';
 
 var html = fs.readFileSync('./dist/index-prod.html', {encoding:'utf8'});
 

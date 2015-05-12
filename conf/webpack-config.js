@@ -38,7 +38,7 @@ module.exports = function(options) {
   var server = options.server;
   var prod = options.production;
 
-  config.devtool = !prod ? '#inline-source-map' : false;
+  config.devtool = !prod ? 'eval' : false;
 
   // STYLE LOADERS
   var cssLoaders = 'style-loader!css-loader';
