@@ -117,7 +117,7 @@ module.exports = function(options) {
     return _.merge({}, config, {      
       entry: {    
         app: './app/app',
-        vendors: ['react', 'react-router', 'react-hot-loader']
+        vendors: ['classnames', 'react', 'react-router', 'react-hot-loader']
       },    
       output: {
           path: outputPath,
