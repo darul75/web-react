@@ -4,11 +4,11 @@ let { PropTypes } = React;
 
 const ENTER_KEY_CODE = 13;
 
-class TextInput extends React.Component {
+class TodoTextInput extends React.Component {
 
   constructor(props) {
     super(props);
-    this.displayName = 'TextInput';
+    this.displayName = 'TodoTextInput';
     this.propsTypes = {
       className: PropTypes.string,
       id: PropTypes.string,
@@ -53,4 +53,4 @@ class TextInput extends React.Component {
   }
 };
 
-export default TextInput;
+export default TodoTextInput;

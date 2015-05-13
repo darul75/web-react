@@ -21,3 +21,5 @@ https://github.com/webpack/webpack/tree/master/examples/multi-compiler
 https://github.com/webpack/webpack/tree/master/examples
 
 https://github.com/webpack/webpack/issues/615
+
+http://eslint.org/

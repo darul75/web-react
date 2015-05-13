@@ -4,7 +4,8 @@ class AppActions {
   constructor() {
     this.generateActions(
       'create',
-      'receiveAll'
+      'destroy',
+      'toggleComplete'
     );
   }
 }

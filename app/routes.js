@@ -6,9 +6,9 @@ import {Route, DefaultRoute} from 'react-router';
 // NotFoundRoute
 
 import Application from './components/App/App';
-import Contact from './components/Contact/Contact';
-import HomeSection from './components/Home/HomeSection';
-import TodoSection from './components/Todo/TodoSection';
+import Contact from './components/ContactSection/Contact';
+import HomeSection from './components/HomeSection/HomeSection';
+import TodoSection from './components/TodoSection/TodoSection';
 
 export default (
   <Route name="app" path="/" handler={Application}>

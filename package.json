@@ -36,6 +36,7 @@
   "dependencies": {
     "alt": "^0.15.6",
     "babel": "^5.1.11",
+    "classnames": "^2.1.1",
     "express": "^4.12.3",
     "lodash": "^3.8.0",
     "object-assign": "^2.0.0",

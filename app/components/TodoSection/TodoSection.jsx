@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'react';
 
 import TodoItem from './TodoItem';
-import TextInput from './TextInput';
+import TodoTextInput from './TodoTextInput';
 
 import AppActions from '../../actions/AppActions';
 import AppStore from '../../stores/AppStore';
@@ -47,7 +47,7 @@ export default class TodoSection extends React.Component {
       <div>
         <h1>TODO PAGE</h1>
         <div>
-          <TextInput id="new-todo" placeholder="What needs to be done?" onSave={this._onSave} value="todo" />
+          <TodoTextInput className="edit" id="new-todo" placeholder="What needs to be done ?" onSave={this._onSave} value="" />
           <ul id="todo-list">{todos}</ul>
         </div>
       </div>

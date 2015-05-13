@@ -1,0 +1,13 @@
+button.destroy {
+	margin-left: 10px;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 1;
+	right: 3px;
+	border-radius: 50%;
+	box-shadow: 0 0 2px #242020;
+	cursor: pointer;
+}
+
+li.completed {
+	text-decoration: line-through;	
+}

@@ -66,10 +66,6 @@ var appStore = alt.createStore(class AppStore {
     }
   }
 
-  onReceiveAll() {
-    console.log('receive');
-  }
-
   static areAllComplete() {
     var { data } = this.getState();
     for (var id in data) {

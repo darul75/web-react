@@ -1,15 +1,19 @@
+div.header {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
+
 header {
 	text-align: center;
 	border-bottom: 2px solid #f4f4f4;
 }
 
-ul
-{
-	list-style-type: none;
-	color: blue;
+ul {
+	list-style-type: none;	
 }
 
-li {
+header li {
 	display: inline;
 	padding: 5px;
 	border-left: 1px solid #eee;

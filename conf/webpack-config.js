@@ -75,7 +75,7 @@ module.exports = function(options) {
     sassLoaders = extractForProduction(sassLoaders);
     
     suffix = '-prod';
-    //plugins.push(new webpack.PrefetchPlugin("react"));    
+    plugins.push(new webpack.PrefetchPlugin("react"));    
     plugins.push(new ExtractTextPlugin("app-[hash].css"));  
     processVars['process.env'].NODE_ENV = JSON.stringify('production');
 
@@ -99,7 +99,7 @@ module.exports = function(options) {
     plugins.push(new webpack.optimize.DedupePlugin());
     plugins.push(new webpack.optimize.OccurenceOrderPlugin(true));
     plugins.push(new webpack.optimize.UglifyJsPlugin({warnings: false, minimize: true, sourceMap: false}));
-    //plugins.push(new webpack.optimize.AggressiveMergingPlugin());
+    plugins.push(new webpack.optimize.AggressiveMergingPlugin());
     plugins.push(new Clean(cleanDirectories));
     plugins.push(
       new HtmlWebpackPlugin({
