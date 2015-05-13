@@ -4,64 +4,64 @@ import AppActions from '../actions/AppActions';
 
 var appStore = alt.createStore(class AppStore {
   constructor() {
-    this.bindActions(AppActions)
+    this.bindActions(AppActions);
 
-    this.data = {}
+    this.data = {};
   }
 
   update(id, updates) {
     if(this.data[id] && updates){
-      this.data[id] = merge(this.data[id], updates)
+      this.data[id] = merge(this.data[id], updates);
     }
   }
 
   updateAll(updates) {
     for (var id in this.data) {
-      this.update(id, updates)
+      this.update(id, updates);
     }
   }
 
   onCreate(text) {
-    text = text.trim()
+    text = text.trim();
     if (text === '') {
-      return false
+      return false;
     }
     // hand waving of course.
-    var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36)
+    var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
     this.data[id] = {
       id: id,
       complete: false,
       text: text
-    }
+    };
   }
 
   onUpdateText(x) {
-    var { id, text } = x
-    text = text ? text.trim() : ''
+    var { id, text } = x;
+    text = text ? text.trim() : '';
     if (text === '') {
-      return false
+      return false;
     }
-    this.update(id, { text })
+    this.update(id, { text });
   }
 
   onToggleComplete(id) {
-    var complete = !this.data[id].complete
-    this.update(id, { complete })
+    var complete = !this.data[id].complete;
+    this.update(id, { complete });
   }
 
   onToggleCompleteAll() {
-    var complete = !todoStore.areAllComplete()
-    this.updateAll({ complete })
+    /*var complete = !todoStore.areAllComplete();
+    this.updateAll({ complete });*/
   }
 
   onDestroy(id) {
-    delete this.data[id]
+    delete this.data[id];
   }
 
   onDestroyCompleted() {
     for (var id in this.data) {
       if (this.data[id].complete) {
-        this.onDestroy(id)
+        this.onDestroy(id);
       }
     }
   }
@@ -71,14 +71,14 @@ var appStore = alt.createStore(class AppStore {
   }
 
   static areAllComplete() {
-    var { data } = this.getState()
+    var { data } = this.getState();
     for (var id in data) {
       if (!data[id].complete) {
-        return false
+        return false;
       }
     }
-    return true
+    return true;
   }
-})
+});
 
-module.exports = appStore
+module.exports = appStore;

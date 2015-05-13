@@ -45,7 +45,7 @@ export default class TodoSection extends React.Component {
 
     return (      
       <div>
-        <div>TODO PAGE</div>
+        <h1>TODO PAGE</h1>
         <div>
           <TextInput id="new-todo" placeholder="What needs to be done?" onSave={this._onSave} value="todo" />
           <ul id="todo-list">{todos}</ul>

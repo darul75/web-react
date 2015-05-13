@@ -4,6 +4,8 @@ var webpack = require('webpack');
 
 var _ = require('lodash');
 
+var root_dir = path.resolve(__dirname, '..');
+console.log(root_dir);
 var node_modules_dir = path.resolve(__dirname, '../node_modules');
 var pathToReact = path.resolve(node_modules_dir, 'react/dist/react.min.js');
 
@@ -30,6 +32,15 @@ var excludeFromStats = [
 var config = {
   resolve: {
     extensions: ['', '.js', '.jsx']
+  },
+  module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      }
+    ]
   }
 };
 
@@ -51,7 +62,7 @@ module.exports = function(options) {
 
   // html template  
   var suffix = '';
-  var outputPath = './build/';
+  var outputPath = root_dir + '/build/';
 
   var processVars = {
     'process.env':{}
@@ -68,14 +79,14 @@ module.exports = function(options) {
     plugins.push(new ExtractTextPlugin("app-[hash].css"));  
     processVars['process.env'].NODE_ENV = JSON.stringify('production');
 
-    outputPath = './dist/';        
+    outputPath = root_dir + '/dist/';
   } 
 
   // SOME STATS
-  plugins.push(new StatsPlugin(outputPath+"stats.prerender.json", {
+  /*plugins.push(new StatsPlugin(outputPath+"stats.prerender.json", {
       chunkModules: true,
       exclude: excludeFromStats
-  })); 
+  })); */
 
   // CLEAN FIRT
   cleanDirectories.push('.'+outputPath);

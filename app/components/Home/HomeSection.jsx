@@ -7,7 +7,9 @@ export default class HomeSection extends React.Component {
   }
   render() {    
     return (
-      <div>HOME PAGE</div>
+      <div>
+      	<h1>HOME PAGE</h1>
+      </div>
     );
   }
   
