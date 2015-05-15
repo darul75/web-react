@@ -57,7 +57,8 @@ module.exports = function(options) {
   // INIT PLUGINS
   var plugins = [new webpack.NoErrorsPlugin()];
 
-  var cleanDirectories = [];
+  // directory cleaner
+  var cleanDirectories = ['build', 'dist'];
 
   // html template  
   var suffix = '';
@@ -85,15 +86,12 @@ module.exports = function(options) {
   plugins.push(new StatsPlugin(outputPath+"stats.prerender.json", {
       chunkModules: true,
       exclude: excludeFromStats
-  }));
-
-  // CLEAN FIRST
-  cleanDirectories.push(outputPath);
+  }));  
   
   // HTML TEMPLATE + ENV VARIABLE
   if (client) {   
     processVars['process.env'].BROWSER = JSON.stringify(true);
-    plugins.push(new Clean(cleanDirectories));
+    plugins.push(new Clean(cleanDirectories, root_dir));
     plugins.push(new webpack.DefinePlugin(processVars));
     plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
     plugins.push(new webpack.optimize.DedupePlugin());
