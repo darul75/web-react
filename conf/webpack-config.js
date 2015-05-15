@@ -4,9 +4,8 @@ var webpack = require('webpack');
 
 var _ = require('lodash');
 
+// base app dir
 var root_dir = path.resolve(__dirname, '..');
-var node_modules_dir = path.resolve(__dirname, '../node_modules');
-var pathToReact = path.resolve(node_modules_dir, 'react/dist/react.min.js');
 
 // PLUGINS
 // html / clean / extract css / stats
@@ -80,13 +79,7 @@ module.exports = function(options) {
     processVars['process.env'].NODE_ENV = JSON.stringify('production');
 
     outputPath = root_dir + '/dist/';
-  } 
-
-  // SOME STATS
-  plugins.push(new StatsPlugin(outputPath+"stats.prerender.json", {
-      chunkModules: true,
-      exclude: excludeFromStats
-  }));  
+  }     
   
   // HTML TEMPLATE + ENV VARIABLE
   if (client) {   
@@ -104,7 +97,13 @@ module.exports = function(options) {
         template: 'assets/index'+suffix+'.html'
       })    
     );
-  }    
+  }  
+
+  // SOME STATS
+  /*plugins.push(new StatsPlugin(outputPath+"stats.prerender.json", {
+      chunkModules: true,
+      exclude: excludeFromStats
+  }));*/
 
   // small hash for production resources
   var hash = prod ? '-[hash]': '';  
