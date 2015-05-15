@@ -144,7 +144,8 @@ module.exports = function(options) {
        output: {
         path: './dist/',
         filename: 'server.js',
-        libraryTarget: 'commonjs2'
+        libraryTarget: 'commonjs2',
+        publicPath: '/'
       },      
       target: 'node',
       externals: /^[a-z][a-z\.\-0-9]*$/,
