@@ -2,12 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="app-{%=o.webpack.hash%}.css">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/app-{%=o.webpack.hash%}.css">
 </head>
-<body>
-  <script>
-    // var __StoreData = DATA;
-  </script>
+<body>  
   <div id="app">CONTENT</div>
   {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
     <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>

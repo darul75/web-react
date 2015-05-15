@@ -5,7 +5,6 @@ var webpack = require('webpack');
 var _ = require('lodash');
 
 var root_dir = path.resolve(__dirname, '..');
-console.log(root_dir);
 var node_modules_dir = path.resolve(__dirname, '../node_modules');
 var pathToReact = path.resolve(node_modules_dir, 'react/dist/react.min.js');
 
@@ -30,7 +29,7 @@ var excludeFromStats = [
 // common configs
 
 var config = {
-  resolve: {
+  resolve: {    
     extensions: ['', '.js', '.jsx']
   },
   module: {
@@ -83,24 +82,24 @@ module.exports = function(options) {
   } 
 
   // SOME STATS
-  /*plugins.push(new StatsPlugin(outputPath+"stats.prerender.json", {
+  plugins.push(new StatsPlugin(outputPath+"stats.prerender.json", {
       chunkModules: true,
       exclude: excludeFromStats
-  })); */
+  }));
 
-  // CLEAN FIRT
-  cleanDirectories.push('.'+outputPath);
+  // CLEAN FIRST
+  cleanDirectories.push(outputPath);
   
   // HTML TEMPLATE + ENV VARIABLE
   if (client) {   
     processVars['process.env'].BROWSER = JSON.stringify(true);
+    plugins.push(new Clean(cleanDirectories));
     plugins.push(new webpack.DefinePlugin(processVars));
     plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
     plugins.push(new webpack.optimize.DedupePlugin());
     plugins.push(new webpack.optimize.OccurenceOrderPlugin(true));
     plugins.push(new webpack.optimize.UglifyJsPlugin({warnings: false, minimize: true, sourceMap: false}));
-    plugins.push(new webpack.optimize.AggressiveMergingPlugin());
-    plugins.push(new Clean(cleanDirectories));
+    plugins.push(new webpack.optimize.AggressiveMergingPlugin());    
     plugins.push(
       new HtmlWebpackPlugin({
         filename: 'index'+suffix+'.html',
@@ -114,15 +113,16 @@ module.exports = function(options) {
 
   if (client) {    
     // CLIENT
-    return _.merge({}, config, {      
+    return _.merge({}, config, {
+      context: __dirname + "/../app",
       entry: {    
-        app: './app/app',
+        app: './app',
         vendors: ['classnames', 'react', 'react-router', 'react-hot-loader']
       },    
       output: {
           path: outputPath,
           filename: 'app'+hash+'.js',
-          publicPath: prod ? '' : ''
+          publicPath: prod ? '/' : '/'
       },
       target: 'web',
       module: {
@@ -132,10 +132,10 @@ module.exports = function(options) {
           { test: /\.sass$/, loader: sassLoaders },
           { test: /\.css$/, loader: cssLoaders },
           { test: /\.scss$/, loader: cssLoaders }
-        ],
-        // noParse: [__dirname+'/../node_modules/react/dist/react.min.js']
+        ]        
       },
-      plugins: plugins    
+      plugins: plugins,
+      root: outputPath    
     });
   }
   else {

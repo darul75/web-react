@@ -23,3 +23,5 @@ https://github.com/webpack/webpack/tree/master/examples
 https://github.com/webpack/webpack/issues/615
 
 http://eslint.org/
+
+http://webpack.github.io/docs/webpack-dev-server.html
