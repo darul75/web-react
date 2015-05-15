@@ -139,7 +139,7 @@ module.exports = function(options) {
     // SERVER
     return _.merge({}, config, {    
       entry: {    
-        server: './app/server'
+        server: './server/server'
       },
        output: {
         path: './dist/',

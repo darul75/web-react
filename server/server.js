@@ -12,15 +12,20 @@ import _ from 'lodash';
 import React from 'react';
 import Router from 'react-router';
 
-import routes from './routes';
+import routes from '../app/routes';
 
 let html = fs.readFileSync('./dist/index-prod.html', {encoding: 'utf8'});
 
 let app = express();
-app.use(favicon(path.join(__dirname, '/images/favicon.ico')));
+app.use(favicon(path.join(__dirname, '../app/images/favicon.ico')));
 
 app.set('port', process.env.PORT || 3000);
 app.use(express.static('dist'));
+
+//
+// Register API middleware
+// -----------------------------------------------------------------------------
+require('./api')(app);
 
 app.get('*', (req, res, next) => {
   let markup = '';
