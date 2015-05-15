@@ -1,21 +1,19 @@
+import fetch from 'node-fetch';
+
 function query(server) {
   server.get('/api/*', (req, res, next) => {
     try {
-      //let path = req.query.path;
+      res.setHeader('Content-Type', 'application/json');
 
-      /*if (!path) {
-        res.status(400).send({error: `The 'path' query parameter cannot be empty.`});
-      }
+      // simple api fetch example, no own DB here so external call is made.
 
-      let page = await db.getPage(path);
-
-      if (page) {
-        res.status(200).send(page);
-      } else {
-        res.status(404).send({error: `The page '${path}' is not found.`});
-      }*/
-
-      res.status(200).send({data: 'hello'});
+      // https://api.github.com/users/github
+      fetch('https://api.github.com/users/github')
+      .then((response) => {
+        return response.json();
+      }).then((json) => {
+        res.status(200).send(json);
+      });
     } catch (err) {
       next(err);
     }
