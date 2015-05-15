@@ -124,6 +124,7 @@ module.exports = function(options) {
           filename: 'app'+hash+'.js',
           publicPath: prod ? '' : ''
       },
+      target: 'web',
       module: {
         loaders: [
           { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },      

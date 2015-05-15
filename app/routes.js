@@ -1,13 +1,14 @@
 /*eslint-disable no-unused-vars*/
 import React from 'react';
 /*eslint-enable no-unused-vars*/
-import {Route, DefaultRoute} from 'react-router';
+import {Route, DefaultRoute, NotFoundRoute} from 'react-router';
 
 // NotFoundRoute
 
 import Application from './components/App/App';
 import Contact from './components/ContactSection/Contact';
 import HomeSection from './components/HomeSection/HomeSection';
+import NotFoundSection from './components/NotFoundSection/NotFoundSection';
 import TodoSection from './components/TodoSection/TodoSection';
 
 export default (
@@ -16,5 +17,6 @@ export default (
     <Route name="todo" path="/todo" handler={TodoSection}/>
     <Route name="contact" path="/contact" handler={Contact}/>
     <DefaultRoute handler={HomeSection} />
+    <NotFoundRoute handler={NotFoundSection} />
   </Route>
 );

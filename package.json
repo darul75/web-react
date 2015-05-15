@@ -7,7 +7,7 @@
     "url": "https://github.com/darul75/webeye.git"
   },
   "scripts": {
-    "start": "webpack --config conf/webpack-dev.js | webpack-dev-server --config conf/webpack-dev.js --hot --progress --colors --inline --content-base ./build",
+    "start": "webpack --config conf/webpack-dev.js | webpack-dev-server --config conf/webpack-dev.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
     "deploy": "webpack --config conf/webpack-prod.js | node dist/server.js"
   },
   "devDependencies": {
