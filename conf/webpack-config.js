@@ -10,7 +10,7 @@ var root_dir = path.resolve(__dirname, '..');
 // PLUGINS
 // html / clean / extract css / stats
 var HtmlWebpackPlugin = require('html-webpack-plugin'),
-    Clean = require("clean-webpack-plugin");    
+    Clean = require("clean-webpack-plugin");
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
     StatsPlugin = require("stats-webpack-plugin"),
     UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin();
@@ -28,7 +28,7 @@ var excludeFromStats = [
 // common configs
 
 var config = {
-  resolve: {    
+  resolve: {
     extensions: ['', '.js', '.jsx']
   },
   module: {
@@ -57,9 +57,9 @@ module.exports = function(options) {
   var plugins = [new webpack.NoErrorsPlugin()];
 
   // directory cleaner
-  var cleanDirectories = ['build', 'dist'];
+  var cleanDirectories = ['../build', '../dist'];
 
-  // html template  
+  // html template
   var suffix = '';
   var outputPath = root_dir + '/build/';
 
@@ -72,17 +72,17 @@ module.exports = function(options) {
     // WRAP INTO CSS FILE
     cssLoaders = extractForProduction(cssLoaders);
     sassLoaders = extractForProduction(sassLoaders);
-    
+
     suffix = '-prod';
-    plugins.push(new webpack.PrefetchPlugin("react"));    
-    plugins.push(new ExtractTextPlugin("app-[hash].css"));  
+    plugins.push(new webpack.PrefetchPlugin("react"));
+    plugins.push(new ExtractTextPlugin("app-[hash].css"));
     processVars['process.env'].NODE_ENV = JSON.stringify('production');
 
     outputPath = root_dir + '/dist/';
-  }     
-  
+  }
+
   // HTML TEMPLATE + ENV VARIABLE
-  if (client) {   
+  if (client) {
     processVars['process.env'].BROWSER = JSON.stringify(true);
     plugins.push(new Clean(cleanDirectories, root_dir));
     plugins.push(new webpack.DefinePlugin(processVars));
@@ -90,14 +90,14 @@ module.exports = function(options) {
     plugins.push(new webpack.optimize.DedupePlugin());
     plugins.push(new webpack.optimize.OccurenceOrderPlugin(true));
     plugins.push(new webpack.optimize.UglifyJsPlugin({warnings: false, minimize: true, sourceMap: false}));
-    plugins.push(new webpack.optimize.AggressiveMergingPlugin());    
+    plugins.push(new webpack.optimize.AggressiveMergingPlugin());
     plugins.push(
       new HtmlWebpackPlugin({
         filename: 'index'+suffix+'.html',
         template: 'assets/index'+suffix+'.html'
-      })    
+      })
     );
-  }  
+  }
 
   // SOME STATS
   /*plugins.push(new StatsPlugin(outputPath+"stats.prerender.json", {
@@ -106,16 +106,16 @@ module.exports = function(options) {
   }));*/
 
   // small hash for production resources
-  var hash = prod ? '-[hash]': '';  
+  var hash = prod ? '-[hash]': '';
 
-  if (client) {    
+  if (client) {
     // CLIENT
     return _.merge({}, config, {
       context: __dirname + "/../app",
-      entry: {    
+      entry: {
         app: './app',
         vendors: ['classnames', 'react', 'react-router', 'react-hot-loader']
-      },    
+      },
       output: {
           path: outputPath,
           filename: 'app'+hash+'.js',
@@ -124,21 +124,21 @@ module.exports = function(options) {
       target: 'web',
       module: {
         loaders: [
-          { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },      
+          { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
           { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
           { test: /\.sass$/, loader: sassLoaders },
           { test: /\.css$/, loader: cssLoaders },
           { test: /\.scss$/, loader: cssLoaders }
-        ]        
+        ]
       },
       plugins: plugins,
-      root: outputPath    
+      root: outputPath
     });
   }
   else {
     // SERVER
-    return _.merge({}, config, {    
-      entry: {    
+    return _.merge({}, config, {
+      entry: {
         server: './server/server'
       },
        output: {
@@ -146,7 +146,7 @@ module.exports = function(options) {
         filename: 'server.js',
         libraryTarget: 'commonjs2',
         publicPath: '/'
-      },      
+      },
       target: 'node',
       externals: /^[a-z][a-z\.\-0-9]*$/,
       node: {
