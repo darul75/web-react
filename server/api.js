@@ -12,7 +12,6 @@ function query(server) {
       .then((response) => {
         return response.json();
       }).then((json) => {
-        console.log(json);
         res.status(200).send(json);
       });
     } catch (err) {

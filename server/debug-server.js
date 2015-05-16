@@ -1,6 +1,6 @@
 require('babel/register')({
-  sourceMap: 'inline',
-
+  sourceMap: 'both',
+  retainLines: true,
   // include superfluous whitespace characters and line terminators
   compact: false
 });
