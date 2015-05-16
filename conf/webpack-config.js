@@ -114,7 +114,7 @@ module.exports = function(options) {
       context: __dirname + "/../app",
       entry: {
         app: './app',
-        vendors: ['classnames', 'react', 'react-router', 'react-hot-loader']
+        vendors: ['whatwg-fetch', 'classnames', 'react', 'react-router', 'react-hot-loader']
       },
       output: {
           path: outputPath,

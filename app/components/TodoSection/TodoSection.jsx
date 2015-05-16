@@ -7,9 +7,8 @@ import TodoTextInput from './TodoTextInput';
 import AppActions from '../../actions/AppActions';
 import AppStore from '../../stores/AppStore';
 
-
 /**
- * Retrieve the current TODO data from the AppStore
+ * Retrieve the current data from the AppStore
  */
 function getDataState() {
   return {
@@ -18,24 +17,25 @@ function getDataState() {
   };
 }
 
-export default class TodoSection extends React.Component {  
+export default class TodoSection extends React.Component {
   constructor() {
     super();
-    this.propsTypes = {
-      allData: PropTypes.object.isRequired,
-      areAllComplete: PropTypes.bool.isRequired  
-    };
     this.state = getDataState();
   }
+
   forceRerender() {
     this.setState(getDataState());
-  }  
+  }
 
   componentDidMount() {
     AppStore.listen(this.forceRerender.bind(this));
   }
+
+  componentWillUnmount() {
+    AppStore.unlisten(this.forceRerender.bind(this));
+  }
+
   render() {
-    
     var allTodos = this.state.allData;
     var todos = [];
 
@@ -43,11 +43,11 @@ export default class TodoSection extends React.Component {
       todos.push(<TodoItem key={key} todo={allTodos[key]} />);
     }
 
-    return (      
+    return (
       <div>
         <h1>TODO PAGE</h1>
         <div>
-          <TodoTextInput className="edit" id="new-todo" placeholder="What needs to be done ?" onSave={this._onSave} value="" />
+          <TodoTextInput className="edit" id="new-todo" placeholder="What needs to be done ?" onSave={this._onSave.bind(this)} value="" />
           <ul id="todo-list">{todos}</ul>
         </div>
       </div>
@@ -55,12 +55,12 @@ export default class TodoSection extends React.Component {
   }
 
   _onSave(text) {
-    if (text.trim()){      
+    if (text.trim()){
       AppActions.create(text);
     }
   }
 
-  
+
 };
 
 TodoSection.prototype.displayName = "TodoSection";

@@ -7,10 +7,10 @@
     "url": "https://github.com/darul75/webeye.git"
   },
   "scripts": {
-    "dev": "webpack --config conf/webpack-dev.js | webpack-dev-server --config conf/webpack-dev.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
+    "dev": "webpack --config conf/webpack-dev.js | webpack-dev-server --port 3000 --config conf/webpack-dev.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
+    "dev-server": "webpack --config conf/webpack-dev.js | DEV_SERVER=true node-debug --debug-brk server/debug-server.js --debug --source-maps",
     "build": "webpack --config conf/webpack-prod.js --progress --profile --colors",
-    "deploy": "node dist/server.js",
-    "debug-server": "webpack --config conf/webpack-dev.js | DEV_SERVER=true node-debug --debug-brk server/debug-server.js --debug --source-maps"
+    "start": "node dist/server.js"
   },
   "devDependencies": {
     "babel-core": "^5.1.11",
@@ -44,6 +44,7 @@
     "node-fetch": "^1.2.1",
     "object-assign": "^2.0.0",
     "react": "^0.13.2",
-    "serve-favicon": "^2.2.1"
+    "serve-favicon": "^2.2.1",
+    "whatwg-fetch": "^0.8.1"
   }
 }

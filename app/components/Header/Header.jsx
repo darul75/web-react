@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-let reactLogo = './images/react-logo.png';
+let reactLogo;
 
 if (!process.env.DEV_SERVER) {
-  reactLogo = require(reactLogo);
+  reactLogo = require('./images/react-logo.png');
+} else {
+  reactLogo = './images/react-logo.png';
 }
-console.log(process.env.DEV_SERVER);
 
 if (process.env.BROWSER) {
   require('./_Header.scss');

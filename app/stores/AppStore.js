@@ -1,11 +1,12 @@
 import alt from '../alt';
 import merge from 'object-assign';
 import AppActions from '../actions/AppActions';
+// import fetch from 'whatwg-fetch';
 
-var appStore = alt.createStore(class AppStore {
+let appStore = alt.createStore(class AppStore {
   constructor() {
     this.bindActions(AppActions);
-
+    this.dataByRestApi = {};
     this.data = {};
   }
 
@@ -35,8 +36,20 @@ var appStore = alt.createStore(class AppStore {
     };
   }
 
+  onFetch() {
+    this.dataByRestApi = {data: 'hello'};
+    // fetch('https://api.github.com/users/github')
+    //   .then((response) => {
+    //     return response.json();
+    //   }).then((json) => {
+    //     this.dataByRestApi = json;
+    //   }
+    // );
+    //this.setState(this.dataByRestApi);
+  }
+
   onUpdateText(x) {
-    var { id, text } = x;
+    let { id, text } = x;
     text = text ? text.trim() : '';
     if (text === '') {
       return false;
@@ -45,7 +58,7 @@ var appStore = alt.createStore(class AppStore {
   }
 
   onToggleComplete(id) {
-    var complete = !this.data[id].complete;
+    let complete = !this.data[id].complete;
     this.update(id, { complete });
   }
 
@@ -59,7 +72,7 @@ var appStore = alt.createStore(class AppStore {
   }
 
   onDestroyCompleted() {
-    for (var id in this.data) {
+    for (let id in this.data) {
       if (this.data[id].complete) {
         this.onDestroy(id);
       }
@@ -67,8 +80,8 @@ var appStore = alt.createStore(class AppStore {
   }
 
   static areAllComplete() {
-    var { data } = this.getState();
-    for (var id in data) {
+    let { data } = this.getState();
+    for (let id in data) {
       if (!data[id].complete) {
         return false;
       }
