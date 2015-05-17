@@ -1,7 +1,7 @@
 {
   "name": "web-react",
-  "description": "",
-  "version": "0.0.1",
+  "description": "Another Webpack/React/Flux starter kit.",
+  "version": "0.0.2",
   "homepage": "https://github.com/darul75/web-react",
   "repository": {
     "type": "git",
