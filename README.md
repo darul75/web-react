@@ -33,26 +33,46 @@ TODO
 How to use it
 -------------
 
+*DEV ONLY CLIENT*
+
 Webpack with hot changes loading but no own server. Port: 8080
+
+See changes at [http://127.0.0.1:8080](http://127.0.0.1:8080)
+
 ```
 npm run dev
 ```
 
-Express server in debug mode and ES6 thanks to Babel. Port: 3000
+*DEV ONLY CLIENT/SERVER*
+
+Start one webpack in background for client hot changes loading.
+
+```
+npm run dev-server-client
+```
+
+Then start your node server in debug break mode. One Express server will be launched in debug mode in ES6 thanks to Babel. 
+
+See changes at [http://127.0.0.1:3000](http://127.0.0.1:3000)
+
 ```
 npm run dev-server
 ```
+
+*PRODUCTION*
 
 Build production bundle both client and server.
 ```
 npm run build
 ```
 
-Run production client/server React/Express website.
+Run production client/server React/Express website. 
+
 ```
 npm run start
 ```
 
+See it at [http://127.0.0.1:3000](http://127.0.0.1:3000)
 
 RELEASE
 -------------
