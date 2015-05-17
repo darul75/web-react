@@ -38,14 +38,15 @@ let appStore = alt.createStore(class AppStore {
 
   onFetch() {
     this.dataByRestApi = {data: 'hello'};
-    // fetch('https://api.github.com/users/github')
-    //   .then((response) => {
-    //     return response.json();
-    //   }).then((json) => {
-    //     this.dataByRestApi = json;
-    //   }
-    // );
-    //this.setState(this.dataByRestApi);
+    fetch('https://api.github.com/users/github')
+      .then((response) => {
+        return response.json();
+      }).then((json) => {
+        this.dataByRestApi = {data: json};
+        this.emitChange();
+      }
+    );
+
   }
 
   onUpdateText(x) {

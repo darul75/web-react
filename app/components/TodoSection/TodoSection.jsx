@@ -23,16 +23,12 @@ export default class TodoSection extends React.Component {
     this.state = getDataState();
   }
 
-  forceRerender() {
-    this.setState(getDataState());
-  }
-
   componentDidMount() {
-    AppStore.listen(this.forceRerender.bind(this));
+    AppStore.listen(this.onChange.bind(this));
   }
 
   componentWillUnmount() {
-    AppStore.unlisten(this.forceRerender.bind(this));
+    AppStore.unlisten(this.onChange.bind(this));
   }
 
   render() {
@@ -54,12 +50,15 @@ export default class TodoSection extends React.Component {
     );
   }
 
+  onChange() {
+    this.setState(getDataState());
+  }
+
   _onSave(text) {
     if (text.trim()){
       AppActions.create(text);
     }
   }
-
 
 };
 

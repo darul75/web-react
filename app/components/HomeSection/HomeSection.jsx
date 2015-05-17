@@ -19,19 +19,19 @@ export default class HomeSection extends React.Component {
     this.state = getDataState();
   }
 
-  // componentDidMount() {
-  //   AppStore.listen(this._onChange.bind(this));
-  // }
+  componentDidMount() {
+    AppStore.listen(this.onChange.bind(this));
+  }
 
-  // componentWillUnmount() {
-  //   AppStore.unlisten(this._onChange.bind(this));
-  // }
+  componentWillUnmount() {
+    AppStore.unlisten(this.onChange.bind(this));
+  }
 
   render() {
     return (
       <div>
       	<h1>HOME PAGE</h1>
-        <div><button onClick={this._onClick.bind(this)} /></div>
+        <div><button onClick={this._onClick.bind(this)}>FAKE API CALL</button></div>
         <div>{this.state.apiData.data}</div>
       </div>
     );
@@ -41,7 +41,7 @@ export default class HomeSection extends React.Component {
     AppActions.fetch();
   }
 
-  _onChange() {
+  onChange() {
     this.setState(getDataState());
   }
 
