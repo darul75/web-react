@@ -48,5 +48,12 @@
     "react": "^0.13.2",
     "serve-favicon": "^2.2.1",
     "whatwg-fetch": "^0.8.1"
-  }
+  },
+  "keywords": [
+    "react",
+    "flux",
+    "isomorphic",
+    "webpack",
+    "kit"
+  ]
 }
