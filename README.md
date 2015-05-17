@@ -1,27 +1,88 @@
-# webye
+web-react [![NPM version](https://badge.fury.io/js/web-react.png)](http://badge.fury.io/js/web-react) [![Total views](https://sourcegraph.com/api/repos/github.com/darul75/web-react/counters/views.png)](https://sourcegraph.com/github.com/darul75/web-react) [![Join the chat at https://gitter.im/darul75/web-react](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/darul75/web-react?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+=====================
 
-https://github.com/paypal/react-engine/blob/master/lib/server.js
+Another Webpack React Kit.
 
-https://github.com/enaqx/awesome-react
+Why
+-------------
 
-https://github.com/badsyntax/react-seed/blob/master/app/components/App/App.jsx
+Because there are many React starter kits but some are so specific and difficult to take in hands.
 
-https://christianalfoni.github.io/react-webpack-cookbook/Optimizing-rebundling.html
+Idea was to take in hands following stack :
 
-http://christianalfoni.github.io/javascript/2014/12/13/did-you-know-webpack-and-react-is-awesome.html#lazyload
+* [ES6](https://babeljs.io/docs/learn-es6/) : and you will learn React with awesome ECM6 features.
+* [Webpack](https://github.com/webpack/webpack) : amazing bundler, still to learn so much about it.
+* [React](https://github.com/facebook/react) : choosed because I love idea of Virtual DOM.
+* [Flux](https://facebook.github.io/flux/docs/overview.html) : flux and used implementation is [Alt](http://alt.js.org/)
 
-https://github.com/kriasoft/react-starter-kit
+For a simple website with no server side it is really fine.
 
-http://webpack.github.io/docs/code-splitting.html
+For a more complex website, an Express server is used but work is not finished.
 
-https://github.com/ThomasDeutsch/react-webpack
+- Server side React rendering is ready and done through [React-Router](https://github.com/rackt/react-router)
+- Some API server routes are just given as example.
 
-https://github.com/webpack/webpack/tree/master/examples/multi-compiler
+On both client/server [Fetch](https://github.com/github/fetch) request handler is used (for example on server side)
 
-https://github.com/webpack/webpack/tree/master/examples
+Hope you will enjoy.
 
-https://github.com/webpack/webpack/issues/615
+Demo
+-------------
+TODO
 
-http://eslint.org/
+How to use it
+-------------
 
-http://webpack.github.io/docs/webpack-dev-server.html
+Webpack with hot changes loading but no own server. Port: 8080
+```
+npm run dev
+```
+
+Express server in debug mode and ES6 thanks to Babel. Port: 3000
+```
+npm run dev-server
+```
+
+Build production bundle both client and server.
+```
+npm run build
+```
+
+Run production client/server React/Express website.
+```
+npm run start
+```
+
+
+RELEASE
+-------------
+
+* 0.0.1: starter kit
+ 
+Metrics
+
+[![NPM](https://nodei.co/npm/web-react.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/web-react/)
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Julien Valéry
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
