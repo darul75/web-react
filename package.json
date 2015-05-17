@@ -1,13 +1,14 @@
 {
-  "name": "webeye",
+  "name": "web-react",
   "description": "",
-  "homepage": "https://github.com/darul75/webeye",
+  "version": "0.0.1",
+  "homepage": "https://github.com/darul75/web-react",
   "repository": {
     "type": "git",
-    "url": "https://github.com/darul75/webeye.git"
+    "url": "https://github.com/darul75/web-react.git"
   },
   "scripts": {
-    "dev": "webpack --config conf/webpack-dev.js | webpack-dev-server --port 3000 --config conf/webpack-dev.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
+    "dev": "webpack --config conf/webpack-dev.js | webpack-dev-server --port 8080 --config conf/webpack-dev.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
     "dev-server": "webpack --config conf/webpack-dev.js | DEV_SERVER=true node-debug --debug-brk server/debug-server.js --debug --source-maps",
     "build": "webpack --config conf/webpack-prod.js --progress --profile --colors",
     "start": "node dist/server.js"
