@@ -14,7 +14,7 @@ import Router from 'react-router';
 
 import routes from '../app/routes';
 
-let html = fs.readFileSync('./build/index.html', {encoding: 'utf8'});
+let html = fs.readFileSync('./assets/index-dev.html', {encoding: 'utf8'});
 
 let app = express();
 app.use(favicon(path.join(__dirname, '../app/images/favicon.ico')));

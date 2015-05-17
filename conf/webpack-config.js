@@ -45,6 +45,7 @@ var config = {
 module.exports = function(options) {
   var client = options.client;
   var server = options.server;
+  var devserver = options.devserver;
   var prod = options.production;
 
   config.devtool = !prod ? 'eval' : false;
@@ -57,7 +58,7 @@ module.exports = function(options) {
   var plugins = [new webpack.NoErrorsPlugin()];
 
   // directory cleaner
-  var cleanDirectories = ['../build', '../dist'];
+  var cleanDirectories = ['build', 'dist'];
 
   // html template
   var suffix = '';
@@ -83,6 +84,7 @@ module.exports = function(options) {
 
   // HTML TEMPLATE + ENV VARIABLE
   if (client) {
+    suffix = !devserver ? suffix : '-dev';
     processVars['process.env'].BROWSER = JSON.stringify(true);
     plugins.push(new Clean(cleanDirectories, root_dir));
     plugins.push(new webpack.DefinePlugin(processVars));
@@ -107,6 +109,7 @@ module.exports = function(options) {
 
   // small hash for production resources
   var hash = prod ? '-[hash]': '';
+  var publicPath = !devserver ? '/' : 'http://127.0.0.1:8081';
 
   if (client) {
     // CLIENT
@@ -119,7 +122,7 @@ module.exports = function(options) {
       output: {
           path: outputPath,
           filename: 'app'+hash+'.js',
-          publicPath: prod ? '/' : '/'
+          publicPath: publicPath
       },
       target: 'web',
       module: {
