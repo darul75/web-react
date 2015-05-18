@@ -62,7 +62,7 @@ module.exports = function(options) {
 
   // html template
   var suffix = '';
-  var outputPath = root_dir + '/build/';
+  var outputPath = path.join(root_dir, 'build');
 
   var processVars = {
     'process.env':{}
@@ -79,7 +79,7 @@ module.exports = function(options) {
     plugins.push(new ExtractTextPlugin("app-[hash].css"));
     processVars['process.env'].NODE_ENV = JSON.stringify('production');
 
-    outputPath = root_dir + '/dist/';
+    outputPath = path.join(root_dir, 'dist');
   }
 
   // HTML TEMPLATE + ENV VARIABLE
@@ -102,10 +102,10 @@ module.exports = function(options) {
   }
 
   // SOME STATS
-  /*plugins.push(new StatsPlugin(outputPath+"stats.prerender.json", {
+  plugins.push(new StatsPlugin(path.join(outputPath, 'webpack-stats.json'), {
       chunkModules: true,
       exclude: excludeFromStats
-  }));*/
+  }));
 
   // small hash for production resources
   var hash = prod ? '-[hash]': '';
