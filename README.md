@@ -53,11 +53,11 @@ npm run dev-server-client
 
 Then start your node server in debug break mode. One Express server will be launched in debug mode in ES6 thanks to Babel. 
 
-See changes at [http://127.0.0.1:3000](http://127.0.0.1:3000)
-
 ```
 npm run dev-server
 ```
+
+See changes at [http://127.0.0.1:3000](http://127.0.0.1:3000)
 
 *PRODUCTION*
 
