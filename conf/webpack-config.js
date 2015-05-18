@@ -114,7 +114,7 @@ module.exports = function(options) {
   if (client) {
     // CLIENT
     return _.merge({}, config, {
-      context: __dirname + "/../app",
+      context: __dirname + path.sep + path.join('..', 'app'),
       entry: {
         app: './app',
         vendors: ['whatwg-fetch', 'classnames', 'react', 'react-router', 'react-hot-loader']
