@@ -1,19 +1,19 @@
 // MAIN DEPENDENCIES
-var path = require('path');
-var webpack = require('webpack');
+import path from 'path';
+import webpack from 'webpack';
 
-var _ = require('lodash');
+import _ from 'lodash';
 
 // base app dir
 var root_dir = path.resolve(__dirname, '..');
 
 // PLUGINS
 // html / clean / extract css / stats
-var HtmlWebpackPlugin = require('html-webpack-plugin'),
-    Clean = require("clean-webpack-plugin");
-    ExtractTextPlugin = require("extract-text-webpack-plugin"),
-    StatsPlugin = require("stats-webpack-plugin"),
-    UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin();
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import Clean from 'clean-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import writeStats from './utils/write-stats';
+let UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin();
 
 // Fixture to extract css
 function extractForProduction(loaders) {
@@ -99,17 +99,12 @@ module.exports = function(options) {
         template: 'assets/index'+suffix+'.html'
       })
     );
-  }
-
-  // SOME STATS
-  plugins.push(new StatsPlugin(path.join(outputPath, 'webpack-stats.json'), {
-      chunkModules: true,
-      exclude: excludeFromStats
-  }));
+    //plugins.push(function () { this.plugin('done', writeStats); });
+  }  
 
   // small hash for production resources
   var hash = prod ? '-[hash]': '';
-  var publicPath = !devserver ? '/' : 'http://127.0.0.1:8081';
+  var publicPath = !devserver ? '/' : 'http://127.0.0.1:8081/';
 
   if (client) {
     // CLIENT
@@ -140,6 +135,9 @@ module.exports = function(options) {
   }
   else {
     // SERVER
+
+    //let server = !devserver ? './server/server' : './server/server-dev';
+
     return _.merge({}, config, {
       entry: {
         server: './server/server'

@@ -22,7 +22,7 @@ export default (imagePath) => {
     }
     // on production, use simple `require` to cache the file
     else {
-      images = require(path.join(__dirname, '..', '..', 'build', 'webpack-stats.json')).images;
+      images = require(path.resolve(__dirname, '..', '..', 'build', 'webpack-stats.json')).images;
     }
 
     // Find the correct image

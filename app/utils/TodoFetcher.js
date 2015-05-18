@@ -4,10 +4,10 @@ module.exports = {
 
   getAllTodoByApi: function() {
     // simulate retrieving data from a database
-    var data = [{id:"dd"}];
+    var data = [{id: 'dd'}];
 
     // simulate success callback
     AppActions.receiveAll(data);
   }
 
-}
+};
