@@ -136,7 +136,7 @@ module.exports = function(options) {
   else {
     // SERVER
 
-    let server = !devserver ? './server/server' : path.resolve(__dirname, '..', 'server', 'server-dev');
+    let server = !devserver ? './server/server' : './server/server-dev';
     let out = !devserver ? './dist/' : path.resolve(__dirname, '..', 'build');
 
     var entry = [server];
