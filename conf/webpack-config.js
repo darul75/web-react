@@ -86,7 +86,7 @@ module.exports = function(options) {
   if (client) {
     suffix = !devserver ? suffix : '-dev';
     processVars['process.env'].BROWSER = JSON.stringify(true);
-    plugins.push(new Clean(cleanDirectories, root_dir));
+    //plugins.push(new Clean(cleanDirectories, root_dir));
     plugins.push(new webpack.DefinePlugin(processVars));
     plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
     plugins.push(new webpack.optimize.DedupePlugin());
@@ -100,11 +100,12 @@ module.exports = function(options) {
       })
     );
     //plugins.push(function () { this.plugin('done', writeStats); });
-  }  
+  }
 
   // small hash for production resources
   var hash = prod ? '-[hash]': '';
   var publicPath = !devserver ? '/' : 'http://127.0.0.1:8081/';
+  //var publicPath = !devserver ? 'http://127.0.0.1:8081/' : '/';
 
   if (client) {
     // CLIENT
@@ -136,17 +137,25 @@ module.exports = function(options) {
   else {
     // SERVER
 
-    //let server = !devserver ? './server/server' : './server/server-dev';
+    let server = !devserver ? './server/server' : path.resolve(__dirname, '..', 'server', 'server-dev');
+    let out = !devserver ? './dist/' : path.resolve(__dirname, '..', 'build');
+
+    var entry = [server];
+    config.recordsPath = path.resolve(__dirname, '..', 'build/webpack.records.json');
+
+    if (devserver) {
+      plugins.push(new webpack.HotModuleReplacementPlugin());
+      //entry.push('webpack/hot/signal.js');
+      entry.push('webpack/hot/poll?1000');
+    }
 
     return _.merge({}, config, {
-      entry: {
-        server: './server/server'
-      },
+      entry: entry,
        output: {
-        path: './dist/',
+        path: out,
         filename: 'server.js',
         libraryTarget: 'commonjs2',
-        publicPath: '/'
+        publicPath: publicPath
       },
       target: 'node',
       externals: /^[a-z][a-z\.\-0-9]*$/,
@@ -161,7 +170,7 @@ module.exports = function(options) {
       module : {
         loaders: [
           { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
-          { test: /\.jsx?$/, loaders: ['babel'], exclude: /node_modules/ },
+          { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
           { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
           { test: /\.sass$/, loader: sassLoaders },
           { test: /\.css$/, loader: cssLoaders },

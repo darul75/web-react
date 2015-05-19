@@ -9,8 +9,9 @@
   },
   "scripts": {
     "dev": "webpack --config conf/webpack-dev.js | webpack-dev-server --port 8080 --config conf/webpack-dev.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
-    "dev-server-client": "webpack --config conf/webpack-dev-server.js | webpack-dev-server --port 8081 --config conf/webpack-dev.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
-    "dev-server": "DEV_SERVER=true node-debug --debug-brk server/debug-server.js --debug --source-maps",
+    "dev-server-client": "webpack --config conf/webpack-dev-server.js | webpack-dev-server --port 8081 --config conf/webpack-dev-server.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
+    "dev-server": "node build/server.js",
+    "dev-server-debug": "node-debug --debug-brk build/server.js --debug --source-maps",
     "build": "webpack --config conf/webpack-prod.js --progress --profile --colors",
     "start": "node dist/server.js"
   },
@@ -30,7 +31,7 @@
     "node-sass": "^2.1.1",
     "react-hot-loader": "^1.2.5",
     "react-router": "^0.13.2",
-    "sass-loader": "0.4.2",    
+    "sass-loader": "0.4.2",
     "style-loader": "^0.10.2",
     "url-loader": "^0.5.5",
     "webpack": "^1.9.4",

@@ -3,11 +3,7 @@ import { Link } from 'react-router';
 
 let reactLogo;
 
-if (!process.env.DEV_SERVER) {
-  reactLogo = require('./images/react-logo.png');
-} else {
-  reactLogo = './images/react-logo.png';
-}
+reactLogo = require('./images/react-logo.png');
 
 if (process.env.BROWSER) {
   require('./_Header.scss');
