@@ -21,6 +21,7 @@ For a more complex website, an Express server is used but work is not finished.
 
 - Server side React rendering is ready and done through [React-Router](https://github.com/rackt/react-router)
 - Some API server routes are just given as example.
+- You can debug it on server side thanks to sourcemaps.
 
 On both client/server [Fetch](https://github.com/github/fetch) request handler is used (for example on server side)
 
@@ -45,16 +46,24 @@ npm run dev
 
 *DEV ONLY CLIENT/SERVER*
 
-Start one webpack in background for client hot changes loading.
+Let's use you own NodeJS server.
+
+Start webpack in background with hot changes loading and debug in both client/server sides.
 
 ```
 npm run dev-server-client
 ```
 
-Then start your node server in debug break mode. One Express server will be launched in debug mode in ES6 thanks to Babel. 
+Then start your node server which is an express one in this case that will be launched in ES6 thanks to Babel.
 
 ```
 npm run dev-server
+```
+
+or with debug nodejs mode :
+
+```
+npm run dev-server-debug
 ```
 
 See changes at [http://127.0.0.1:3000](http://127.0.0.1:3000)
@@ -77,7 +86,8 @@ See it at [http://127.0.0.1:3000](http://127.0.0.1:3000)
 RELEASE
 -------------
 
-* 0.0.1: starter kit
+* 0.0.5: debug mode for both client/server side
+* 0.0.4: starter kit
  
 Metrics
 

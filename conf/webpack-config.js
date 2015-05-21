@@ -48,7 +48,7 @@ module.exports = function(options) {
   var devserver = options.devserver;
   var prod = options.production;
 
-  config.devtool = !prod ? 'eval' : false;
+  config.devtool = !prod ? "#inline-source-map" : false;
 
   // STYLE LOADERS
   var cssLoaders = 'style-loader!css-loader';
@@ -86,13 +86,15 @@ module.exports = function(options) {
   if (client) {
     suffix = !devserver ? suffix : '-dev';
     processVars['process.env'].BROWSER = JSON.stringify(true);
-    //plugins.push(new Clean(cleanDirectories, root_dir));
+    plugins.push(new Clean(cleanDirectories, root_dir));
     plugins.push(new webpack.DefinePlugin(processVars));
     plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
     plugins.push(new webpack.optimize.DedupePlugin());
     plugins.push(new webpack.optimize.OccurenceOrderPlugin(true));
-    plugins.push(new webpack.optimize.UglifyJsPlugin({warnings: false, minimize: true, sourceMap: false}));
-    plugins.push(new webpack.optimize.AggressiveMergingPlugin());
+    if (prod) {
+      plugins.push(new webpack.optimize.UglifyJsPlugin({warnings: false, minimize: true, sourceMap: false}));
+      plugins.push(new webpack.optimize.AggressiveMergingPlugin());
+    }
     plugins.push(
       new HtmlWebpackPlugin({
         filename: 'index'+suffix+'.html',
@@ -168,8 +170,8 @@ module.exports = function(options) {
       },
       module : {
         loaders: [
-          { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
-          { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
+
+          { test: /\.(jsx?|js)$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
           { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
           { test: /\.sass$/, loader: sassLoaders },
           { test: /\.css$/, loader: cssLoaders },

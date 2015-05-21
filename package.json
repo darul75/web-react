@@ -1,7 +1,7 @@
 {
   "name": "web-react",
   "description": "Another Webpack/React/Flux starter kit.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/darul75/web-react",
   "repository": {
     "type": "git",
@@ -9,9 +9,9 @@
   },
   "scripts": {
     "dev": "webpack --config conf/webpack-dev.js | webpack-dev-server --port 8080 --config conf/webpack-dev.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
-    "dev-server-client": "webpack --config conf/webpack-dev-server.js | webpack-dev-server --port 8081 --config conf/webpack-dev-server.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
-    "dev-server": "node build/server.js",
-    "dev-server-debug": "node-debug --debug-brk build/server.js --debug --source-maps",
+    "dev-server-client": "webpack --config conf/webpack-dev-server-client.js | webpack-dev-server --port 8081 --config conf/webpack-dev-server-client.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
+    "dev-server": "webpack --watch --progress --config conf/webpack-dev-server.js | node build/server.js",
+    "dev-server-debug": "webpack --watch --progress --config conf/webpack-dev-server.js | node-debug --debug-brk build/server.js --debug --source-maps",
     "build": "webpack --config conf/webpack-prod.js --progress --profile --colors",
     "start": "node dist/server.js"
   },
@@ -28,6 +28,7 @@
     "extract-text-webpack-plugin": "^0.6.0",
     "file-loader": "^0.8.1",
     "html-webpack-plugin": "^1.2.0",
+    "jsx-loader": "^0.13.2",
     "node-sass": "^2.1.1",
     "react-hot-loader": "^1.2.5",
     "react-router": "^0.13.2",
