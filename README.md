@@ -46,9 +46,9 @@ npm run dev
 
 *DEV ONLY CLIENT/SERVER*
 
-Let's use you own NodeJS server.
+Let's use your own NodeJS server.
 
-Start webpack in background with hot changes loading and debug in both client/server sides.
+Start webpack in background with *hot changes loading* and *debug* in both client/server sides.
 
 ```
 npm run dev-server-client
@@ -83,9 +83,28 @@ npm run start
 
 See it at [http://127.0.0.1:3000](http://127.0.0.1:3000)
 
+STRUCTURE
+-------------
+```
+.
+├── /build/                     # Compiled output
+├── /conf/                      # Webpack scripts
+├── /dist/                      # Production compiled output
+├── /node_modules/              # 3rd-party libraries and utilities
+├── /app/                       # Source code of the client application
+│   ├── /actions/               # Action creators that allow to trigger a dispatch to stores
+│   ├── /components/            # React components
+│   ├── /stores/                # Stores contain the application state and logic
+├── /server/                    # The source code of the server application
+│   ├── /api/                   # REST API / Relay endpoints.. TODO : move into folder
+│   ├── /server[-dev]/          # Server-side startup script
+└── package.json                # The list of 3rd party libraries and utilities
+```
+
 RELEASE
 -------------
 
+* 0.0.6: full ES6 + start refactoring.
 * 0.0.5: debug mode for both client/server side
 * 0.0.4: starter kit
  

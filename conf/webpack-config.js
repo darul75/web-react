@@ -5,14 +5,13 @@ import webpack from 'webpack';
 import _ from 'lodash';
 
 // base app dir
-var root_dir = path.resolve(__dirname, '..');
+let root_dir = path.resolve(__dirname, '..');
 
 // PLUGINS
 // html / clean / extract css / stats
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import Clean from 'clean-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import writeStats from './utils/write-stats';
 let UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin();
 
 // Fixture to extract css
@@ -21,13 +20,12 @@ function extractForProduction(loaders) {
 }
 
 // stats
-var excludeFromStats = [
+let excludeFromStats = [
     /node_modules[\\\/]react(-router)?[\\\/]/
 ];
 
 // common configs
-
-var config = {
+let config = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
@@ -43,28 +41,28 @@ var config = {
 };
 
 module.exports = function(options) {
-  var client = options.client;
-  var server = options.server;
-  var devserver = options.devserver;
-  var prod = options.production;
+  let client = options.client,
+      server = options.server,
+      devserver = options.devserver,
+      prod = options.production;
 
   config.devtool = !prod ? "#inline-source-map" : false;
 
   // STYLE LOADERS
-  var cssLoaders = 'style-loader!css-loader';
-  var sassLoaders = 'style!css!sass?indentedSyntax';
+  let cssLoaders = 'style-loader!css-loader',
+      sassLoaders = 'style!css!sass?indentedSyntax';
 
   // INIT PLUGINS
-  var plugins = [new webpack.NoErrorsPlugin()];
+  let plugins = [new webpack.NoErrorsPlugin()];
 
   // directory cleaner
-  var cleanDirectories = ['build', 'dist'];
+  let cleanDirectories = ['build', 'dist'];
 
   // html template
-  var suffix = '';
-  var outputPath = path.join(root_dir, 'build');
+  let suffix = '',
+      outputPath = path.join(root_dir, 'build');
 
-  var processVars = {
+  let processVars = {
     'process.env':{}
   };
 
@@ -101,12 +99,11 @@ module.exports = function(options) {
         template: 'assets/index'+suffix+'.html'
       })
     );
-    //plugins.push(function () { this.plugin('done', writeStats); });
   }
 
   // small hash for production resources
-  var hash = prod ? '-[hash]': '';
-  var publicPath = !devserver ? '/' : 'http://127.0.0.1:8081/';
+  let hash = prod ? '-[hash]': '',
+      publicPath = !devserver ? '/' : 'http://127.0.0.1:8081/';
 
   if (client) {
     // CLIENT
@@ -141,7 +138,7 @@ module.exports = function(options) {
     let server = !devserver ? './server/server' : './server/server-dev';
     let out = !devserver ? './dist/' : path.resolve(__dirname, '..', 'build');
 
-    var entry = [server];
+    let entry = [server];
     config.recordsPath = path.resolve(__dirname, '..', 'build/webpack.records.json');
 
     if (devserver) {

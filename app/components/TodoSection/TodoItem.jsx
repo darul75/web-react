@@ -6,17 +6,15 @@ import AppActions from '../../actions/AppActions';
 let { PropTypes } = React;
 
 if (process.env.BROWSER) {
-  require('./_TodoItem.scss');  
+  require('./_TodoItem.scss');
 }
 
-class TodoItem extends React.Component {
-
+export default class TodoItem extends React.Component {
   constructor(props) {
     super(props);
-    this.displayName = 'TodoItem';
-    this.propsTypes = {      
+    this.propsTypes = {
       todo: PropTypes.object.isRequired
-    };        
+    };
   }
 
   componentWillMount() {
@@ -48,7 +46,6 @@ class TodoItem extends React.Component {
   _onDestroyClick() {
     AppActions.destroy(this.props.todo.id);
   }
- 
 };
 
-export default TodoItem;
+TodoItem.prototype.displayName = 'TodoItem';

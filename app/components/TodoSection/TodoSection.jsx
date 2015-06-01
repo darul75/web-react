@@ -7,28 +7,18 @@ import TodoTextInput from './TodoTextInput';
 import AppActions from '../../actions/AppActions';
 import AppStore from '../../stores/AppStore';
 
-/**
- * Retrieve the current data from the AppStore
- */
-function getDataState() {
-  return {
-    allData: AppStore.getState().data,
-    areAllComplete: AppStore.areAllComplete()
-  };
-}
-
 export default class TodoSection extends React.Component {
   constructor() {
     super();
-    this.state = getDataState();
+    this.state = TodoSection.getDataState();
   }
 
   componentDidMount() {
-    AppStore.listen(this.onChange.bind(this));
+    AppStore.listen(this._onChange.bind(this));
   }
 
   componentWillUnmount() {
-    AppStore.unlisten(this.onChange.bind(this));
+    AppStore.unlisten(this._onChange.bind(this));
   }
 
   render() {
@@ -43,15 +33,15 @@ export default class TodoSection extends React.Component {
       <div>
         <h1>TODO PAGE</h1>
         <div>
-          <TodoTextInput className="edit" id="new-todo" placeholder="What needs to be done ?" onSave={this._onSave.bind(this)} value="" />
-          <ul id="todo-list">{todos}</ul>
+          <TodoTextInput className='edit' id='new-todo' placeholder='What needs to be done ?' onSave={this._onSave.bind(this)} value='' />
+          <ul id='todo-list'>{todos}</ul>
         </div>
       </div>
     );
   }
 
-  onChange() {
-    this.setState(getDataState());
+  _onChange() {
+    this.setState(TodoSection.getDataState());
   }
 
   _onSave(text) {
@@ -60,6 +50,13 @@ export default class TodoSection extends React.Component {
     }
   }
 
+  // CALL STORE UTILS
+  static getDataState() {
+    return {
+      allData: AppStore.getState().data,
+      areAllComplete: AppStore.areAllComplete()
+    };
+  }
 };
 
-TodoSection.prototype.displayName = "TodoSection";
+TodoSection.prototype.displayName = 'TodoSection';

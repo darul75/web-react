@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-let reactLogo;
-
-reactLogo = require('./images/react-logo.png');
+let reactLogo = require('./images/react-logo.png');
 
 if (process.env.BROWSER) {
   require('./_Header.scss');
 }
 
 export default class Header extends React.Component {
+  constructor() {
+    super();
+  }
 
   render() {
     return (
@@ -25,5 +26,6 @@ export default class Header extends React.Component {
 		  </div>
     );
   }
-
 };
+
+Header.prototype.displayName = 'Header';

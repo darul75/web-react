@@ -4,19 +4,10 @@ import { PropTypes } from 'react';
 import AppStore from '../../stores/AppStore';
 import AppActions from '../../actions/AppActions';
 
-/**
- * Retrieve the current data from the AppStore
- */
-function getDataState() {
-  return {
-    apiData: AppStore.getState().dataByRestApi
-  };
-}
-
 export default class HomeSection extends React.Component {
   constructor() {
     super();
-    this.state = getDataState();
+    this.state = HomeSection.getDataState();
   }
 
   componentDidMount() {
@@ -42,9 +33,15 @@ export default class HomeSection extends React.Component {
   }
 
   onChange() {
-    this.setState(getDataState());
+    this.setState(HomeSection.getDataState());
   }
 
+  // CALL STORE UTILS
+  static getDataState() {
+    return {
+      apiData: AppStore.getState().dataByRestApi
+    };
+  }
 };
 
-HomeSection.prototype.displayName = "HomeSection";
+HomeSection.prototype.displayName = 'HomeSection';

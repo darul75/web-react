@@ -12,7 +12,6 @@ export default class NotFoundSection extends React.Component {
       </div>
     );
   }
-
 }
 
 NotFoundSection.prototype.displayName = 'NotFoundSection';

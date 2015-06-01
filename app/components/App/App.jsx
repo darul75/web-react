@@ -8,14 +8,20 @@ if (process.env.BROWSER) {
 }
 
 export default class App extends React.Component {
+  constructor() {
+    super();
+  }
+
   render() {
     return (
       <div>
-        <Header />   
-        <div className="main-content">     
+        <Header />
+        <div className="main-content">
         	<RouteHandler />
         </div>
       </div>
     );
   }
 };
+
+App.prototype.displayName = 'App';
