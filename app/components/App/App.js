@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteHandler } from "react-router";
+import { RouteHandler } from 'react-router';
 import Header from '../Header/Header';
 
 if (process.env.BROWSER) {
@@ -16,12 +16,12 @@ export default class App extends React.Component {
     return (
       <div>
         <Header />
-        <div className="main-content">
-        	<RouteHandler />
+        <div className='main-content'>
+          <RouteHandler />
         </div>
       </div>
     );
   }
-};
+}
 
 App.prototype.displayName = 'App';

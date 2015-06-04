@@ -121,7 +121,7 @@ module.exports = function(options) {
       target: 'web',
       module: {
         loaders: [
-          { test: /\.jsx?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
+          { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: [/node_modules/, /__tests__/] },
           { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
           { test: /\.sass$/, loader: sassLoaders },
           { test: /\.css$/, loader: cssLoaders },

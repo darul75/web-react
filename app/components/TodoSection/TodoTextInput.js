@@ -49,6 +49,6 @@ export default class TodoTextInput extends React.Component {
       this._save();
     }
   }
-};
+}
 
 TodoTextInput.prototype.displayName = 'TodoTextInput';

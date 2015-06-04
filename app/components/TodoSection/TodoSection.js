@@ -1,5 +1,4 @@
 import React from 'react';
-import { PropTypes } from 'react';
 
 import TodoItem from './TodoItem';
 import TodoTextInput from './TodoTextInput';
@@ -57,6 +56,6 @@ export default class TodoSection extends React.Component {
       areAllComplete: AppStore.areAllComplete()
     };
   }
-};
+}
 
 TodoSection.prototype.displayName = 'TodoSection';

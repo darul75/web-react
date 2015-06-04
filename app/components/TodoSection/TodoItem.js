@@ -46,6 +46,6 @@ export default class TodoItem extends React.Component {
   _onDestroyClick() {
     AppActions.destroy(this.props.todo.id);
   }
-};
+}
 
 TodoItem.prototype.displayName = 'TodoItem';
