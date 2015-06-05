@@ -109,7 +109,7 @@ module.exports = function(options) {
     // CLIENT
     return _.merge({}, config, {
       context: __dirname + path.sep + path.join('..', 'app'),
-      entry: {
+      entry: {        
         app: './app',
         vendors: ['whatwg-fetch', 'classnames', 'react', 'react-router', 'react-hot-loader']
       },
@@ -167,8 +167,7 @@ module.exports = function(options) {
       },
       module : {
         loaders: [
-
-          { test: /\.(jsx?|js)$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
+          { test: /\.(jsx?|js)$/, loaders: ['react-hot', 'babel'], exclude: [/node_modules/, /__tests__/] },
           { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
           { test: /\.sass$/, loader: sassLoaders },
           { test: /\.css$/, loader: cssLoaders },

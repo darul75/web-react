@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from 'react-router';
 
-const routes = require('./routes');
+let routes = require('./routes');
 
 require('./stylesheets/styles.sass');
 
