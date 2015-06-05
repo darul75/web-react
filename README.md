@@ -88,7 +88,7 @@ STRUCTURE
 ```
 .
 ├── /build/                     # Compiled output
-├── /conf/                      # Webpack scripts
+├── /conf/                      # Webpack scripts + testing glue.
 ├── /dist/                      # Production compiled output
 ├── /node_modules/              # 3rd-party libraries and utilities
 ├── /app/                       # Source code of the client application
@@ -104,6 +104,7 @@ STRUCTURE
 RELEASE
 -------------
 
+* 0.0.7: testing available with mocha, scss/sass/css loaders fixes.
 * 0.0.6: full ES6 + start refactoring.
 * 0.0.5: debug mode for both client/server side
 * 0.0.4: starter kit

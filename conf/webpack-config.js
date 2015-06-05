@@ -50,7 +50,8 @@ module.exports = function(options) {
 
   // STYLE LOADERS
   let cssLoaders = 'style-loader!css-loader',
-      sassLoaders = 'style!css!sass?indentedSyntax';
+      sassLoaders = 'style!css!sass?indentedSyntax',
+      scssLoaders = 'style!css!sass';
 
   // INIT PLUGINS
   let plugins = [new webpack.NoErrorsPlugin()];
@@ -71,6 +72,7 @@ module.exports = function(options) {
     // WRAP INTO CSS FILE
     cssLoaders = extractForProduction(cssLoaders);
     sassLoaders = extractForProduction(sassLoaders);
+    scssLoaders = extractForProduction(scssLoaders);
 
     suffix = '-prod';
     plugins.push(new webpack.PrefetchPlugin("react"));
@@ -125,7 +127,7 @@ module.exports = function(options) {
           { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
           { test: /\.sass$/, loader: sassLoaders },
           { test: /\.css$/, loader: cssLoaders },
-          { test: /\.scss$/, loader: cssLoaders }
+          { test: /\.scss$/, loader: scssLoaders }
         ]
       },
       plugins: plugins,
@@ -171,7 +173,7 @@ module.exports = function(options) {
           { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
           { test: /\.sass$/, loader: sassLoaders },
           { test: /\.css$/, loader: cssLoaders },
-          { test: /\.scss$/, loader: cssLoaders }
+          { test: /\.scss$/, loader: scssLoaders }
         ]
       },
       plugins: plugins

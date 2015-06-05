@@ -3,8 +3,6 @@ import Router from 'react-router';
 
 let routes = require('./routes');
 
-require('./stylesheets/styles.sass');
-
 if(typeof document !== 'undefined' && window) {
   window.onload = function() {
     Router.run(routes, Router.HistoryLocation, function(App /*, state*/) {
