@@ -35,11 +35,12 @@ export default class TodoSection extends React.Component {
     return (
       <div>
         <h1>TODO PAGE</h1>
-        <div>
+        <div className='todo'>
+          <p>First add some tasks by pressing enter key</p>
           <TodoTextInput className='edit' id='new-todo' placeholder='What needs to be done ?' onSave={this._onSave.bind(this)} value='' />
           <ul id='todo-list'>{todos}</ul>
-          <TodoSnapshots snapshots={this.state.snapshots} />
         </div>
+        <TodoSnapshots snapshots={this.state.snapshots} />
       </div>
     );
   }
