@@ -46,6 +46,7 @@
     "babel": "^5.1.11",
     "classnames": "^2.1.1",
     "express": "^4.12.3",
+    "lodash": "^3.9.3",
     "marked": "^0.3.3",
     "node-fetch": "^1.2.1",
     "object-assign": "^2.0.0",

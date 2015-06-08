@@ -2,6 +2,7 @@ import React from 'react';
 
 import TodoItem from './TodoItem';
 import TodoTextInput from './TodoTextInput';
+import TodoSnapshots from './TodoSnapshots';
 
 import AppActions from '../../actions/AppActions';
 import AppStore from '../../stores/AppStore';
@@ -21,8 +22,8 @@ export default class TodoSection extends React.Component {
   }
 
   render() {
-    var allTodos = this.state.allData;
-    var todos = [];
+    let allTodos = this.state.allData,
+        todos = [];
 
     for (var key in allTodos) {
       todos.push(<TodoItem key={key} todo={allTodos[key]} />);
@@ -34,6 +35,7 @@ export default class TodoSection extends React.Component {
         <div>
           <TodoTextInput className='edit' id='new-todo' placeholder='What needs to be done ?' onSave={this._onSave.bind(this)} value='' />
           <ul id='todo-list'>{todos}</ul>
+          <TodoSnapshots snapshots={this.state.snapshots} />
         </div>
       </div>
     );
@@ -53,7 +55,8 @@ export default class TodoSection extends React.Component {
   static getDataState() {
     return {
       allData: AppStore.getState().data,
-      areAllComplete: AppStore.areAllComplete()
+      areAllComplete: AppStore.areAllComplete(),
+      snapshots: AppStore.getState().snapshots
     };
   }
 }

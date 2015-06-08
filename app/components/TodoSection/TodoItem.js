@@ -33,7 +33,7 @@ export default class TodoItem extends React.Component {
         })}
         key={todo.id}>
         <input className="toggle" type="checkbox" checked={todo.complete} onChange={this._onToggleComplete.bind(this)} />
-        <label>{this.props.todo.text}</label>
+        <label>{todo.text}</label>
         <button className="destroy" onClick={this._onDestroyClick.bind(this)}>&#10006;</button>
       </li>
     );
