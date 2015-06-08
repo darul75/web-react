@@ -67,7 +67,8 @@ let appStore = alt.createStore(class AppStore {
     if (elt) {
       // TODO
       // alt.prepare(AppStor)
-      alt.rollback();
+      alt.bootstrap(elt.data);
+      // alt.rollback();
     }
   }
 
@@ -115,6 +116,6 @@ let appStore = alt.createStore(class AppStore {
     }
     return true;
   }
-});
+}, 'AppStore');
 
 module.exports = appStore;
