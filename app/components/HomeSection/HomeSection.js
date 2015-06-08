@@ -1,7 +1,13 @@
 import React from 'react';
 
 import AppStore from '../../stores/AppStore';
-import AppActions from '../../actions/AppActions';
+import HomeSectionActions from './HomeSectionActions';
+import HomeSectionSubPartOne from './HomeSectionSubPartOne';
+import HomeSectionSubPartTwo from './HomeSectionSubPartTwo';
+
+if (process.env.BROWSER) {
+  require('./_HomeSection.scss');
+}
 
 export default class HomeSection extends React.Component {
   constructor() {
@@ -21,14 +27,11 @@ export default class HomeSection extends React.Component {
     return (
       <div>
         <h1>HOME PAGE</h1>
-        <div><button onClick={this._onClick.bind(this)}>FAKE API CALL</button></div>
-        <div>{this.state.apiData.data}</div>
+        <HomeSectionActions />
+        <HomeSectionSubPartOne />
+        <HomeSectionSubPartTwo />
       </div>
     );
-  }
-
-  _onClick() {
-    AppActions.fetch();
   }
 
   onChange() {

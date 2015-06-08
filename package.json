@@ -16,7 +16,7 @@
     "start": "node dist/server.js",
     "test": "./node_modules/.bin/mocha app/**/*-test.js --colors --compilers js:babel/register --recursive"
   },
-  "devDependencies": {    
+  "devDependencies": {
     "babel-core": "^5.1.11",
     "babel-eslint": "^3.1.1",
     "babel-loader": "^5.1.4",
@@ -45,10 +45,11 @@
     "alt": "^0.15.6",
     "babel": "^5.1.11",
     "classnames": "^2.1.1",
-    "express": "^4.12.3",    
+    "express": "^4.12.3",
+    "marked": "^0.3.3",
     "node-fetch": "^1.2.1",
     "object-assign": "^2.0.0",
-    "react": "^0.13.2",    
+    "react": "^0.13.2",
     "serve-favicon": "^2.2.1",
     "whatwg-fetch": "^0.8.1"
   },
