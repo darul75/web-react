@@ -94,6 +94,7 @@ STRUCTURE
 ├── /app/                       # Source code of the client application
 │   ├── /actions/               # Action creators that allow to trigger a dispatch to stores
 │   ├── /components/            # React components
+|       |── /__tests__/         # React components unit tests
 │   ├── /stores/                # Stores contain the application state and logic
 ├── /server/                    # The source code of the server application
 │   ├── /api/                   # REST API / Relay endpoints.. TODO : move into folder
