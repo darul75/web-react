@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AppActions from '../../actions/AppActions';
+import SnapshotActions from '../../actions/SnapshotActions';
 import TodoSnapshotsItem from './TodoSnapshotsItem';
 
 export default class TodoSnapshots extends React.Component {
@@ -28,7 +28,7 @@ export default class TodoSnapshots extends React.Component {
   }
 
   _onClick() {
-    AppActions.takeSnapshot();
+    SnapshotActions.takeSnapshot();
   }
 }
 

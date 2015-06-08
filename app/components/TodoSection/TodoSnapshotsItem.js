@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AppActions from '../../actions/AppActions';
+import SnapshotActions from '../../actions/SnapshotActions';
 
 let { PropTypes } = React;
 
@@ -16,9 +16,6 @@ export default class TodoSnapshotsItem extends React.Component {
     };
   }
 
-  componentWillMount() {
-  }
-
   render() {
     var todo = this.props.snapshot;
 
@@ -31,11 +28,11 @@ export default class TodoSnapshotsItem extends React.Component {
   }
 
   _bootstrapSnapshot() {
-    AppActions.bootstrapSnapshot(this.props.snapshot.id);
+    SnapshotActions.bootstrapSnapshot(this.props.snapshot.id);
   }
 
   _onDestroyClick() {
-    AppActions.destroySnapshot(this.props.snapshot.id);
+    SnapshotActions.destroySnapshot(this.props.snapshot.id);
   }
 }
 

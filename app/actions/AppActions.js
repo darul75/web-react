@@ -5,9 +5,6 @@ class AppActions {
     this.generateActions(
       'create',
       'destroy',
-      'destroySnapshot',
-      'bootstrapSnapshot',
-      'takeSnapshot',
       'toggleComplete',
       'fetch'
     );

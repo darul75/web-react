@@ -1,14 +1,12 @@
 import alt from '../alt';
 import merge from 'object-assign';
 import AppActions from '../actions/AppActions';
-import _ from 'lodash';
 
 let appStore = alt.createStore(class AppStore {
   constructor() {
     this.bindActions(AppActions);
     this.dataByRestApi = {};
     this.data = {};
-    this.snapshots = [];
   }
 
   update(id, updates) {
@@ -59,27 +57,6 @@ let appStore = alt.createStore(class AppStore {
     this.update(id, { text });
   }
 
-  onBootstrapSnapshot(id) {
-    var elt = _.find(this.snapshots, (snap) => {
-      return snap.id === id;
-    });
-
-    if (elt) {
-      // TODO
-      // alt.prepare(AppStor)
-      alt.bootstrap(elt.data);
-      // alt.rollback();
-    }
-  }
-
-  onTakeSnapshot() {
-    var snapshot = {
-      id: (+new Date() + Math.floor(Math.random() * 999999)).toString(36),
-      data: alt.takeSnapshot()
-    };
-    this.snapshots.push(snapshot);
-  }
-
   onToggleComplete(id) {
     let complete = !this.data[id].complete;
     this.update(id, { complete });
@@ -92,11 +69,6 @@ let appStore = alt.createStore(class AppStore {
 
   onDestroy(id) {
     delete this.data[id];
-  }
-
-  onDestroySnapshot(id) {
-    console.log(id);
-    //this.snapshots
   }
 
   onDestroyCompleted() {

@@ -6,6 +6,7 @@ import TodoSnapshots from './TodoSnapshots';
 
 import AppActions from '../../actions/AppActions';
 import AppStore from '../../stores/AppStore';
+import SnapshotStore from '../../stores/SnapshotStore';
 
 export default class TodoSection extends React.Component {
   constructor() {
@@ -15,10 +16,12 @@ export default class TodoSection extends React.Component {
 
   componentDidMount() {
     AppStore.listen(this._onChange.bind(this));
+    SnapshotStore.listen(this._onChange.bind(this));
   }
 
   componentWillUnmount() {
     AppStore.unlisten(this._onChange.bind(this));
+    SnapshotStore.unlisten(this._onChange.bind(this));
   }
 
   render() {
@@ -56,7 +59,7 @@ export default class TodoSection extends React.Component {
     return {
       allData: AppStore.getState().data,
       areAllComplete: AppStore.areAllComplete(),
-      snapshots: AppStore.getState().snapshots
+      snapshots: SnapshotStore.getState().snapshots
     };
   }
 }
