@@ -2,26 +2,34 @@ div.todo {
   margin: 10px 0;
   padding: 10px;
   background-color: #C1F1FD;
-  border: 1px #eee solid;  
-  color: #000;
+  border: 1px #eee solid;    
 }
 
 div.todo-snapshot {
   margin: 10px 0;
   padding: 10px;
   background-color: #C1F1FD;
-  border: 1px #eee solid;  
-  color: #000;
+  border: 1px #eee solid;
 }
 
-button.destroy {
-	margin-left: 10px;
-	background-color: rgba(0, 0, 0, 0.3);
-	z-index: 1;
-	right: 3px;
-	border-radius: 50%;
-	box-shadow: 0 0 2px #242020;
-	cursor: pointer;
+button.destroy {  
+  border-radius: 50%;
+  margin-left: 10px;
+  font-size: 14px;
+  color: white;
+  text-align: center;  
+  background: #3498db;
+  border: 0;
+  border-bottom: 2px solid #BFCAD2;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #2a8bcc;  
+}
+
+.button.destroy:active {
+  top: 1px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 li.completed {

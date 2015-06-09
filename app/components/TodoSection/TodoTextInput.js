@@ -21,13 +21,16 @@ export default class TodoTextInput extends React.Component {
 
   render() {
     return (
-      <input className={this.props.className}
-        id={this.props.id}
-        placeholder={this.props.placeholder}
-        onChange={this._onChange.bind(this)}
-        onKeyDown={this._onKeyDown.bind(this)}
-        value={this.state.value}
-        autoFocus={true} />
+      <div>
+        <input className={this.props.className}
+          id={this.props.id}
+          placeholder={this.props.placeholder}
+          onChange={this._onChange.bind(this)}
+          onKeyDown={this._onKeyDown.bind(this)}
+          value={this.state.value}
+          autoFocus={true} />
+        <button onClick={this._save.bind(this)}>ADD</button>
+      </div>
     );
   }
 

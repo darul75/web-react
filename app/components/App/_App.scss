@@ -16,3 +16,18 @@ h1, h2, h3 {
 div.main-content {
 	-webkit-padding-start: 40px;
 }
+
+
+/* http://cssdeck.com/labs/beautiful-flat-buttons */
+
+button {	
+	margin-left: 10px;
+	font-size: 14px;
+	color: white;
+	text-align: center;	
+	background: #3498db;
+	border: 0;
+	border-bottom: 2px solid #BFCAD2;
+	cursor: pointer;
+	-webkit-box-shadow: inset 0 -2px #2a8bcc;	
+}
