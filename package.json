@@ -9,9 +9,9 @@
   },
   "scripts": {
     "dev": "webpack --config conf/webpack-dev.js | webpack-dev-server --port 8080 --config conf/webpack-dev.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
-    "dev-server-client": "webpack --config conf/webpack-dev-server-client.js | webpack-dev-server --port 8081 --config conf/webpack-dev-server-client.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
-    "dev-server": "webpack --watch --progress --config conf/webpack-dev-server.js | node build/server.js",
-    "dev-server-debug": "webpack --watch --progress --config conf/webpack-dev-server.js | node-debug --debug-brk build/server.js --debug --source-maps",
+    "dev-server-client": "webpack --progress --watch --config conf/webpack-dev-server.js | webpack-dev-server --port 8081 --config conf/webpack-dev-server.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
+    "dev-server": "node build/server.js",
+    "dev-server-debug": "node-debug --debug-brk build/server.js --debug --source-maps",
     "build": "webpack --config conf/webpack-prod.js --progress --profile --colors",
     "start": "node dist/server.js",
     "test": "./node_modules/.bin/mocha app/**/*-test.js --colors --compilers js:babel/register --recursive"
@@ -46,6 +46,7 @@
     "babel": "^5.1.11",
     "classnames": "^2.1.1",
     "express": "^4.12.3",
+    "iso": "^4.1.0",
     "lodash": "^3.9.3",
     "marked": "^0.3.3",
     "node-fetch": "^1.2.1",
