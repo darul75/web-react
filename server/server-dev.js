@@ -35,5 +35,5 @@ renderer.init('dev');
 app.use(renderer.render);
 
 http.createServer(app).listen(app.get('port'), () => {
-  console.log('Expresssss server listening on port ' + app.get('port'));
+  console.log('Express server listening on port ' + app.get('port'));
 });
