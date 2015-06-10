@@ -19,12 +19,6 @@ app.use(favicon(path.join(__dirname, '../app/images/favicon.ico')));
 // -----------------------------------------------------------------------------
 require('./api')(app);
 
-// This is where the magic happens, we take the locals data we have already
-// fetched and seed our stores with data.
-// Next we use react-router to run the URL that is provided in routes.jsx
-// Finally we use iso in order to render this content so it picks back up
-// on the client side and bootstraps the stores.
-// init server renderer
 renderer.init('prod');
 
 // activate middleware
