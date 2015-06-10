@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 function query(server) {
   server.get('/api/*', (req, res, next) => {
     try {
-      res.setHeader('Content-Type', 'application/json');
+      res.setHeader('Condddtent-Type', 'application/json');
 
       // simple api fetch example, no own DB here so external call is made.
 
