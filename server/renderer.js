@@ -14,13 +14,13 @@ import alt from '../app/alt';
 let html = '';
 
 var renderer = {
-  init: function(type) {
+  init: (type) => {
     html = type === 'dev' ?
       fs.readFileSync('./assets/index-dev.html', {encoding: 'utf8'})
       :
       fs.readFileSync('./dist/index-prod.html', {encoding: 'utf8'});
   },
-  render: function(req, res, next) {
+  render: (req, res, next) => {
     let markup = '',
       iso = new Iso();
 
@@ -52,7 +52,7 @@ var renderer = {
         let content = React.renderToString(React.createElement(Handler));
         iso.add(content, alt.flush());
 
-        res.contentType = 'text/shtml; charset=utf8';
+        res.contentType = 'text/html; charset=utf8';
         let notFound = _.find(state.routes, {isNotFound: true});
 
         if (notFound !== undefined) {
@@ -62,7 +62,6 @@ var renderer = {
 				// rendering back to client
         markup += iso.render();
         markup = html.replace('CONTENT', markup);
-
         res.send(markup);
       });
     }

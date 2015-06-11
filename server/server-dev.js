@@ -6,9 +6,6 @@ import path from 'path';
 import express from 'express';
 import favicon from 'serve-favicon';
 
-// CORE
-import renderer from './renderer';
-
 let app = express();
 
 app.set('port', process.env.PORT || 3000);
@@ -16,24 +13,38 @@ app.use(express.static(path.join(__dirname, '/build')));
 app.use(favicon(path.join(__dirname, '../app/images/favicon.ico')));
 
 //
-// Register API middlewares
-// -----------------------------------------------------------------------------
-require('./api')(app);
+// Register middlewares
+// --------------------
 
-// check if HMR is enabled
-if(module.hot) {
-  // accept update of dependency
-  module.hot.accept('./api', function() {
-    require('./api')(app);
-  });
-}
+// renderer
+let renderer = require('./routes-renderer');
+// apis
+let apiRoutes = require('./routes-api');
 
-// init server renderer
+//
+// Configure middlewares
+// --------------------
+
 renderer.init('dev');
 
-// activate middleware
+//
+// Activate middlewares
+// --------------------
+app.use(apiRoutes);
 app.use(renderer.render);
 
 http.createServer(app).listen(app.get('port'), () => {
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+// check if HMR is enabled
+if(module.hot) {
+  // accept update of dependency
+  module.hot.accept(['./routes-api', './routes-renderer'], () => {
+    apiRoutes = require('./routes-api');
+    app.use(apiRoutes);
+    console.log(apiRoutes.toString());
+    renderer = require('./routes-renderer');
+    renderer.init('dev');
+  });
+}
