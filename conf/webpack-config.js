@@ -85,7 +85,7 @@ module.exports = function(options) {
   // HTML TEMPLATE + ENV VARIABLE
   if (client) {
     suffix = !devserver ? suffix : '-dev';
-    processVars['process.env'].BROWSER = JSON.stringify(true);    
+    processVars['process.env'].BROWSER = JSON.stringify(true);
     plugins.push(new Clean(cleanDirectories, root_dir));
     plugins.push(new webpack.DefinePlugin(processVars));
     plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
@@ -138,7 +138,7 @@ module.exports = function(options) {
   else {
     // SERVER
 
-    let server = !devserver ? './server/server' : './server/server-dev';
+    let server = !devserver ? './server/server' : './server/utils/server-dev';
     let out = !devserver ? './dist/' : path.resolve(__dirname, '..', 'build');
 
     let entry = [server];

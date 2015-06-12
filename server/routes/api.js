@@ -4,7 +4,7 @@ import express from 'express';
 let router = express.Router();
 /*eslint-enable new-cap*/
 
-let api = require('./api');
+let api = require('../api/api');
 
 router.use('/api/*', (req, res, next) => {
   api.todo(req, res, next);
@@ -12,8 +12,11 @@ router.use('/api/*', (req, res, next) => {
 
 export default router;
 
+//
+// check if HMR is enabled
+// --------------------
 if(module.hot) {
-  module.hot.accept(['./api'], () => {
-    api = require('./api');
+  module.hot.accept(['../api/api'], () => {
+    api = require('../api/api');
   });
 }

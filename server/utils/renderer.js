@@ -8,8 +8,8 @@ import React from 'react';
 import Router from 'react-router';
 
 // CORE
-import routes from '../app/routes';
-import alt from '../app/alt';
+import routes from '../../app/routes';
+import alt from '../../app/alt';
 
 let html = '';
 

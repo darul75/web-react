@@ -1,4 +1,4 @@
-let renderer = require('./renderer');
+let renderer = require('../utils/renderer');
 
 let profile = 'dev';
 
@@ -12,10 +12,12 @@ var routesRenderer = {
   }
 };
 
+//
+// check if HMR is enabled
+// --------------------
 if(module.hot) {
-  module.hot.accept(['./renderer'], () => {
-    renderer = require('./renderer');
-    console.log(profile);
+  module.hot.accept(['../utils/renderer'], () => {
+    renderer = require('../utils/renderer');
     renderer.init(profile);
   });
 }
