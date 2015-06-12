@@ -13,7 +13,7 @@ let api = {
         res.status(200).send(json);
       });
       */
-      res.status(200).send({test: 'tedddst'});
+      res.status(200).send({test: 'test'});
     } catch (err) {
       next(err);
     }
