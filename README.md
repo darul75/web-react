@@ -14,18 +14,24 @@ Idea was to take in hands following stack :
 * [Webpack](https://github.com/webpack/webpack) : amazing bundler, still to learn so much about it.
 * [React](https://github.com/facebook/react) : choosed because I love idea of Virtual DOM.
 * [Flux](https://facebook.github.io/flux/docs/overview.html) : flux and used implementation is [Alt](http://alt.js.org/)
+* [EsLint](http://eslint.org/): JS and JSX syntax validator.
+* [Express](http://expressjs.com/): Version 4.
 
 For a simple website with no server side it is really fine.
 
 For a more complex website, an Express server is used but work is not finished.
 
 - Server side React rendering is ready and done through [React-Router](https://github.com/rackt/react-router)
+- Flux on server side has begin thanks to [Iso](https://github.com/goatslacker/iso/) and Alt feature to bootstrap your app with data.
 - Some API server routes are just given as example.
 - You can debug it on server side thanks to sourcemaps.
+- *NEW FEATURE* : hot reloading of you code on server side too (node), it will patch silently without restarting your node server.
 
 On both client/server [Fetch](https://github.com/github/fetch) request handler is used (for example on server side)
 
 Hope you will enjoy.
+
+CODE, DEBUG in an isomorphic JS way !
 
 Demo
 -------------
@@ -36,7 +42,7 @@ How to use it
 
 *DEV ONLY CLIENT*
 
-Webpack with hot changes loading but no own server. Port: 8080
+Webpack with hot changes loading but no own server, enough for a single presentation page app by instance. Port: 8080
 
 See changes at [http://127.0.0.1:8080](http://127.0.0.1:8080)
 
@@ -97,14 +103,17 @@ STRUCTURE
 |       |── /__tests__/         # React components unit tests
 │   ├── /stores/                # Stores contain the application state and logic
 ├── /server/                    # The source code of the server application
-│   ├── /api/                   # REST API / Relay endpoints.. TODO : move into folder
-│   ├── /server[-dev]/          # Server-side startup script
+│   ├── /api/                   # REST API
+│   ├── /routes/                # Express routes entries
+│   ├── /server/                # Server-side startup script
+│   ├── /utils/                 # Some specific, rendering...
 └── package.json                # The list of 3rd party libraries and utilities
 ```
 
 RELEASE
 -------------
 
+* 0.0.8: hot [HMR](https://github.com/webpack/docs/wiki/hot-module-replacement-with-webpack) server reloading + refactor server directories.
 * 0.0.7: testing available with mocha, scss/sass/css loaders fixes.
 * 0.0.6: full ES6 + start refactoring.
 * 0.0.5: debug mode for both client/server side

@@ -60,6 +60,8 @@
     "flux",
     "isomorphic",
     "webpack",
-    "kit"
+    "kit",
+    "express",
+    "node"
   ]
 }
