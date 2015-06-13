@@ -1,6 +1,7 @@
 import React from 'react';
 import { RouteHandler } from 'react-router';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 if (process.env.BROWSER) {
   require('./_App.scss');
@@ -20,6 +21,7 @@ export default class App extends React.Component {
         <div className='main-content'>
           <RouteHandler />
         </div>
+        <Footer />
       </div>
     );
   }
