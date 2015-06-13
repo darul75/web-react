@@ -63,5 +63,6 @@
     "kit",
     "express",
     "node"
-  ]
+  ],
+  "license": "MIT"
 }
