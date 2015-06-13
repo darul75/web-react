@@ -117,7 +117,7 @@ STRUCTURE
 RELEASE
 -------------
 
-* 0.0.9: demo production distribution + licence
+* 0.0.9: demo production distribution + local webpack path + licence
 * 0.0.8: hot [HMR](https://github.com/webpack/docs/wiki/hot-module-replacement-with-webpack) server reloading + refactor server directories.
 * 0.0.7: testing available with mocha, scss/sass/css loaders fixes.
 * 0.0.6: full ES6 + start refactoring.
