@@ -105,14 +105,14 @@ module.exports = function(options) {
 
   // small hash for production resources
   let hash = prod ? '-[hash]': '',
-      publicPath = !devserver ? '/' : 'http://127.0.0.1:8081/',
+      publicPath = !devserver ? '/' : 'http://127.0.0.1:5000/',
       devMainClientApp = prod || devserver ? './app' : './app-dev';
 
   if (client) {
     // CLIENT
     return _.merge({}, config, {
       context: __dirname + path.sep + path.join('..', 'app'),
-      entry: {        
+      entry: {
         app: devMainClientApp,
         vendors: ['classnames', 'iso', 'react', 'react-router', 'react-hot-loader', 'whatwg-fetch']
       },

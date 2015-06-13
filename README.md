@@ -42,9 +42,9 @@ How to use it
 
 *DEV ONLY CLIENT*
 
-Webpack with hot changes loading but no own server, enough for a single presentation page app by instance. Port: 8080
+Webpack with hot changes loading but no own server, enough for a single presentation page app by instance. Port: 5000
 
-See changes at [http://127.0.0.1:8080](http://127.0.0.1:8080)
+See changes at [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ```
 npm run dev
