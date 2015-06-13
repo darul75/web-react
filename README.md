@@ -16,6 +16,7 @@ Idea was to take in hands following stack :
 * [Flux](https://facebook.github.io/flux/docs/overview.html) : flux and used implementation is [Alt](http://alt.js.org/)
 * [EsLint](http://eslint.org/): JS and JSX syntax validator.
 * [Express](http://expressjs.com/): Version 4.
+* [Mocha](http://mochajs.org/): Testing.
 
 For a simple website with no server side it is really fine.
 
@@ -35,7 +36,10 @@ CODE, DEBUG in an isomorphic JS way !
 
 Demo
 -------------
-TODO
+
+https://react-web.herokuapp.com/
+
+Try reload page, put wrong path, snapshot todo list...play, I will improve it later to show how it works.
 
 How to use it
 -------------
@@ -44,7 +48,7 @@ How to use it
 
 Webpack with hot changes loading but no own server, enough for a single presentation page app by instance. Port: 5000
 
-See changes at [http://127.0.0.1:5000](http://127.0.0.1:5000)
+See changes at [http://127.0.0.1:8080](http://127.0.0.1:8080)
 
 ```
 npm run dev
@@ -113,6 +117,7 @@ STRUCTURE
 RELEASE
 -------------
 
+* 0.0.9: demo production distribution + licence
 * 0.0.8: hot [HMR](https://github.com/webpack/docs/wiki/hot-module-replacement-with-webpack) server reloading + refactor server directories.
 * 0.0.7: testing available with mocha, scss/sass/css loaders fixes.
 * 0.0.6: full ES6 + start refactoring.

@@ -105,7 +105,7 @@ module.exports = function(options) {
 
   // small hash for production resources
   let hash = prod ? '-[hash]': '',
-      publicPath = !devserver ? '/' : 'http://127.0.0.1:5000/',
+      publicPath = !devserver ? '/' : 'http://127.0.0.1:8081/',
       devMainClientApp = prod || devserver ? './app' : './app-dev';
 
   if (client) {
