@@ -1,3 +1,4 @@
+// LIBRARY
 import React from 'react';
 
 let { PropTypes } = React;

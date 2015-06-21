@@ -46,7 +46,7 @@ How to use it
 
 *DEV ONLY CLIENT*
 
-Webpack with hot changes loading but no own server, enough for a single presentation page app by instance. Port: 5000
+Webpack with hot changes loading but no own server, enough for a single presentation page app by instance. Port: 8080
 
 See changes at [http://127.0.0.1:8080](http://127.0.0.1:8080)
 
@@ -117,6 +117,7 @@ STRUCTURE
 RELEASE
 -------------
 
+* 1.0.1: connect stores wrapper + refactoring
 * 1.0.0: footer + demo tags
 * 0.0.9: demo production distribution + local webpack path + licence
 * 0.0.8: hot [HMR](https://github.com/webpack/docs/wiki/hot-module-replacement-with-webpack) server reloading + refactor server directories.

@@ -1,5 +1,7 @@
+// LIBRARY
 import React from 'react';
 
+// FLUX
 import AppActions from '../../actions/AppActions';
 
 export default class HomeSectionActions extends React.Component {

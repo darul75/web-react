@@ -1,33 +1,29 @@
+// LIBRARY
 import React from 'react';
 
+// COMPONENTS
 import TodoItem from './TodoItem';
 import TodoTextInput from './TodoTextInput';
 import TodoSnapshots from './TodoSnapshots';
 
+// FLUX
 import AppActions from '../../actions/AppActions';
 import AppStore from '../../stores/AppStore';
 import SnapshotStore from '../../stores/SnapshotStore';
+import connectToStores from 'alt/utils/connectToStores';
 
-export default class TodoSection extends React.Component {
+let todoSection = class TodoSection extends React.Component {
   constructor() {
     super();
-    this.state = TodoSection.getDataState();
-  }
-
-  componentDidMount() {
-    AppStore.listen(this._onChange.bind(this));
-    SnapshotStore.listen(this._onChange.bind(this));
-  }
-
-  componentWillUnmount() {
-    AppStore.unlisten(this._onChange.bind(this));
-    SnapshotStore.unlisten(this._onChange.bind(this));
   }
 
   render() {
-    let allTodos = this.state.allData,
+    // retrieve data from store
+    let storeProps = TodoSection.getPropsFromStores();
+    // build with current data
+    let allTodos = storeProps.allData,
         todos = [];
-
+    // generate todo item list
     for (var key in allTodos) {
       todos.push(<TodoItem key={key} todo={allTodos[key]} />);
     }
@@ -40,13 +36,9 @@ export default class TodoSection extends React.Component {
           <TodoTextInput className='edit' id='new-todo' placeholder='What needs to be done ?' onSave={this._onSave.bind(this)} value='' />
           <ul id='todo-list'>{todos}</ul>
         </div>
-        <TodoSnapshots snapshots={this.state.snapshots} />
+        <TodoSnapshots snapshots={storeProps.snapshots} />
       </div>
     );
-  }
-
-  _onChange() {
-    this.setState(TodoSection.getDataState());
   }
 
   _onSave(text) {
@@ -55,14 +47,19 @@ export default class TodoSection extends React.Component {
     }
   }
 
-  // CALL STORE UTILS
-  static getDataState() {
+  static getStores() {
+    return [AppStore, SnapshotStore];
+  }
+
+  static getPropsFromStores() {
     return {
       allData: AppStore.getState().data,
       areAllComplete: AppStore.areAllComplete(),
       snapshots: SnapshotStore.getState().snapshots
     };
   }
-}
+};
 
-TodoSection.prototype.displayName = 'TodoSection';
+todoSection.prototype.displayName = 'TodoSection';
+
+export default connectToStores(todoSection);

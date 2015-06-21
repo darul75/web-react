@@ -1,27 +1,24 @@
+// LIBRARY
 import React from 'react';
 import marked from 'marked';
 
-import AppStore from '../../stores/AppStore';
+// FLUX
 import AppActions from '../../actions/AppActions';
+
+let { PropTypes } = React;
 
 export default class HomeSectionSubPartOne extends React.Component {
   constructor() {
     super();
-    this.state = HomeSectionSubPartOne.getDataState();
-  }
-
-  componentDidMount() {
-    AppStore.listen(this.onChange.bind(this));
-  }
-
-  componentWillUnmount() {
-    AppStore.unlisten(this.onChange.bind(this));
+    this.propsTypes = {
+      apiData: PropTypes.object.isRequired
+    };
   }
 
   render() {
     var contentMarkup = 'dispatching zone 1';
-    if (this.state.apiData.data) {
-      contentMarkup = marked('```json\n' + JSON.stringify(this.state.apiData.data, null, 2) + '```', {breaks: true});
+    if (this.props.apiData.data) {
+      contentMarkup = marked('```json\n' + JSON.stringify(this.props.apiData.data, null, 2) + '```', {breaks: true});
     }
 
     return (
@@ -31,17 +28,6 @@ export default class HomeSectionSubPartOne extends React.Component {
 
   _onClick() {
     AppActions.fetch();
-  }
-
-  onChange() {
-    this.setState(HomeSectionSubPartOne.getDataState());
-  }
-
-  // CALL STORE UTILS
-  static getDataState() {
-    return {
-      apiData: AppStore.getState().dataByRestApi
-    };
   }
 }
 

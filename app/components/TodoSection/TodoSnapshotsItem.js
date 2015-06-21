@@ -1,5 +1,7 @@
+// LIBRARY
 import React from 'react';
 
+// FLUX
 import SnapshotActions from '../../actions/SnapshotActions';
 
 let { PropTypes } = React;

@@ -1,6 +1,8 @@
+// LIBRARY
 import React from 'react';
 import cx from 'classnames';
 
+// FLUX
 import AppActions from '../../actions/AppActions';
 
 let { PropTypes } = React;
