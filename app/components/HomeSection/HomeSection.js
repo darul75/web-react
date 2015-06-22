@@ -3,6 +3,7 @@ import React from 'react';
 
 // FLUX
 import AppStore from '../../stores/AppStore';
+import AppStoreDepending from '../../stores/AppStoreDepending';
 import HomeSectionActions from './HomeSectionActions';
 import connectToStores from 'alt/utils/connectToStores';
 
@@ -28,18 +29,19 @@ let homeSection = class HomeSection extends React.Component {
         <h1>HOME PAGE</h1>
         <HomeSectionActions />
         <HomeSectionSubPartOne apiData={storeProps.apiData} />
-        <HomeSectionSubPartTwo apiData={storeProps.apiData}/>
+        <HomeSectionSubPartTwo apiData={storeProps.apiDataDepending}/>
       </div>
     );
   }
 
   static getStores() {
-    return [AppStore];
+    return [AppStore, AppStoreDepending];
   }
 
   static getPropsFromStores() {
     return {
-      apiData: AppStore.getState().dataByRestApi
+      apiData: AppStore.getState().dataByRestApi,
+      apiDataDepending: AppStoreDepending.getState().dataByRestApi
     };
   }
 };

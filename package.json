@@ -8,7 +8,7 @@
     "url": "https://github.com/darul75/web-react.git"
   },
   "scripts": {
-    "dev": "./node_modules/.bin/webpack --config conf/webpack-dev.js | ./node_modules/.bin/webpack-dev-server --port 8080 --config conf/webpack-dev.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
+    "dev": "webpack --config conf/webpack-dev.js | webpack-dev-server --port 8080 --config conf/webpack-dev.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
     "dev-server-client": "./node_modules/.bin/webpack --progress --watch --config conf/webpack-dev-server.js | ./node_modules/.bin/webpack-dev-server --port 8081 --config conf/webpack-dev-server.js --hot --history-api-fallback --progress --colors --inline --content-base ./build",
     "dev-server": "node build/server.js",
     "dev-server-debug": "node-debug --debug-brk build/server.js --debug --source-maps",

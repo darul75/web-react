@@ -14,7 +14,6 @@ let appStore = makeHot(alt, class AppStore {
     this.bindActions(AppActions);
     this.dataByRestApi = {};
     this.data = {};
-    console.log('titi');
   }
 
   update(id, updates) {
@@ -53,7 +52,6 @@ let appStore = makeHot(alt, class AppStore {
         this.emitChange();
       }
     );
-
   }
 
   onUpdateText(x) {
