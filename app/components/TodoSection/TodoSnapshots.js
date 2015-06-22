@@ -4,7 +4,7 @@ import React from 'react';
 // FLUX
 import SnapshotActions from '../../actions/SnapshotActions';
 
-// COMPONENTS
+// COMPONENT
 import TodoSnapshotsItem from './TodoSnapshotsItem';
 
 export default class TodoSnapshots extends React.Component {

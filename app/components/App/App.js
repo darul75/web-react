@@ -1,5 +1,8 @@
+// LIBRARY
 import React from 'react';
 import { RouteHandler } from 'react-router';
+
+// COMPONENT
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 

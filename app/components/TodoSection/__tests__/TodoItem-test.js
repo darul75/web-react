@@ -1,6 +1,8 @@
+// LIBRARY
 import React from 'react/addons';
 import assert from 'assert';
 
+// COMPONENT
 import TodoItem from '../TodoItem';
 
 const TestUtils = React.addons.TestUtils;

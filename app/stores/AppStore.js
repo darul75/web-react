@@ -1,12 +1,20 @@
-import alt from '../alt';
+// LIBRARY
 import merge from 'object-assign';
+
+// FLUX
 import AppActions from '../actions/AppActions';
 
-let appStore = alt.createStore(class AppStore {
+// DEPENDENCY
+import alt from '../alt';
+// webpack hot reload
+import makeHot from 'alt/utils/makeHot';
+
+let appStore = makeHot(alt, class AppStore {
   constructor() {
     this.bindActions(AppActions);
     this.dataByRestApi = {};
     this.data = {};
+    console.log('titi');
   }
 
   update(id, updates) {

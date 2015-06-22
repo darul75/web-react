@@ -1,7 +1,10 @@
+// LIBRARY
+import Iso from 'Iso';
 import React from 'react';
 import Router from 'react-router';
+
+// DEPENDENCY
 import alt from './alt';
-import Iso from 'Iso';
 
 let routes = require('./routes');
 

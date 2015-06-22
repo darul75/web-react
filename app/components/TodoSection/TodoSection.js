@@ -1,7 +1,7 @@
 // LIBRARY
 import React from 'react';
 
-// COMPONENTS
+// COMPONENT
 import TodoItem from './TodoItem';
 import TodoTextInput from './TodoTextInput';
 import TodoSnapshots from './TodoSnapshots';

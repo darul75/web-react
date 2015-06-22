@@ -1,8 +1,10 @@
+// LIBRARY
 /*eslint-disable no-unused-vars*/
 import React from 'react';
 /*eslint-enable no-unused-vars*/
 import {Route, DefaultRoute, NotFoundRoute} from 'react-router';
 
+// COMPONENT
 import Application from './components/App/App';
 import Contact from './components/ContactSection/Contact';
 import HomeSection from './components/HomeSection/HomeSection';

@@ -6,7 +6,7 @@ import AppStore from '../../stores/AppStore';
 import HomeSectionActions from './HomeSectionActions';
 import connectToStores from 'alt/utils/connectToStores';
 
-// COMPONENTS
+// COMPONENT
 import HomeSectionSubPartOne from './HomeSectionSubPartOne';
 import HomeSectionSubPartTwo from './HomeSectionSubPartTwo';
 

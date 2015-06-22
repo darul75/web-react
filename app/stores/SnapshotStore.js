@@ -1,8 +1,15 @@
-import alt from '../alt';
-import SnapshotActions from '../actions/SnapshotActions';
+// LIBRARY
 import _ from 'lodash';
 
-let snapshotStore = alt.createStore(class SnapshotStore {
+// FLUX
+import SnapshotActions from '../actions/SnapshotActions';
+
+// DEPENDENCY
+import alt from '../alt';
+// webpack hot reload
+import makeHot from 'alt/utils/makeHot';
+
+let snapshotStore = makeHot(alt, class SnapshotStore {
   constructor() {
     this.bindActions(SnapshotActions);
     this.snapshots = [];
