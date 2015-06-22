@@ -117,6 +117,7 @@ STRUCTURE
 RELEASE
 -------------
 
+* 1.0.2: webpack hot module store fixture
 * 1.0.1: connect stores wrapper + refactoring
 * 1.0.0: footer + demo tags
 * 0.0.9: demo production distribution + local webpack path + licence
