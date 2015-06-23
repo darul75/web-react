@@ -1,5 +1,5 @@
 // LIBRARY
-import Iso from 'Iso';
+import Iso from 'iso';
 import React from 'react';
 import Router from 'react-router';
 
