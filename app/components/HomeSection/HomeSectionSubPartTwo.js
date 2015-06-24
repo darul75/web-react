@@ -29,7 +29,6 @@ export default class HomeSectionSubPartTwo extends React.Component {
   _onClick() {
     AppActions.fetch();
   }
-
 }
 
 HomeSectionSubPartTwo.prototype.displayName = 'HomeSectionSubPartTwo';

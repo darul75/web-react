@@ -29,6 +29,7 @@ let homeSection = class HomeSection extends React.Component {
         <h1>HOME PAGE</h1>
         <HomeSectionActions />
         <HomeSectionSubPartOne apiData={storeProps.apiData} />
+        <HomeSectionSubPartTwo apiData={storeProps.apiData}/>
         <HomeSectionSubPartTwo apiData={storeProps.apiDataDepending}/>
       </div>
     );

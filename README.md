@@ -117,6 +117,7 @@ STRUCTURE
 RELEASE
 -------------
 
+* 1.0.3: fix import + dependent store example
 * 1.0.2: webpack hot module store fixture
 * 1.0.1: connect stores wrapper + refactoring
 * 1.0.0: footer + demo tags
