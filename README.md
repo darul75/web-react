@@ -111,12 +111,44 @@ STRUCTURE
 │   ├── /routes/                # Express routes entries
 │   ├── /server/                # Server-side startup script
 │   ├── /utils/                 # Some specific, rendering...
+├── /assets/                    # Static resources
+│   ├── index.html              # Html templates used for `dev client` / `dev server` / `production`
+│   ├── config                  # JSON configuration file, used for <head> metas today, more later...
 └── package.json                # The list of 3rd party libraries and utilities
 ```
+
+FOCUS
+-------------
+
+Thanks to [https://github.com/nfl/react-helmet](react-helmet), now you will be able to enhance head dom part with one json configuration file.
+
+```json
+{
+  "title": "Webpack Node React Starter Kit",
+  "meta":[
+    {
+      "name": "description",
+      "content": "Helmet application"
+    },
+    {
+      "name": "viewport",
+      "content": "width=device-width, initial-scale=1"
+    }
+  ],
+  "link": [
+    {
+      "rel": "shortcut icon",
+      "href": "/favicon.ico",
+      "type": "image/x-icon"
+    }    
+  ]
+}
+``
 
 RELEASE
 -------------
 
+* 1.0.4: <head/> tags in config file, meta, links + dynamic title ability, isomorphic
 * 1.0.3: fix import + dependent store example
 * 1.0.2: webpack hot module store fixture
 * 1.0.1: connect stores wrapper + refactoring

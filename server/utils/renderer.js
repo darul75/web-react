@@ -60,12 +60,12 @@ var renderer = {
           res.status(404);
         }
 
-				// rendering back to client
+				// RENDERING back to client
         let markupContent = iso.render();
-        // head tags with helmet
+        // DOM <head> instrumentation
         let head = Helmet.rewind();
         markup = html.replace('META', head.meta).replace('TITLE', head.title).replace('LINK', head.link).replace('CONTENT', markupContent);
-        // response
+        // SEND response
         res.send(markup);
       });
     }

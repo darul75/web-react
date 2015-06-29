@@ -114,7 +114,7 @@ module.exports = function(options) {
       context: __dirname + path.sep + path.join('..', 'app'),
       entry: {
         app: devMainClientApp,
-        vendors: ['classnames', 'iso', 'react', 'react-router', 'react-hot-loader', 'whatwg-fetch']
+        vendors: ['classnames', 'iso', 'react', 'react-helmet', 'react-router', 'react-hot-loader', 'whatwg-fetch']
       },
       output: {
           path: outputPath,
@@ -128,7 +128,8 @@ module.exports = function(options) {
           { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
           { test: /\.sass$/, loader: sassLoaders },
           { test: /\.css$/, loader: cssLoaders },
-          { test: /\.scss$/, loader: scssLoaders }
+          { test: /\.scss$/, loader: scssLoaders },
+          { test: /\.json$/, loader: 'json'}
         ]
       },
       plugins: plugins,
@@ -174,7 +175,8 @@ module.exports = function(options) {
           { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
           { test: /\.sass$/, loader: sassLoaders },
           { test: /\.css$/, loader: cssLoaders },
-          { test: /\.scss$/, loader: scssLoaders }
+          { test: /\.scss$/, loader: scssLoaders },
+          { test: /\.json$/, loader: 'json'}
         ]
       },
       plugins: plugins

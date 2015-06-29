@@ -8,7 +8,6 @@ import HomeSectionActions from './HomeSectionActions';
 import connectToStores from 'alt/utils/connectToStores';
 
 // COMPONENT
-import Metas from '../Document/Metas';
 import HomeSectionSubPartOne from './HomeSectionSubPartOne';
 import HomeSectionSubPartTwo from './HomeSectionSubPartTwo';
 
@@ -28,7 +27,6 @@ let homeSection = class HomeSection extends React.Component {
     return (
       <div>
         <h1>HOME PAGE</h1>
-        <Metas />
         <HomeSectionActions />
         <HomeSectionSubPartOne apiData={storeProps.apiData} />
         <HomeSectionSubPartTwo apiData={storeProps.apiData}/>
