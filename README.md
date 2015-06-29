@@ -143,7 +143,7 @@ Thanks to [https://github.com/nfl/react-helmet](react-helmet), now you will be a
     }    
   ]
 }
-``
+```
 
 RELEASE
 -------------
