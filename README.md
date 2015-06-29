@@ -120,7 +120,7 @@ STRUCTURE
 FOCUS
 -------------
 
-Thanks to [https://github.com/nfl/react-helmet](react-helmet), now you will be able to enhance head dom part with one json configuration file.
+Thanks to [react-helmet](https://github.com/nfl/react-helmet), now you will be able to enhance head dom part with one json configuration [file](https://github.com/darul75/web-react/blob/master/assets/config.json).
 
 ```json
 {
