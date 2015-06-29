@@ -3,6 +3,7 @@ import fs from 'fs';
 
 // EXTERNALS
 import _ from 'lodash';
+import Helmet from 'react-helmet';
 import Iso from 'iso';
 import React from 'react';
 import Router from 'react-router';
@@ -60,8 +61,11 @@ var renderer = {
         }
 
 				// rendering back to client
-        markup += iso.render();
-        markup = html.replace('CONTENT', markup);
+        let markupContent = iso.render();
+        // head tags with helmet
+        let head = Helmet.rewind();
+        markup = html.replace('META', head.meta).replace('TITLE', head.title).replace('LINK', head.link).replace('CONTENT', markupContent);
+        // response
         res.send(markup);
       });
     }
