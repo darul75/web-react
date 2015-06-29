@@ -124,11 +124,11 @@ Thanks to [https://github.com/nfl/react-helmet](react-helmet), now you will be a
 
 ```json
 {
-  "title": "Webpack Node React Starter Kit",
+  "title": "web-react",
   "meta":[
     {
       "name": "description",
-      "content": "Helmet application"
+      "content": "Webpack Node React Starter Kit"
     },
     {
       "name": "viewport",
@@ -140,7 +140,12 @@ Thanks to [https://github.com/nfl/react-helmet](react-helmet), now you will be a
       "rel": "shortcut icon",
       "href": "/favicon.ico",
       "type": "image/x-icon"
-    }    
+    },
+    {
+      "rel": "icon",
+      "href": "/favicon.ico",
+      "type": "image/x-icon"
+    }
   ]
 }
 ```
