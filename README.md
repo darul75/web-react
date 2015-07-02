@@ -153,6 +153,7 @@ Thanks to [react-helmet](https://github.com/nfl/react-helmet), now you will be a
 RELEASE
 -------------
 
+* 1.0.5: fix runtime dependency
 * 1.0.4: <head/> tags in config file, meta, links + dynamic title ability, isomorphic
 * 1.0.3: fix import + dependent store example
 * 1.0.2: webpack hot module store fixture
