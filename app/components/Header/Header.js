@@ -2,7 +2,13 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-let reactLogo = require('./images/react-logo.png');
+const brandings = ['react', 'flux', 'webpack', 'nodejs', 'babel', 'mocha', 'javascript', 'heroku', 'html-5', 'css-3', 'express', 'lodash'];
+
+let brandingsMarkup = [];
+
+brandings.forEach((elt, idx) => {
+  brandingsMarkup.push(<img src={require('../../images/branding/' + elt + '.svg')} key={idx} width="40" height="40"/>);
+});
 
 if (process.env.BROWSER) {
   require('./_Header.scss');
@@ -16,7 +22,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <div className='header'>
-        <img src={reactLogo} height='60' />
+        <div>{brandingsMarkup}</div>
 				<header>
 					<ul>
             <li><Link to='app'>Home</Link></li>
