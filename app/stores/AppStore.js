@@ -1,19 +1,23 @@
 // LIBRARY
 import merge from 'object-assign';
+import Immutable from 'immutable';
 
 // FLUX
 import AppActions from '../actions/AppActions';
 
 // DEPENDENCY
 import alt from '../alt';
+import immutable from 'alt/utils/ImmutableUtil';
 // webpack hot reload
 import makeHot from 'alt/utils/makeHot';
 
-let appStore = makeHot(alt, class AppStore {
+let appStore = makeHot(alt, immutable(class AppStore {
   constructor() {
     this.bindActions(AppActions);
-    this.dataByRestApi = {};
-    this.data = {};
+    this.state = Immutable.Map({
+      dataByRestApi: Immutable.Map([]),
+      data: Immutable.Map({})
+    });
   }
 
   update(id, updates) {
@@ -34,22 +38,23 @@ let appStore = makeHot(alt, class AppStore {
       return false;
     }
     // hand waving of course.
-    var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
-    this.data[id] = {
+    const id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
+    const newData = this.state.get('data').set(id, {
       id: id,
       complete: false,
       text: text
-    };
+    });
+
+    this.setState(this.state.set('data', newData));
   }
 
   onFetch() {
-    this.dataByRestApi = {data: 'hello'};
+    this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data: 'hello'})));
     fetch('https://api.github.com/users/github')
       .then((response) => {
         return response.json();
       }).then((json) => {
-        this.dataByRestApi = {data: json};
-        this.emitChange();
+        this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data: json})));
       }
     );
   }
@@ -64,8 +69,11 @@ let appStore = makeHot(alt, class AppStore {
   }
 
   onToggleComplete(id) {
-    let complete = !this.data[id].complete;
-    this.update(id, { complete });
+    const newData = this.state.get('data').update(id, (todo) => {
+      todo.complete = !todo.complete;
+      return todo;
+    });
+    this.setState(this.state.set('data', newData));
   }
 
   onToggleCompleteAll() {
@@ -74,7 +82,8 @@ let appStore = makeHot(alt, class AppStore {
   }
 
   onDestroy(id) {
-    delete this.data[id];
+    const newData = this.state.get('data').delete(id);
+    this.setState(this.state.set('data', newData));
   }
 
   onDestroyCompleted() {
@@ -94,6 +103,6 @@ let appStore = makeHot(alt, class AppStore {
     }
     return true;
   }
-}, 'AppStore');
+}), 'AppStore');
 
 module.exports = appStore;

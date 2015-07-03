@@ -53,7 +53,7 @@ let todoSection = class TodoSection extends React.Component {
 
   static getPropsFromStores() {
     return {
-      allData: AppStore.getState().data,
+      allData: AppStore.getState().get('data').toJS(),
       areAllComplete: AppStore.areAllComplete(),
       snapshots: SnapshotStore.getState().snapshots
     };

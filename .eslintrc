@@ -19,7 +19,7 @@
     // Strict mode
     "strict": [2, "never"],
     "no-underscore-dangle": true,
-
+    "new-cap": true,
     // Code style
     "indent": [2, 2],
     "quotes": [2, "single"]

@@ -41,8 +41,8 @@ let homeSection = class HomeSection extends React.Component {
 
   static getPropsFromStores() {
     return {
-      apiData: AppStore.getState().dataByRestApi,
-      apiDataDepending: AppStoreDepending.getState().dataByRestApi
+      apiData: AppStore.getState().get('dataByRestApi').toJS(),
+      apiDataDepending: AppStoreDepending.getState().get('dataByRestApi').toJS()
     };
   }
 };
