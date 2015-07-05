@@ -49,7 +49,7 @@ export default class TodoTextInputEdit extends React.Component {
 
   _onKeyDown(event) {
     if (event.keyCode === ENTER_KEY_CODE) {
-      this._update();
+      this._onClickUpdate();
     }
   }
 }

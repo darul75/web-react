@@ -30,12 +30,12 @@ export default class TodoTextInput extends React.Component {
           onKeyDown={this._onKeyDown.bind(this)}
           value={this.state.value}
           autoFocus={true} />
-        <button onClick={this._save.bind(this)} title='add task'>ADD</button>
+        <button onClick={this._onClickSave.bind(this)} title='add task'>ADD</button>
       </div>
     );
   }
 
-  _save() {
+  _onClickSave() {
     this.props.onSave(this.state.value);
     this.setState({
       value: ''
@@ -50,7 +50,7 @@ export default class TodoTextInput extends React.Component {
 
   _onKeyDown(event) {
     if (event.keyCode === ENTER_KEY_CODE) {
-      this._save();
+      this._onClickSave();
     }
   }
 }

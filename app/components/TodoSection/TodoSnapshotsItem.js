@@ -25,7 +25,7 @@ export default class TodoSnapshotsItem extends React.Component {
       <li key={todo.id}>
         <div className='inline'>
           <label><a href='#' onClick={this._bootstrapSnapshot.bind(this)}>{todo.id}</a></label>
-          <button className='destroy' onClick={this._onDestroyClick.bind(this)}>&#10006;</button>
+          <button className='destroy' onClick={this._onClickRemove.bind(this)}>&#10006;</button>
         </div>
       </li>
     );
@@ -35,7 +35,7 @@ export default class TodoSnapshotsItem extends React.Component {
     SnapshotActions.bootstrapSnapshot(this.props.snapshot.id);
   }
 
-  _onDestroyClick() {
+  _onClickRemove() {
     SnapshotActions.removeSnapshot(this.props.snapshot.id);
   }
 }
