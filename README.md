@@ -14,6 +14,7 @@ Idea was to take in hands following stack :
 * [Webpack](https://github.com/webpack/webpack) : amazing bundler, still to learn so much about it.
 * [React](https://github.com/facebook/react) : choosed because I love idea of Virtual DOM.
 * [Flux](https://facebook.github.io/flux/docs/overview.html) : flux and used implementation is [Alt](http://alt.js.org/)
+* [Immutable](https://facebook.github.io/immutable-js/) : Immutable everywhere.
 * [EsLint](http://eslint.org/): JS and JSX syntax validator.
 * [Express](http://expressjs.com/): Version 4.
 * [Mocha](http://mochajs.org/): Testing.
@@ -153,6 +154,7 @@ Thanks to [react-helmet](https://github.com/nfl/react-helmet), now you will be a
 RELEASE
 -------------
 
+* 1.0.7: Immutable integration + code refactoring + todo task edition + some actions
 * 1.0.6: branding
 * 1.0.5: fix runtime dependency
 * 1.0.4: <head/> tags in config file, meta, links + dynamic title ability, isomorphic

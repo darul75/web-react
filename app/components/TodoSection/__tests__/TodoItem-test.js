@@ -6,8 +6,8 @@ import assert from 'assert';
 import TodoItem from '../TodoItem';
 
 const TestUtils = React.addons.TestUtils;
-  
-// https://github.com/jesstelford/react-testing-mocha-jsdom    
+
+// https://github.com/jesstelford/react-testing-mocha-jsdom
 
 describe('Todo-item component', function() {
 
@@ -16,18 +16,17 @@ describe('Todo-item component', function() {
 
   	var todoItem = {completed:false, text:'hello'};
 
-    var renderedComponent = TestUtils.renderIntoDocument(
-      <TodoItem todo={todoItem} />
-    );
+    // render component <TodoItem>
+    var renderedComponent = TestUtils.renderIntoDocument(<TodoItem todo={todoItem} />);
 
     // Searching for <input> tag within rendered React component
     // Throws an exception if not found
-    var inputComponent = TestUtils.findRenderedDOMComponentWithTag(
+    var inputCheckBoxComponent = TestUtils.findRenderedDOMComponentWithClass(
       renderedComponent,
-      'input'
+      'toggle'
     );
 
-    this.inputElement = inputComponent.getDOMNode();
+    this.inputElement = inputCheckBoxComponent.getDOMNode();
   });
 
   it('<input> should be of type "checkbox"', function() {
@@ -37,5 +36,4 @@ describe('Todo-item component', function() {
   it('<input> should not be checked', function() {
     assert(this.inputElement.checked === false);
   });
-
 });

@@ -30,7 +30,7 @@ export default class TodoTextInput extends React.Component {
           onKeyDown={this._onKeyDown.bind(this)}
           value={this.state.value}
           autoFocus={true} />
-        <button onClick={this._save.bind(this)}>ADD</button>
+        <button onClick={this._save.bind(this)} title='add task'>ADD</button>
       </div>
     );
   }

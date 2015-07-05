@@ -1,6 +1,5 @@
 // LIBRARY
-import merge from 'object-assign';
-import Immutable from 'immutable';
+import Immutable, {Map} from 'immutable';
 
 // FLUX
 import AppActions from '../actions/AppActions';
@@ -14,22 +13,10 @@ import makeHot from 'alt/utils/makeHot';
 let appStore = makeHot(alt, immutable(class AppStore {
   constructor() {
     this.bindActions(AppActions);
-    this.state = Immutable.Map({
-      dataByRestApi: Immutable.Map([]),
-      data: Immutable.Map({})
+    this.state = new Map({
+      dataByRestApi: new Map({}),
+      data: new Map({})
     });
-  }
-
-  update(id, updates) {
-    if(this.data[id] && updates){
-      this.data[id] = merge(this.data[id], updates);
-    }
-  }
-
-  updateAll(updates) {
-    for (var id in this.data) {
-      this.update(id, updates);
-    }
   }
 
   onCreate(text) {
@@ -39,13 +26,64 @@ let appStore = makeHot(alt, immutable(class AppStore {
     }
     // hand waving of course.
     const id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
-    const newData = this.state.get('data').set(id, {
+    const newData = this.state.get('data').set(id, new Map({
       id: id,
       complete: false,
+      edit: false,
       text: text
-    });
+    }));
 
     this.setState(this.state.set('data', newData));
+  }
+
+  onRemove(id) {
+    const newData = this.state.get('data').delete(id);
+    this.setState(this.state.set('data', newData));
+  }
+
+  onRemoveAll() {
+    this.setState(this.state.set('data', new Map({})));
+  }
+
+  onUpdateComplete(x) {
+    let { id, complete } = x;
+    this.update(id, { complete });
+  }
+
+  onUpdateCompleteAll(x) {
+    let { completed } = x;
+    // update all map items
+    let allTodoKeysIt = this.state.get('data').keys();
+    for(let value of allTodoKeysIt){
+      this.update(value, {complete: completed});
+    }
+  }
+
+  onUpdateText(x) {
+    let { id, text } = x;
+    text = text ? text.trim() : '';
+    if (text === '') {
+      return false;
+    }
+    this.update(id, { text });
+  }
+
+  update(id, updates) {
+    // update item by id check
+    const newData = this.state.get('data').update(id, (todo) => {
+      const updateKeys = Object.keys(updates);
+      updateKeys.forEach((key) => {
+        todo = todo.set(key, updates[key]);
+      });
+      return todo;
+    });
+    this.setState(this.state.set('data', newData));
+  }
+
+  updateAll(updates) {
+    for (var id in this.data) {
+      this.update(id, updates);
+    }
   }
 
   onFetch() {
@@ -59,31 +97,9 @@ let appStore = makeHot(alt, immutable(class AppStore {
     );
   }
 
-  onUpdateText(x) {
-    let { id, text } = x;
-    text = text ? text.trim() : '';
-    if (text === '') {
-      return false;
-    }
-    this.update(id, { text });
-  }
-
-  onToggleComplete(id) {
-    const newData = this.state.get('data').update(id, (todo) => {
-      todo.complete = !todo.complete;
-      return todo;
-    });
-    this.setState(this.state.set('data', newData));
-  }
-
   onToggleCompleteAll() {
     /*var complete = !todoStore.areAllComplete();
     this.updateAll({ complete });*/
-  }
-
-  onDestroy(id) {
-    const newData = this.state.get('data').delete(id);
-    this.setState(this.state.set('data', newData));
   }
 
   onDestroyCompleted() {

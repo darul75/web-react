@@ -4,9 +4,12 @@ class AppActions {
   constructor() {
     this.generateActions(
       'create',
-      'destroy',
-      'toggleComplete',
-      'fetch'
+      'fetch',
+      'remove',
+      'removeAll',
+      'updateComplete',
+      'updateCompleteAll',
+      'updateText'
     );
   }
 }

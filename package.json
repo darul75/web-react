@@ -1,7 +1,7 @@
 {
   "name": "web-react",
   "description": "Another Webpack/React/Flux starter kit.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "homepage": "https://github.com/darul75/web-react",
   "repository": {
     "type": "git",
@@ -14,7 +14,8 @@
     "dev-server-debug": "node-debug --debug-brk build/server.js --debug --source-maps",
     "build": "webpack --config conf/webpack-prod.js --progress --profile --colors",
     "start": "node dist/server.js",
-    "test": "mocha app/**/*-test.js --colors --compilers js:babel/register --recursive"
+    "test": "mocha app/**/*-test.js --colors --compilers js:babel/register --recursive",
+    "test-debug": "mocha --debug-brk app/**/*-test.js --colors --compilers js:babel/register --recursive --source-maps"
   },
   "devDependencies": {
     "babel-core": "^5.1.11",

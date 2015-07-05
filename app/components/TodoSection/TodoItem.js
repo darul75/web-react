@@ -5,6 +5,9 @@ import cx from 'classnames';
 // FLUX
 import AppActions from '../../actions/AppActions';
 
+// COMPONENT
+import TodoTextInputEdit from './TodoTextInputEdit';
+
 let { PropTypes } = React;
 
 if (process.env.BROWSER) {
@@ -21,7 +24,9 @@ export default class TodoItem extends React.Component {
 
   componentWillMount() {
     this.state = {
-      isEditing: false
+      complete: false,
+      editing: false,
+      text: this.props.todo.text
     };
   }
 
@@ -31,22 +36,52 @@ export default class TodoItem extends React.Component {
     return (
       <li className={cx({
           'completed': todo.complete,
-          'editing': this.state.isEditing
+          'editing': this.state.editing
         })}
         key={todo.id}>
-        <input className="toggle" type="checkbox" checked={todo.complete} onChange={this._onToggleComplete.bind(this)} />
-        <label>{todo.text}</label>
-        <button className="destroy" onClick={this._onDestroyClick.bind(this)}>&#10006;</button>
+        <div className={cx({'inline': this.state.editing})}>
+          <input type='checkbox' className='toggle' disabled={this.state.editing} checked={todo.complete} onChange={this._onClickToggleComplete.bind(this)} title='toggle task state (completed ?)'/>
+          <label className={cx({'hidden': this.state.editing})} onClick={this._onClickEdit.bind(this)} title='Edit me by a click'>{todo.text}</label>
+          <TodoTextInputEdit className={cx({'hidden': !this.state.editing})} onUpdate={this._onUpdate.bind(this)} onCancelUpdate={this._onCancelUpdate.bind(this)} todo={todo} />
+          <button className={cx({'hidden': this.state.editing, 'destroy': true})} onClick={this._onClickRemove.bind(this)} title='remove task'>&#10006;</button>
+        </div>
       </li>
     );
   }
 
-  _onToggleComplete() {
-    AppActions.toggleComplete(this.props.todo.id);
+  _onClickEdit() {
+    this.setState({
+      editing: true
+    });
   }
 
-  _onDestroyClick() {
-    AppActions.destroy(this.props.todo.id);
+  _onClickRemove() {
+    AppActions.remove(this.props.todo.id);
+  }
+
+  _onClickToggleComplete() {
+    AppActions.updateComplete({
+      id: this.props.todo.id,
+      complete: !this.props.todo.complete
+    });
+  }
+
+  _onCancelUpdate() {
+    this.setState({editing: false});
+  }
+
+  _onSave(text) {
+    if (text.trim()){
+      AppActions.create(text);
+    }
+  }
+
+  _onUpdate(todo) {
+    this.setState({editing: false});
+    AppActions.updateText({
+      id: todo.id,
+      text: todo.text
+    });
   }
 }
 
