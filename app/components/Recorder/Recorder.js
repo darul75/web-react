@@ -43,6 +43,7 @@ let records = class Records extends React.Component {
         <div id='recorder-actions'>
           <button className={showStartClass} onClick={this._onClickStart.bind(this)}>START</button>
           <button className={showStopClass} onClick={this._onClickStop.bind(this)}>STOP</button>
+          <button className={showStopClass} onClick={this._onClickReplay.bind(this)}>REPLAY</button>
           <button onClick={this._onClickClear.bind(this)}>CLEAR</button>
         </div>
         {recordsMarkup}
@@ -64,12 +65,8 @@ let records = class Records extends React.Component {
     this.setState({record: false});
   }
 
-  _onClickReplay(record) {
-    alt.dispatch(record.action, record.data);
-  }
-
-  _onClickReplayAction() {
-     //alt.dispatch(payload.action, payload.data);
+  _onClickReplay() {
+    RecorderActions.replay();
   }
 
   static getStores() {

@@ -6,7 +6,8 @@ class RecorderActions {
     this.generateActions(
       'recordClear',
       'recordStart',
-      'recordStop'
+      'recordStop',
+      'replay'
     );
   }
 }

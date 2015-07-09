@@ -42,6 +42,12 @@ let recorderStore = makeHot(alt, immutable(class RecorderStore {
     alt.dispatcher.unregister(this.state.get('dispatchToken'));
   }
 
+  onReplay() {
+    setTimeout(() => {
+      this.recorder.replay();
+    }, 0);
+  }
+
 }), 'RecorderStore');
 
 module.exports = recorderStore;
