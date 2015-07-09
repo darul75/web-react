@@ -1,5 +1,5 @@
 // LIBRARY
-import Immutable, {Map, List} from 'immutable';
+import {Map, List} from 'immutable';
 
 // FLUX
 import RecorderActions from '../actions/RecorderActions';
@@ -12,6 +12,8 @@ import DispatcherRecorder from 'alt/utils/DispatcherRecorder';
 // webpack hot reload
 import makeHot from 'alt/utils/makeHot';
 
+const recorder = new DispatcherRecorder(alt);
+
 let recorderStore = makeHot(alt, immutable(class RecorderStore {
   constructor() {
     this.bindActions(RecorderActions);
@@ -19,33 +21,26 @@ let recorderStore = makeHot(alt, immutable(class RecorderStore {
       records: new List(),
       dispatchToken: ''
     });
-    this.recorder = new DispatcherRecorder(alt);
   }
 
   onRecordClear() {
-    this.recorder.clear();
+    recorder.clear();
   }
 
   onRecordStart() {
-    this.recorder.record();
-    let self = this;
-    let dispatchToken = alt.dispatcher.register(() => {
-      const dumpEvents = self.recorder.serializeEvents();
-      //self.setState(self.state.set('records', Immutable.fromJS([payload] /*JSON.parse(dumpEvents)*/)));
-      self.setState(self.state.set('records', Immutable.fromJS(self.recorder.events)));
-    });
-    this.setState(this.state.set('dispatchToken', dispatchToken));
+    recorder.record();
   }
 
   onRecordStop() {
-    this.recorder.stop();
-    alt.dispatcher.unregister(this.state.get('dispatchToken'));
+    recorder.stop();
   }
 
   onReplay() {
-    setTimeout(() => {
-      this.recorder.replay();
-    }, 0);
+    recorder.replay(1);
+  }
+
+  static getRegisteredEvents() {
+    return recorder.events;
   }
 
 }), 'RecorderStore');

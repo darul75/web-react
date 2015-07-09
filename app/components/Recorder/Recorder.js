@@ -8,6 +8,7 @@ import RecorderStore from '../../stores/RecorderStore';
 import connectToStores from 'alt/utils/connectToStores';
 import makeFinalStore from 'alt/utils/makeFinalStore';
 
+// import DispatcherRecorder from 'alt/utils/DispatcherRecorder';
 import alt from '../../alt';
 
 if (process.env.BROWSER) {
@@ -15,6 +16,7 @@ if (process.env.BROWSER) {
 }
 
 const FinalStore = makeFinalStore(alt);
+// const recorder = new DispatcherRecorder();
 
 let records = class Records extends React.Component {
   constructor(props) {
@@ -29,11 +31,11 @@ let records = class Records extends React.Component {
     let showStartClass = this.state.record ? 'hidden' : '';
     let showStopClass = !this.state.record ? 'hidden' : '';
     let recordsMarkup = [];
-    const recs = Records.getPropsFromStores().records;
+    let recs = Records.getPropsFromStores().records;
     recs.forEach((record, idx) => {
       recordsMarkup.push(<div key={idx}>
+          <button onClick={this._onClickReplayAny.bind(this, record)} title='redo'>=></button>
           <span>a: {record.action.toString()} - d: {JSON.stringify(record.data)}</span>
-          <button onClick={this._onClickReplay.bind(this, record)}>do</button>
         </div>
       );
     });
@@ -44,7 +46,7 @@ let records = class Records extends React.Component {
           <button className={showStartClass} onClick={this._onClickStart.bind(this)}>START</button>
           <button className={showStopClass} onClick={this._onClickStop.bind(this)}>STOP</button>
           <button className={showStopClass} onClick={this._onClickReplay.bind(this)}>REPLAY</button>
-          <button onClick={this._onClickClear.bind(this)}>CLEAR</button>
+          <button className={showStopClass} onClick={this._onClickClear.bind(this)}>CLEAR</button>
         </div>
         {recordsMarkup}
       </div>
@@ -52,7 +54,9 @@ let records = class Records extends React.Component {
   }
 
   _onClickClear() {
+    RecorderActions.recordStop();
     RecorderActions.recordClear();
+    RecorderActions.recordStart();
   }
 
   _onClickStart() {
@@ -66,7 +70,13 @@ let records = class Records extends React.Component {
   }
 
   _onClickReplay() {
+    RecorderActions.recordStop();
     RecorderActions.replay();
+    RecorderActions.recordStart();
+  }
+
+  _onClickReplayAny(record) {
+    alt.dispatch(record.action, record.data);
   }
 
   static getStores() {
@@ -75,7 +85,7 @@ let records = class Records extends React.Component {
 
   static getPropsFromStores() {
     return {
-      records: RecorderStore.getState().get('records').toJS()
+      records: RecorderStore.getRegisteredEvents()
     };
   }
 };

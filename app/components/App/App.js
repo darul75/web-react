@@ -5,7 +5,7 @@ import { RouteHandler } from 'react-router';
 // COMPONENT
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import Recorder from '../Recorder/Recorder';
+// import Recorder from '../Recorder/Recorder';
 import HtmlHeaderTags from '../Document/HtmlHeaderTags';
 
 if (process.env.BROWSER) {
@@ -27,7 +27,6 @@ export default class App extends React.Component {
         <div className='main-content'>
           <RouteHandler />
         </div>
-        <Recorder />
         <Footer />
       </div>
     );
