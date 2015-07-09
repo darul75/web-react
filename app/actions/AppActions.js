@@ -1,3 +1,4 @@
+// DEPENDENCY
 import alt from '../alt';
 
 class AppActions {

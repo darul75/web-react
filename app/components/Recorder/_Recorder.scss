@@ -1,0 +1,17 @@
+div#recorder {
+  position: fixed;
+  top: 200px;
+  right: 10%;
+
+  padding: 10px;
+  background: #000;
+  color: #fff;
+  div#recorder-actions {
+    button {
+      margin-bottom: 10px;
+    }
+  }
+  span {
+    font-size: 0.8rem;
+  }
+}

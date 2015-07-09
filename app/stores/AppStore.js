@@ -97,11 +97,6 @@ let appStore = makeHot(alt, immutable(class AppStore {
     );
   }
 
-  onToggleCompleteAll() {
-    /*var complete = !todoStore.areAllComplete();
-    this.updateAll({ complete });*/
-  }
-
   onDestroyCompleted() {
     for (let id in this.data) {
       if (this.data[id].complete) {
