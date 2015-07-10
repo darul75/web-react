@@ -86,7 +86,7 @@ Build production bundle both client and server.
 npm run build
 ```
 
-Run production client/server React/Express website. 
+Run production client/server React/Express website.
 
 ```
 npm run start
@@ -154,6 +154,7 @@ Thanks to [react-helmet](https://github.com/nfl/react-helmet), now you will be a
 RELEASE
 -------------
 
+* 1.0.8: record/reload all dispatched payload example
 * 1.0.7: Immutable integration + code refactoring + todo task edition + some actions
 * 1.0.6: branding
 * 1.0.5: fix runtime dependency
@@ -168,7 +169,7 @@ RELEASE
 * 0.0.6: full ES6 + start refactoring.
 * 0.0.5: debug mode for both client/server side
 * 0.0.4: starter kit
- 
+
 Metrics
 
 [![NPM](https://nodei.co/npm/web-react.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/web-react/)

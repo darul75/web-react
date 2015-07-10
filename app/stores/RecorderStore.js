@@ -36,7 +36,9 @@ let recorderStore = makeHot(alt, immutable(class RecorderStore {
   }
 
   onReplay() {
-    recorder.replay(1);
+    recorder.replay(1, () => {
+      this.emitChange();
+    });
   }
 
   static getRegisteredEvents() {
