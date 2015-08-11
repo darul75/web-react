@@ -15,4 +15,4 @@ class AppActions {
   }
 }
 
-module.exports = alt.createActions(AppActions);
+export default alt.createActions(AppActions);

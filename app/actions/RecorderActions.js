@@ -12,4 +12,4 @@ class RecorderActions {
   }
 }
 
-module.exports = alt.createActions(RecorderActions);
+export default alt.createActions(RecorderActions);
