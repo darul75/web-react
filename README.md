@@ -1,4 +1,4 @@
-web-react [![NPM version](https://badge.fury.io/js/web-react.png)](http://badge.fury.io/js/web-react) [![Build Status](https://travis-ci.org/darul75/web-react.png?branch=master)](https://travis-ci.org/darul75/web-react) [![Total views](https://sourcegraph.com/api/repos/github.com/darul75/web-react/counters/views.png)](https://sourcegraph.com/github.com/darul75/web-react) [![Join the chat at https://gitter.im/darul75/web-react](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/darul75/web-react?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+web-react [![NPM version](https://badge.fury.io/js/web-react.png)](http://badge.fury.io/js/web-react) [![Build Status](https://travis-ci.org/darul75/web-react.png?branch=master)](https://travis-ci.org/darul75/web-react) [![Join the chat at https://gitter.im/darul75/web-react](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/darul75/web-react?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 =====================
 
 Another Webpack React Kit.
@@ -65,7 +65,7 @@ Start webpack in background with *hot changes loading* and *debug* in both clien
 npm run dev-server-client
 ```
 
-Then start your node server which is an express one in this case that will be launched in ES6 thanks to Babel.
+*Then* start your node server which is an express one in this case that will be launched in ES6 thanks to Babel.
 
 ```
 npm run dev-server
@@ -154,6 +154,7 @@ Thanks to [react-helmet](https://github.com/nfl/react-helmet), now you will be a
 RELEASE
 -------------
 
+* 1.0.9: bump RHL version, may remove NoErrorsPlugin with React Hot Loader 1.3.0
 * 1.0.8: record/reload all dispatched payload example
 * 1.0.7: Immutable integration + code refactoring + todo task edition + some actions
 * 1.0.6: branding
