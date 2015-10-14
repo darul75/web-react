@@ -175,6 +175,19 @@ Metrics
 
 [![NPM](https://nodei.co/npm/web-react.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/web-react/)
 
+TODO
+-------------
+
+- [ ] Update React/React routet version and other libraries if needed
+- [ ] Look at webpack node middleware for HMR
+- [ ] Now that io.js and node merged again, see for ES6/ES7 compliance and refactoring
+- [ ] More example of routing, fetching.
+- [ ] More tests
+- [ ] Change flux implementation => redux ?
+
+
+
+
 ## License
 
 The MIT License (MIT)
