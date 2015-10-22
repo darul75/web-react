@@ -18,7 +18,7 @@ export default class HomeSectionActions extends React.Component {
   }
 
   _onClick() {
-    AppActions.fetch();
+    AppActions.fetchGithub();
   }
 }
 

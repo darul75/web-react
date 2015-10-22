@@ -13,6 +13,7 @@ import makeHot from 'alt/utils/makeHot';
 let appStore = makeHot(alt, immutable(class AppStore {
   constructor() {
     this.bindActions(AppActions);
+    this.bindAction(AppActions.fetchGithub, this.onFetchGithub);
     this.state = new Map({
       dataByRestApi: new Map({}),
       data: new Map({})
@@ -86,15 +87,10 @@ let appStore = makeHot(alt, immutable(class AppStore {
     }
   }
 
-  onFetch() {
-    this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data: 'hello'})));
-    fetch('https://api.github.com/users/github')
-      .then((response) => {
-        return response.json();
-      }).then((json) => {
-        this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data: json})));
-      }
-    );
+  onFetchGithub(data) {
+    console.log(data);
+    //this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data: 'hello'})));
+    this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data: data})));
   }
 
   onDestroyCompleted() {

@@ -5,13 +5,23 @@ class AppActions {
   constructor() {
     this.generateActions(
       'create',
-      'fetch',
       'remove',
       'removeAll',
       'updateComplete',
       'updateCompleteAll',
       'updateText'
     );
+  }
+
+  fetchGithub() {
+    return (dispatch) => {
+      fetch('https://api.github.com/users/github')
+      .then((response) => {
+        return response.json();
+      }).then((json) => {
+        dispatch(json);
+      });
+    };
   }
 }
 
