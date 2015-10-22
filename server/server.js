@@ -8,7 +8,7 @@ import favicon from 'serve-favicon';
 
 // Profile dev or production
 let profile = process.env.DEV ? 'dev' : 'prod',
-	publicPath = profile === 'dev' ? 'build' : 'dist';
+  publicPath = profile === 'dev' ? 'build' : 'dist';
 
 let app = express();
 

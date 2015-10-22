@@ -25,9 +25,9 @@ export default class Header extends React.Component {
         <div>{brandingsMarkup}</div>
 				<header>
 					<ul>
-            <li><Link to='app'>Home</Link></li>
-            <li><Link to='todo'>Todo</Link></li>
-            <li><Link to='contact'>Contact</Link></li>
+            <li><Link to='/home'>Home</Link></li>
+            <li><Link to='/todo'>Todo</Link></li>
+            <li><Link to='/contact'>Contact</Link></li>
 					</ul>
 				</header>
       </div>

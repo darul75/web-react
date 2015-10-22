@@ -1,6 +1,5 @@
 // LIBRARY
 import React from 'react';
-import { RouteHandler } from 'react-router';
 
 // COMPONENT
 import Header from '../Header/Header';
@@ -25,7 +24,7 @@ export default class App extends React.Component {
         <HtmlHeaderTags />
         <Header />
         <div className='main-content'>
-          <RouteHandler />
+          {this.props.children}
         </div>
         <Recorder />
         <Footer />

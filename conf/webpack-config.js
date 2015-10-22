@@ -5,14 +5,14 @@ import webpack from 'webpack';
 import _ from 'lodash';
 
 // base app dir
-let root_dir = path.resolve(__dirname, '..');
+let rootDir = path.resolve(__dirname, '..');
 
 // PLUGINS
 // html / clean / extract css / stats
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import Clean from 'clean-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-let UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin();
+//let UglifyJsPlugin = new webpack.optimize.UglifyJsPlugin();
 
 // Fixture to extract css
 function extractForProduction(loaders) {
@@ -20,9 +20,9 @@ function extractForProduction(loaders) {
 }
 
 // stats
-let excludeFromStats = [
+/*let excludeFromStats = [
     /node_modules[\\\/]react(-router)?[\\\/]/
-];
+];*/
 
 // common configs
 let config = {
@@ -42,11 +42,10 @@ let config = {
 
 module.exports = function(options) {
   let client = options.client,
-      server = options.server,
       devserver = options.devserver,
       prod = options.production;
 
-  config.devtool = !prod ? "#inline-source-map" : false;
+  config.devtool = !prod ? '#inline-source-map' : false;
 
   // STYLE LOADERS
   let cssLoaders = 'style-loader!css-loader',
@@ -61,10 +60,10 @@ module.exports = function(options) {
 
   // html template
   let suffix = '',
-      outputPath = path.join(root_dir, 'build');
+      outputPath = path.join(rootDir, 'build');
 
   let processVars = {
-    'process.env':{}
+    'process.env': {}
   };
 
   // PRODUCTION CASE
@@ -75,18 +74,18 @@ module.exports = function(options) {
     scssLoaders = extractForProduction(scssLoaders);
 
     suffix = '-prod';
-    plugins.push(new webpack.PrefetchPlugin("react"));
-    plugins.push(new ExtractTextPlugin("app-[hash].css"));
+    plugins.push(new webpack.PrefetchPlugin('react'));
+    plugins.push(new ExtractTextPlugin('app-[hash].css'));
     processVars['process.env'].NODE_ENV = JSON.stringify('production');
 
-    outputPath = path.join(root_dir, 'dist');
+    outputPath = path.join(rootDir, 'dist');
   }
 
   // HTML TEMPLATE + ENV VARIABLE
   if (client) {
     suffix = !devserver ? suffix : '-dev';
     processVars['process.env'].BROWSER = JSON.stringify(true);
-    plugins.push(new Clean(cleanDirectories, root_dir));
+    plugins.push(new Clean(cleanDirectories, rootDir));
     plugins.push(new webpack.DefinePlugin(processVars));
     plugins.push(new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'));
     plugins.push(new webpack.optimize.DedupePlugin());
@@ -97,34 +96,34 @@ module.exports = function(options) {
     }
     plugins.push(
       new HtmlWebpackPlugin({
-        filename: 'index'+suffix+'.html',
-        template: 'assets/index'+suffix+'.html'
+        filename: 'index' + suffix + '.html',
+        template: 'assets/index' + suffix + '.html'
       })
     );
   }
 
   // small hash for production resources
-  let hash = prod ? '-[hash]': '',
+  let hash = prod ? '-[hash]' : '',
       publicPath = !devserver ? '/' : 'http://127.0.0.1:8081/',
       devMainClientApp = prod || devserver ? './app' : './app-dev';
 
   if (client) {
     // CLIENT
     return _.merge({}, config, {
-      context: __dirname + path.sep + path.join('..', 'app'),
+      context: path.join(__dirname, path.sep, '..', 'app'),
       entry: {
         app: devMainClientApp,
-        vendors: ['classnames', 'iso', 'react', 'react-helmet', 'react-router', 'react-hot-loader', 'whatwg-fetch']
+        vendors: ['classnames', 'iso', 'react', 'react-dom', 'react-helmet', 'react-router', 'react-hot-loader', 'whatwg-fetch']
       },
       output: {
           path: outputPath,
-          filename: 'app'+hash+'.js',
+          filename: 'app' + hash + '.js',
           publicPath: publicPath
       },
       target: 'web',
       module: {
         loaders: [
-          { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: [/node_modules/, /__tests__/] },
+          { test: /\.js?$/, loaders: ['react-hot', 'babel-loader'], exclude: /(node_modules|__tests__)/ },
           { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
           { test: /\.sass$/, loader: sassLoaders },
           { test: /\.css$/, loader: cssLoaders },
@@ -138,12 +137,11 @@ module.exports = function(options) {
   }
   else {
     // SERVER
-
     let server = !devserver ? './server/server' : './server/utils/server-dev';
     let out = !devserver ? './dist/' : path.resolve(__dirname, '..', 'build');
 
     let entry = [server];
-    config.recordsPath = path.resolve(__dirname, '..', 'build/webpack.records.json');
+    config.recordsPath = path.resolve(__dirname, '..', 'build', 'webpack.records.json');
 
     if (devserver) {
       plugins.push(new webpack.HotModuleReplacementPlugin());
@@ -169,9 +167,9 @@ module.exports = function(options) {
         __filename: true,
         __dirname: true
       },
-      module : {
+      module: {
         loaders: [
-          { test: /\.(jsx?|js)$/, loaders: ['react-hot', 'babel'], exclude: [/node_modules/, /__tests__/] },
+          { test: /\.(jsx?)$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
           { test: /\.(jpe?g|png|gif|svg|woff|eot|ttf)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
           { test: /\.sass$/, loader: sassLoaders },
           { test: /\.css$/, loader: cssLoaders },
