@@ -11,4 +11,4 @@ class SnapshotActions {
   }
 }
 
-module.exports = alt.createActions(SnapshotActions);
+export default alt.createActions(SnapshotActions);

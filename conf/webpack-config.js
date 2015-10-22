@@ -53,7 +53,7 @@ module.exports = function(options) {
       scssLoaders = 'style!css!sass';
 
   // INIT PLUGINS
-  let plugins = [new webpack.NoErrorsPlugin()];
+  let plugins = [];
 
   // directory cleaner
   let cleanDirectories = ['build', 'dist'];

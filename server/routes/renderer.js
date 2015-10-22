@@ -7,9 +7,7 @@ var routesRenderer = {
     profile = type;
     renderer.init(type);
   },
-  render: (req, res, next) => {
-    renderer.render(req, res, next);
-  }
+  render: renderer.render
 };
 
 //
