@@ -179,15 +179,12 @@ Metrics
 TODO
 -------------
 
-- [ ] Update React/React routet version and other libraries if needed
+- [x] Update React/React routet version and other libraries if needed
 - [ ] Look at webpack node middleware for HMR
 - [ ] Now that io.js and node merged again, see for ES6/ES7 compliance and refactoring
 - [ ] More example of routing, fetching.
 - [ ] More tests
 - [ ] Change flux implementation => redux ?
-
-
-
 
 ## License
 
