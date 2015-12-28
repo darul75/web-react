@@ -10,25 +10,34 @@ let { PropTypes } = React;
 export default class HomeSectionSubPartTwo extends React.Component {
   constructor() {
     super();
-    this.propsTypes = {
-      apiData: PropTypes.object.isRequired
-    };
-  }
-
-  render() {
-    var contentMarkup = 'dispatching zone 2';
-    if (this.props.apiData.data) {
-      contentMarkup = marked('```json\n' + JSON.stringify(this.props.apiData.data, null, 2) + '```', {breaks: true});
-    }
-
-    return (
-      <div className='home-section-sub-part-two' dangerouslySetInnerHTML={{__html: contentMarkup}}></div>
-    );
   }
 
   _onClick() {
     AppActions.fetch();
   }
+
+  render() {
+    let contentMarkup = 'dispatching zone 2';
+    if (this.props.apiData) {
+      contentMarkup = marked('```json\n' + JSON.stringify(this.props.apiData, null, 2) + '```', {breaks: true});
+    }
+
+    /*eslint-disable react/no-danger*/
+    return (
+      <div className='home-section-sub-part-two'
+          dangerouslySetInnerHTML={{__html: contentMarkup}}
+      >
+      </div>
+    );
+    /*eslint-enable react/no-danger*/
+  }
 }
+
+HomeSectionSubPartTwo.propTypes = {
+  apiData:
+    PropTypes.shape({
+      id: PropTypes.number
+    })
+};
 
 HomeSectionSubPartTwo.prototype.displayName = 'HomeSectionSubPartTwo';

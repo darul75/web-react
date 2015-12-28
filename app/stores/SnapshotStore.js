@@ -10,7 +10,8 @@ import immutable from 'alt/utils/ImmutableUtil';
 // webpack hot reload
 import makeHot from 'alt/utils/makeHot';
 
-let snapshotStore = makeHot(alt, immutable(class SnapshotStore {
+/*eslint-disable react/no-set-state*/
+const snapshotStore = makeHot(alt, immutable(class SnapshotStore {
   constructor() {
     this.bindActions(SnapshotActions);
     this.state = new Map({
@@ -49,9 +50,10 @@ let snapshotStore = makeHot(alt, immutable(class SnapshotStore {
 
     if (idx >= 0) {
       const newList = this.state.get('snapshots').delete(idx);
-      this.setState(this.state.set('snapshots', newList));
+      this.state = this.state.set('snapshots', newList);
     }
   }
 }), 'SnapshotStore');
+/*eslint-enable react/no-set-state*/
 
 module.exports = snapshotStore;

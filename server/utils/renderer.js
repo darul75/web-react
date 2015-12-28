@@ -18,7 +18,7 @@ import alt from '../../app/alt';
 
 let html = '';
 
-var renderer = {
+const renderer = {
   init: (type) => {
     html = type === 'dev' ?
       fs.readFileSync('./assets/index-dev.html', {encoding: 'utf8'})
@@ -29,7 +29,7 @@ var renderer = {
     let markup = '',
       iso = new Iso();
 
-    const oneItemBootstraped = {
+/*    const oneItemBootstraped = {
       'AppStore': {
         'dataByRestApi': {},
         'data': {
@@ -41,7 +41,7 @@ var renderer = {
         }
       }
     };
-
+*/
     /* This is where the magic happens, we take the locals data we have already
     fetched and seed our stores with data.
     Next we use react-router to run the URL that is provided in routes.jsx
@@ -49,7 +49,8 @@ var renderer = {
     on the client side and bootstraps the stores.
     init server renderer
     */
-    alt.bootstrap(JSON.stringify(res.locals.data || oneItemBootstraped));
+    //alt.bootstrap(JSON.stringify(res.locals.data || oneItemBootstraped));
+    alt.bootstrap(JSON.stringify({}));
 
     try {
       let location = createLocation(req.url);

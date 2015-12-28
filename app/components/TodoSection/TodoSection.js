@@ -1,5 +1,6 @@
 // LIBRARY
 import React from 'react';
+import Helmet from 'react-helmet';
 import cx from 'classnames';
 
 // COMPONENT
@@ -13,56 +14,89 @@ import AppStore from '../../stores/AppStore';
 import SnapshotStore from '../../stores/SnapshotStore';
 import connectToStores from 'alt/utils/connectToStores';
 
-let todoSection = class TodoSection extends React.Component {
+const metas = require('../../../assets/config.json').helmet;
+
+const todoSection = class TodoSection extends React.Component {
   constructor() {
     super();
     this.state = {
       completed: false
     };
+
+    // https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding
+    this.handleOnClickRemoveAll = this.handleOnClickRemoveAll.bind(this);
+    this.handleOnClickToggleAll = this.handleOnClickToggleAll.bind(this);
+    this.handleOnSave = this.handleOnSave.bind(this);
+  }
+
+  handleOnClickRemoveAll() {
+    AppActions.removeAll();
+  }
+
+  handleOnClickToggleAll() {
+    const completed = !this.state.completed;
+    /*this.setState({
+      completed
+    });*/
+    AppActions.updateCompleteAll({completed});
+  }
+
+  handleOnSave(text) {
+    if (text.trim()){
+      AppActions.create(text);
+    }
   }
 
   render() {
     // retrieve data from store
-    let storeProps = TodoSection.getPropsFromStores();
+    const storeProps = TodoSection.getPropsFromStores();
     // build with current data
-    let allTodos = storeProps.allData,
-        todos = [];
+    const allTodos = storeProps.allData, todos = [];
     // generate todo item list
-    for (var key in allTodos) {
-      todos.push(<TodoItem key={key} todo={allTodos[key]} />);
+    for (const key in allTodos) {
+      todos.push(
+        <TodoItem
+            key={key}
+            todo={allTodos[key]}
+        />
+      );
     }
 
     return (
       <div>
-        <h1>TODO PAGE</h1>
+        <h1>{'TODO PAGE'}</h1>
+        <Helmet title={metas.title}
+            titleTemplate='%s | Todo page'
+        />
         <div className='todo'>
-          <p>First add some tasks by pressing enter key</p>
-          <TodoTextInput className='edit' id='new-todo' placeholder='What needs to be done ?' onSave={this._onSave.bind(this)} value='' />
+          <p>{'First add some tasks by pressing enter key'}</p>
+          <TodoTextInput
+              className='edit'
+              id='new-todo'
+              onSave={this.handleOnSave}
+              placeholder='What needs to be done ?'
+              value=''
+          />
           <ul id='todo-list'>{todos}</ul>
-          <button className={cx({'hidden': !todos.length})} onClick={this._onClickToggleAll.bind(this)}>TOGGLE ALL STATES</button>
-          <button className={cx({'hidden': !todos.length})} onClick={this._onClickRemoveAll.bind(this)} >CLEAR</button>
+          <button
+              className={cx({'hidden': !todos.length})}
+              onClick={this.handleOnClickToggleAll}
+          >
+              {'TOGGLE ALL STATES'}
+          </button>
+          <button
+              className={cx({'hidden': !todos.length})}
+              onClick={this.handleOnClickRemoveAll}
+          >
+              {'CLEAR'}
+          </button>
         </div>
-        <TodoSnapshots snapshots={storeProps.snapshots} todoLength={todos.length}/>
+        <TodoSnapshots
+            snapshots={storeProps.snapshots}
+            todoLength={todos.length}
+        />
       </div>
     );
-  }
-
-  _onClickRemoveAll() {
-    AppActions.removeAll();
-  }
-
-  _onClickToggleAll() {
-    const completed = !this.state.completed;
-    this.setState({
-      completed: completed
-    });
-    AppActions.updateCompleteAll({completed: completed});
-  }
-
-  _onSave(text) {
-    if (text.trim()){
-      AppActions.create(text);
-    }
   }
 
   static getStores() {

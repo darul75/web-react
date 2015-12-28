@@ -4,7 +4,7 @@ import React from 'react';
 // FLUX
 import SnapshotActions from '../../actions/SnapshotActions';
 
-let { PropTypes } = React;
+const { PropTypes } = React;
 
 if (process.env.BROWSER) {
   require('./_TodoItem.scss');
@@ -13,31 +13,50 @@ if (process.env.BROWSER) {
 export default class TodoSnapshotsItem extends React.Component {
   constructor(props) {
     super(props);
-    this.propsTypes = {
-      snapshot: PropTypes.object.isRequired
-    };
+
+    // https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding
+    this.handleBootstrapSnapshot = this.handleBootstrapSnapshot.bind(this);
+    this.handleOnClickRemove = this.handleOnClickRemove.bind(this);
+  }
+
+  handleBootstrapSnapshot() {
+    SnapshotActions.bootstrapSnapshot(this.props.snapshot.id);
+  }
+
+  handleOnClickRemove() {
+    SnapshotActions.removeSnapshot(this.props.snapshot.id);
   }
 
   render() {
-    let todo = this.props.snapshot;
+    const {snapshot} = this.props;
 
     return (
-      <li key={todo.id}>
+      <li key={snapshot.id}>
         <div className='inline'>
-          <label><a href='#' onClick={this._bootstrapSnapshot.bind(this)}>{todo.id}</a></label>
-          <button className='destroy' onClick={this._onClickRemove.bind(this)}>&#10006;</button>
+          <label>
+            <a
+                href='#'
+                onClick={this.handleBootstrapSnapshot}
+            >
+              {snapshot.id}
+            </a>
+          </label>
+          <button
+              className='destroy'
+              onClick={this.handleOnClickRemove}
+          >
+            {'X'}
+          </button>
         </div>
       </li>
     );
   }
-
-  _bootstrapSnapshot() {
-    SnapshotActions.bootstrapSnapshot(this.props.snapshot.id);
-  }
-
-  _onClickRemove() {
-    SnapshotActions.removeSnapshot(this.props.snapshot.id);
-  }
 }
+
+TodoSnapshotsItem.propTypes = {
+  snapshot: PropTypes.shape({
+    id: PropTypes.string
+  })
+};
 
 TodoSnapshotsItem.prototype.displayName = 'TodoSnapshotsItem';

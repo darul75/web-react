@@ -7,7 +7,15 @@ const brandings = ['react', 'flux', 'webpack', 'nodejs', 'babel', 'mocha', 'java
 let brandingsMarkup = [];
 
 brandings.forEach((elt, idx) => {
-  brandingsMarkup.push(<img src={require('../../images/branding/' + elt + '.svg')} key={idx} width="40" height="40"/>);
+  const img = (
+    <img
+        height='40'
+        key={idx}
+        src={require('../../images/branding/' + elt + '.svg')}
+        width='40'
+    />
+  );
+  brandingsMarkup.push(img);
 });
 
 if (process.env.BROWSER) {
@@ -25,9 +33,9 @@ export default class Header extends React.Component {
         <div>{brandingsMarkup}</div>
 				<header>
 					<ul>
-            <li><Link to='/home'>Home</Link></li>
-            <li><Link to='/todo'>Todo</Link></li>
-            <li><Link to='/contact'>Contact</Link></li>
+            <li><Link to='/home'>{'Home'}</Link></li>
+            <li><Link to='/todo'>{'Todo'}</Link></li>
+            <li><Link to='/contact'>{'Contact'}</Link></li>
 					</ul>
 				</header>
       </div>

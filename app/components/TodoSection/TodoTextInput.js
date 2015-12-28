@@ -8,51 +8,64 @@ const ENTER_KEY_CODE = 13;
 export default class TodoTextInput extends React.Component {
   constructor(props) {
     super(props);
-    this.propsTypes = {
-      className: PropTypes.string,
-      id: PropTypes.string,
-      placeholder: PropTypes.string,
-      onSave: PropTypes.func.isRequired,
-      value: PropTypes.string
-    };
     this.state = {
       value: this.props.value || ''
     };
+
+    // https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding
+    this.handleOnClickSave = this.handleOnClickSave.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+  }
+
+  /*eslint-disable react/no-set-state*/
+  handleOnChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleOnClickSave() {
+    this.props.onSave(this.state.value);
+    this.setState({value: ''});
+  }
+  /*eslint-enable react/no-set-state*/
+
+  handleOnKeyDown(event) {
+    if (event.keyCode === ENTER_KEY_CODE) {
+      this.handleOnClickSave();
+    }
   }
 
   render() {
+    const autoFocus = true;
     return (
       <div>
-        <input className={this.props.className}
-          id={this.props.id}
-          placeholder={this.props.placeholder}
-          onChange={this._onChange.bind(this)}
-          onKeyDown={this._onKeyDown.bind(this)}
-          value={this.state.value}
-          autoFocus={true} />
-        <button onClick={this._onClickSave.bind(this)} title='add task'>ADD</button>
+          <input
+              autoFocus={autoFocus}
+              className={this.props.className}
+              id={this.props.id}
+              onChange={this.handleOnChange}
+              onKeyDown={this.handleOnKeyDown}
+              placeholder={this.props.placeholder}
+              type='text'
+              value={this.state.value}
+          />
+          <button
+              onClick={this.handleOnClickSave}
+              title='add task'
+          >
+              {'ADD'}
+          </button>
       </div>
     );
   }
-
-  _onClickSave() {
-    this.props.onSave(this.state.value);
-    this.setState({
-      value: ''
-    });
-  }
-
-  _onChange(/*object*/ event) {
-    this.setState({
-      value: event.target.value
-    });
-  }
-
-  _onKeyDown(event) {
-    if (event.keyCode === ENTER_KEY_CODE) {
-      this._onClickSave();
-    }
-  }
 }
+
+TodoTextInput.propTypes = {
+  className: PropTypes.string,
+  id: PropTypes.string,
+  onSave: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  value: PropTypes.string
+};
 
 TodoTextInput.prototype.displayName = 'TodoTextInput';

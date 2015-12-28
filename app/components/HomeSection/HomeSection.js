@@ -15,22 +15,22 @@ if (process.env.BROWSER) {
   require('./_HomeSection.scss');
 }
 
-let homeSection = class HomeSection extends React.Component {
+const homeSection = class HomeSection extends React.Component {
   constructor() {
     super();
   }
 
   render() {
     // retrieve data from store
-    let storeProps = HomeSection.getPropsFromStores();
+    const storeProps = HomeSection.getPropsFromStores();
 
     return (
       <div>
-        <h1>HOME PAGE</h1>
+        <h1>{'HOME PAGE'}</h1>
         <HomeSectionActions />
-        <HomeSectionSubPartOne apiData={storeProps.apiData} />
-        <HomeSectionSubPartTwo apiData={storeProps.apiData}/>
-        <HomeSectionSubPartTwo apiData={storeProps.apiDataDepending}/>
+        <HomeSectionSubPartOne apiData={storeProps.apiData.data} />
+        <HomeSectionSubPartTwo apiData={storeProps.apiData.data}/>
+        <HomeSectionSubPartTwo apiData={storeProps.apiDataDepending.data}/>
       </div>
     );
   }

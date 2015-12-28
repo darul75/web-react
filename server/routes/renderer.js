@@ -2,7 +2,7 @@ let renderer = require('../utils/renderer');
 
 let profile = 'dev';
 
-var routesRenderer = {
+const routesRenderer = {
   init: (type) => {
     profile = type;
     renderer.init(type);

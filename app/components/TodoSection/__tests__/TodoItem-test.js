@@ -14,14 +14,14 @@ describe('Todo-item component', function() {
   before('render and locate element', function() {
   	require('../../../../conf/tests/setup.js');
 
-  	var todoItem = {completed:false, text:'hello'};
+  	const todoItem = {completed:false, text:'hello'};
 
     // render component <TodoItem>
-    var renderedComponent = TestUtils.renderIntoDocument(<TodoItem todo={todoItem} />);
+    const renderedComponent = TestUtils.renderIntoDocument(<TodoItem todo={todoItem} />);
 
     // Searching for <input> tag within rendered React component
     // Throws an exception if not found
-    var inputCheckBoxComponent = TestUtils.findRenderedDOMComponentWithClass(
+    conts inputCheckBoxComponent = TestUtils.findRenderedDOMComponentWithClass(
       renderedComponent,
       'toggle'
     );

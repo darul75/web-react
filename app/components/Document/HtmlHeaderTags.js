@@ -15,9 +15,9 @@ export default class HtmlHeaderTags extends React.Component {
     return (
       <div>
         <Helmet
-          title={metas.title}
-            meta={metas.meta}
             link={metas.link}
+            meta={metas.meta}
+            title={metas.title}
         />
       </div>
     );

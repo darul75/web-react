@@ -13,32 +13,49 @@ let { PropTypes } = React;
 export default class TodoSnapshots extends React.Component {
   constructor(props) {
     super(props);
-    this.propsTypes = {
-      todoLength: PropTypes.number.isRequired
-    };
+
+    // https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding
+    this.handleOnClick = this.handleOnClick.bind(this);
+  }
+
+  handleOnClick() {
+    SnapshotActions.takeSnapshot();
   }
 
   render() {
-    let allSnaps = this.props.snapshots,
-        hasTodos = this.props.todoLength,
-        snapshots = [];
+    const {snapshots: allSnaps, todoLength: hasTodos } = this.props,
+      snapshots = [];
 
-    for (var key in allSnaps) {
-      snapshots.push(<TodoSnapshotsItem key={key} snapshot={allSnaps[key]} />);
+    for (const key in allSnaps) {
+      const snap = (
+        <TodoSnapshotsItem
+            key={key}
+            snapshot={allSnaps[key]}
+        />
+      );
+      snapshots.push(snap);
     }
 
     return (
       <div className='todo-snapshot'>
-        <p>Then take a snapshot or load it</p>
-        <button className={cx({'hidden': !hasTodos})} onClick={this._onClick.bind(this)} >TAKE SNAPSHOT</button>
+        <p>{'Then take a snapshot or load it'}</p>
+        <button
+            className={cx({'hidden': !hasTodos})}
+            onClick={this.handleOnClick}
+        >
+          {'TAKE SNAPSHOT'}
+        </button>
         <ul id='todo-snapshot-list'>{snapshots}</ul>
       </div>
     );
   }
-
-  _onClick() {
-    SnapshotActions.takeSnapshot();
-  }
 }
+
+TodoSnapshots.propTypes = {
+  snapshots: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string
+  })),
+  todoLength: PropTypes.number.isRequired,
+};
 
 TodoSnapshots.prototype.displayName = 'TodoSnapshots';

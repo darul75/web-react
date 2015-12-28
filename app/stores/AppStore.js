@@ -10,10 +10,15 @@ import immutable from 'alt/utils/ImmutableUtil';
 // webpack hot reload
 import makeHot from 'alt/utils/makeHot';
 
-let appStore = makeHot(alt, immutable(class AppStore {
+/*eslint-disable react/no-set-state*/
+const appStore = makeHot(alt, immutable(class AppStore {
   constructor() {
+
+    // actions
     this.bindActions(AppActions);
     this.bindAction(AppActions.fetchGithub, this.onFetchGithub);
+
+    // store state
     this.state = new Map({
       dataByRestApi: new Map({}),
       data: new Map({})
@@ -28,10 +33,10 @@ let appStore = makeHot(alt, immutable(class AppStore {
     // hand waving of course.
     const id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
     const newData = this.state.get('data').set(id, new Map({
-      id: id,
+      id,
       complete: false,
       edit: false,
-      text: text
+      text
     }));
 
     this.setState(this.state.set('data', newData));
@@ -82,15 +87,14 @@ let appStore = makeHot(alt, immutable(class AppStore {
   }
 
   updateAll(updates) {
-    for (var id in this.data) {
+    for (const id in this.data) {
       this.update(id, updates);
     }
   }
 
   onFetchGithub(data) {
-    console.log(data);
     //this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data: 'hello'})));
-    this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data: data})));
+    this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data})));
   }
 
   onDestroyCompleted() {
@@ -111,5 +115,6 @@ let appStore = makeHot(alt, immutable(class AppStore {
     return true;
   }
 }), 'AppStore');
+/*eslint-enable react/no-set-state*/
 
 module.exports = appStore;

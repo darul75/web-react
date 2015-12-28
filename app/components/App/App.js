@@ -7,6 +7,8 @@ import Footer from '../Footer/Footer';
 import Recorder from '../Recorder/Recorder';
 import HtmlHeaderTags from '../Document/HtmlHeaderTags';
 
+const { PropTypes } = React;
+
 if (process.env.BROWSER) {
   require('./_App.scss');
   require('./_App.sass');
@@ -32,5 +34,9 @@ export default class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  children: PropTypes.node
+};
 
 App.prototype.displayName = 'App';

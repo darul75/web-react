@@ -9,8 +9,8 @@ export default class NotFoundSection extends React.Component {
   render() {
     return (
       <div>
-        <h1>PAGE NOT FOUND</h1>
-        <p>yes indeed</p>
+        <h1>{'PAGE NOT FOUND'}</h1>
+        <p>{'yes indeed'}</p>
       </div>
     );
   }

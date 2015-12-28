@@ -11,7 +11,8 @@ import AppStore from './AppStore';
 // webpack hot reload
 import makeHot from 'alt/utils/makeHot';
 
-let dependingStore = makeHot(alt, immutable(class DependingStore {
+/*eslint-disable react/no-set-state*/
+const dependingStore = makeHot(alt, immutable(class DependingStore {
   constructor() {
     this.bindActions(AppActions);
     this.state = new Map({
@@ -24,5 +25,6 @@ let dependingStore = makeHot(alt, immutable(class DependingStore {
     this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data: 'here is dependency store'})));
   }
 }), 'DependingStore');
+/*eslint-enable react/no-set-state*/
 
 module.exports = dependingStore;

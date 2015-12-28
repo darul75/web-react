@@ -5,30 +5,35 @@ import marked from 'marked';
 // FLUX
 import AppActions from '../../actions/AppActions';
 
-let { PropTypes } = React;
+const { PropTypes } = React;
 
 export default class HomeSectionSubPartOne extends React.Component {
-  constructor() {
-    super();
-    this.propsTypes = {
-      apiData: PropTypes.object.isRequired
-    };
+  constructor(props) {
+    super(props);
   }
 
   render() {
-    var contentMarkup = 'dispatching zone 1';
-    if (this.props.apiData.data) {
-      contentMarkup = marked('```json\n' + JSON.stringify(this.props.apiData.data, null, 2) + '```', {breaks: true});
+    let contentMarkup = 'dispatching zone 1';
+    if (this.props.apiData) {
+      contentMarkup = marked('```json\n' + JSON.stringify(this.props.apiData, null, 2) + '```', {breaks: true});
     }
 
+    /*eslint-disable react/no-danger*/
     return (
-      <div className='home-section-sub-part-one' dangerouslySetInnerHTML={{__html: contentMarkup}}></div>
+      <div className='home-section-sub-part-one'
+          dangerouslySetInnerHTML={{__html: contentMarkup}}
+      >
+      </div>
     );
-  }
-
-  _onClick() {
-    AppActions.fetch();
+    /*eslint-enable react/no-danger*/
   }
 }
+
+HomeSectionSubPartOne.propTypes = {
+  apiData:
+    PropTypes.shape({
+      id: PropTypes.number
+    })
+};
 
 HomeSectionSubPartOne.prototype.displayName = 'HomeSectionSubPartOne';

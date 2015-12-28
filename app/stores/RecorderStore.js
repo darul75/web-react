@@ -14,7 +14,7 @@ import makeHot from 'alt/utils/makeHot';
 
 const recorder = new DispatcherRecorder(alt);
 
-let recorderStore = makeHot(alt, immutable(class RecorderStore {
+const recorderStore = makeHot(alt, immutable(class RecorderStore {
   constructor() {
     this.bindActions(RecorderActions);
     this.state = new Map({

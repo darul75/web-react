@@ -19,6 +19,9 @@ if(typeof document !== 'undefined' && window) {
     /*eslint-disable no-unused-vars*/
 
     Iso.bootstrap((state, _, container) => {
+      console.log(state);
+
+
       alt.bootstrap(state);
       render(<Router history={history}>{routes}</Router>, container);
 
