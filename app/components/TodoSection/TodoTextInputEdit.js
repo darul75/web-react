@@ -1,6 +1,9 @@
 // LIBRARY
 import React from 'react';
 
+// COMPONENTS
+import UxButton from '../Ux/UxButton';
+
 let { PropTypes } = React;
 
 const ENTER_KEY_CODE = 13;
@@ -44,7 +47,7 @@ export default class TodoTextInputEdit extends React.Component {
 
   render() {
     const autoFocus = true;
-    // <input onChange={this.onChange}
+
     return (
       <div className={this.props.className}>
         <input
@@ -53,12 +56,8 @@ export default class TodoTextInputEdit extends React.Component {
             onKeyDown={this.handleOnKeyDown}
             value={this.state.value}
         />
-        <button onClick={this.handleOnClickUpdate}>
-          {'UPDATE'}
-        </button>
-        <button onClick={this.handleOnClickCancel}>
-          {'CANCEL'}
-        </button>
+        <UxButton label='UPDATE' onClick={this.handleOnClickUpdate} />
+        <UxButton label='CANCEL' onClick={this.handleOnClickCancel} />
       </div>
     );
   }

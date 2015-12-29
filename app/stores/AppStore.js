@@ -3,20 +3,27 @@ import Immutable, {Map} from 'immutable';
 
 // FLUX
 import AppActions from '../actions/AppActions';
+import SnapshotActions from '../actions/SnapshotActions';
+
+import SnapshotStore from './SnapshotStore';
 
 // DEPENDENCY
 import alt from '../alt';
-import immutable from 'alt/utils/ImmutableUtil';
+
 // webpack hot reload
-import makeHot from 'alt/utils/makeHot';
+// import makeHot from 'alt/utils/makeHot';
 
 /*eslint-disable react/no-set-state*/
-const appStore = makeHot(alt, immutable(class AppStore {
+
+// store
+@immutable
+class AppStore {
   constructor() {
 
     // actions
     this.bindActions(AppActions);
     this.bindAction(AppActions.fetchGithub, this.onFetchGithub);
+    this.bindAction(SnapshotActions.bootstrapSnapshot, this.onBootstrapSnapshot);
 
     // store state
     this.state = new Map({
@@ -92,6 +99,25 @@ const appStore = makeHot(alt, immutable(class AppStore {
     }
   }
 
+  onBootstrapSnapshot(data) {
+    this.waitFor([SnapshotStore.dispatchToken]); // event has to be consumed
+
+    // TODO SEE ANOTHER METHOD TO RETRIEVE IT FROM SNAPSHOT
+   /* const snapshots = AppStore.getPropsFromStores().snaps;
+    const currentIdx = AppStore.getPropsFromStores().idx;
+    data = snapshots[currentIdx];
+    var tmp = JSON.parse(data.data)['AppStore'];
+    data = tmp.data;
+
+    let newData = new Map({});
+
+    for (const item in data) {
+      newData = newData.set(item, new Map(data[item]));
+    }
+
+    this.setState(this.state.set('data', newData));*/
+  }
+
   onFetchGithub(data) {
     //this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data: 'hello'})));
     this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data})));
@@ -105,6 +131,14 @@ const appStore = makeHot(alt, immutable(class AppStore {
     }
   }
 
+  static getPropsFromStores() {
+    return {
+      snaps: SnapshotStore.getState().get('snapshots').toJS(),
+      idx: SnapshotStore.getState().get('idx')
+    }
+
+  }
+
   static areAllComplete() {
     let { data } = this.getState();
     for (let id in data) {
@@ -114,7 +148,9 @@ const appStore = makeHot(alt, immutable(class AppStore {
     }
     return true;
   }
-}), 'AppStore');
+}
 /*eslint-enable react/no-set-state*/
 
-module.exports = appStore;
+AppStore.prototype.displayName = 'AppStore';
+
+export default AppStore;

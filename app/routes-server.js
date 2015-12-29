@@ -17,12 +17,12 @@ let history = createLocation();
 
 export default (
   <Router history={history}>
-    <Route path='/' component={Application}>
-      <Route path='home' component={HomeSection}/>
-      <Route path='todo' component={TodoSection}/>
-      <Route path='contact' component={Contact}/>
+    <Route component={Application} path='/'>
+      <Route component={HomeSection} path='home' />
+      <Route component={TodoSection} path='todo' />
+      <Route component={Contact} path='contact' />
       <IndexRoute component={HomeSection} />
-      <Route path='*' component={NotFoundSection} />
+      <Route component={NotFoundSection} path='*' />
     </Route>
   </Router>
 );

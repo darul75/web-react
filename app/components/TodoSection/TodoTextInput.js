@@ -1,10 +1,16 @@
 // LIBRARY
 import React from 'react';
 
+// COMPONENTS
+import UxButton from '../Ux/UxButton';
+
 let { PropTypes } = React;
 
 const ENTER_KEY_CODE = 13;
 
+/*eslint-disable react/no-set-state*/
+
+// component
 export default class TodoTextInput extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +24,6 @@ export default class TodoTextInput extends React.Component {
     this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
   }
 
-  /*eslint-disable react/no-set-state*/
   handleOnChange(event) {
     this.setState({value: event.target.value});
   }
@@ -27,7 +32,6 @@ export default class TodoTextInput extends React.Component {
     this.props.onSave(this.state.value);
     this.setState({value: ''});
   }
-  /*eslint-enable react/no-set-state*/
 
   handleOnKeyDown(event) {
     if (event.keyCode === ENTER_KEY_CODE) {
@@ -49,16 +53,12 @@ export default class TodoTextInput extends React.Component {
               type='text'
               value={this.state.value}
           />
-          <button
-              onClick={this.handleOnClickSave}
-              title='add task'
-          >
-              {'ADD'}
-          </button>
+          <UxButton label='ADD' onClick={this.handleOnClickSave} />
       </div>
     );
   }
 }
+/*eslint-enable react/no-set-state*/
 
 TodoTextInput.propTypes = {
   className: PropTypes.string,

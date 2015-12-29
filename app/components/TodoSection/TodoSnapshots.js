@@ -1,11 +1,11 @@
 // LIBRARY
 import React from 'react';
-import cx from 'classnames';
 
 // FLUX
 import SnapshotActions from '../../actions/SnapshotActions';
 
 // COMPONENT
+import UxButton from '../Ux/UxButton';
 import TodoSnapshotsItem from './TodoSnapshotsItem';
 
 let { PropTypes } = React;
@@ -27,24 +27,13 @@ export default class TodoSnapshots extends React.Component {
       snapshots = [];
 
     for (const key in allSnaps) {
-      const snap = (
-        <TodoSnapshotsItem
-            key={key}
-            snapshot={allSnaps[key]}
-        />
-      );
-      snapshots.push(snap);
+      snapshots.push(<TodoSnapshotsItem key={key} snapshot={allSnaps[key]} />);
     }
 
     return (
       <div className='todo-snapshot'>
         <p>{'Then take a snapshot or load it'}</p>
-        <button
-            className={cx({'hidden': !hasTodos})}
-            onClick={this.handleOnClick}
-        >
-          {'TAKE SNAPSHOT'}
-        </button>
+        <UxButton label='TAKE SNAPSHOT' onClick={this.handleOnClick} show={!hasTodos} />
         <ul id='todo-snapshot-list'>{snapshots}</ul>
       </div>
     );

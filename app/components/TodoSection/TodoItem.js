@@ -6,14 +6,55 @@ import cx from 'classnames';
 import AppActions from '../../actions/AppActions';
 
 // COMPONENT
+import UxButton from '../Ux/UxButton';
 import TodoTextInputEdit from './TodoTextInputEdit';
 
-let { PropTypes } = React;
+const { PropTypes } = React;
 
+// css
 if (process.env.BROWSER) {
   require('./_TodoItem.scss');
 }
 
+// stateless functional component
+const TodoItemCheckbox = ({complete, editing, onChange}) => (
+  <input
+      checked={complete}
+      className='toggle'
+      disabled={editing}
+      onChange={onChange}
+      title='toggle task state (completed ?)'
+      type='checkbox'
+  />
+);
+
+const TodoItemLabel = ({label, editing, onClick}) => (
+  <label
+      className={cx({'hidden': editing})}
+      onClick={onClick}
+      title='Edit me by a click'
+  >
+      {label}
+  </label>
+);
+
+const TodoItemRemoveBtn = ({editing, onClick}) => (
+  <button
+      className={cx({'hidden': editing, 'destroy': true})}
+      onClick={onClick}
+      title='remove task'
+  >
+      {'X'}
+  </button>
+);
+
+TodoItemCheckbox.prototype.displayName = 'TodoItemCheckbox';
+TodoItemLabel.prototype.displayName = 'TodoItemLabel';
+TodoItemRemoveBtn.prototype.displayName = 'TodoItemRemoveBtn';
+
+/*eslint-disable react/no-set-state*/
+
+// component
 export default class TodoItem extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +76,6 @@ export default class TodoItem extends React.Component {
     };
   }
 
-  /*eslint-disable react/no-set-state*/
   handleOnClickEdit() {
     this.setState({
       editing: true
@@ -64,7 +104,6 @@ export default class TodoItem extends React.Component {
       text: todo.text
     });
   }
-  /*eslint-enable react/no-set-state*/
 
   render() {
     const {todo} = this.props;
@@ -79,39 +118,21 @@ export default class TodoItem extends React.Component {
           key={todo.id}
       >
         <div className={cx({'inline': this.state.editing})}>
-          <input
-              checked={todo.complete}
-              className='toggle'
-              disabled={this.state.editing}
-              onChange={this.handleOnClickToggleComplete}
-              title='toggle task state (completed ?)'
-              type='checkbox'
-          />
-          <label
-              className={cx({'hidden': this.state.editing})}
-              onClick={this.handleOnClickEdit}
-              title='Edit me by a click'
-          >
-              {todo.text}
-          </label>
+          <TodoItemCheckbox complete={todo.complete} editing={this.state.editing} onChange={this.handleOnClickToggleComplete} />
+          <TodoItemLabel editing={this.state.editing} label={todo.text} onClick={this.handleOnClickEdit} />
           <TodoTextInputEdit
               className={cx({'hidden': !this.state.editing})}
               onCancelUpdate={this.handleOnCancelUpdate}
               onUpdate={this.handleOnUpdate}
               todo={todo}
           />
-          <button
-              className={cx({'hidden': this.state.editing, 'destroy': true})}
-              onClick={this.handleOnClickRemove}
-              title='remove task'
-          >
-              {'X'}
-          </button>
+          <TodoItemRemoveBtn editing={this.state.editing} onClick={this.handleOnClickRemove} />
         </div>
       </li>
     );
   }
 }
+/*eslint-enable react/no-set-state*/
 
 TodoItem.propTypes = {
   todo: PropTypes.shape({

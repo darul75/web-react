@@ -12,26 +12,11 @@ import NotFoundSection from './components/NotFoundSection/NotFoundSection';
 import TodoSection from './components/TodoSection/TodoSection';
 
 export default (
-    <Route
-        component={Application}
-        path='/'
-    >
+    <Route component={Application} path='/'>
       <IndexRoute component={HomeSection} />
-      <Route
-          component={HomeSection}
-          path='home'
-      />
-      <Route
-          component={TodoSection}
-          path='todo'
-      />
-      <Route
-          component={Contact}
-          path='contact'
-      />
-      <Route
-          component={NotFoundSection}
-          path='*'
-      />
+      <Route component={HomeSection} path='home' />
+      <Route component={TodoSection} path='todo' />
+      <Route component={Contact} path='contact' />
+      <Route component={NotFoundSection} path='*' />
     </Route>
 );

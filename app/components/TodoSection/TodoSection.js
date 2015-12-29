@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import cx from 'classnames';
 
 // COMPONENT
+import UxButton from '../Ux/UxButton';
 import TodoItem from './TodoItem';
 import TodoTextInput from './TodoTextInput';
 import TodoSnapshots from './TodoSnapshots';
@@ -12,11 +13,14 @@ import TodoSnapshots from './TodoSnapshots';
 import AppActions from '../../actions/AppActions';
 import AppStore from '../../stores/AppStore';
 import SnapshotStore from '../../stores/SnapshotStore';
-import connectToStores from 'alt/utils/connectToStores';
 
 const metas = require('../../../assets/config.json').helmet;
 
-const todoSection = class TodoSection extends React.Component {
+/*eslint-disable react/no-set-state*/
+
+// component
+@connectToStores
+class TodoSection extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -35,9 +39,7 @@ const todoSection = class TodoSection extends React.Component {
 
   handleOnClickToggleAll() {
     const completed = !this.state.completed;
-    /*this.setState({
-      completed
-    });*/
+    this.setState({completed});
     AppActions.updateCompleteAll({completed});
   }
 
@@ -45,6 +47,18 @@ const todoSection = class TodoSection extends React.Component {
     if (text.trim()){
       AppActions.create(text);
     }
+  }
+
+  static getStores() {
+    return [AppStore, SnapshotStore];
+  }
+
+  static getPropsFromStores() {
+    return {
+      allData: AppStore.getState().get('data').toJS(),
+      areAllComplete: AppStore.areAllComplete(),
+      snapshots: SnapshotStore.getState().get('snapshots').toArray()
+    };
   }
 
   render() {
@@ -65,9 +79,7 @@ const todoSection = class TodoSection extends React.Component {
     return (
       <div>
         <h1>{'TODO PAGE'}</h1>
-        <Helmet title={metas.title}
-            titleTemplate='%s | Todo page'
-        />
+        <Helmet title={metas.title} titleTemplate='%s | Todo page' />
         <div className='todo'>
           <p>{'First add some tasks by pressing enter key'}</p>
           <TodoTextInput
@@ -78,40 +90,16 @@ const todoSection = class TodoSection extends React.Component {
               value=''
           />
           <ul id='todo-list'>{todos}</ul>
-          <button
-              className={cx({'hidden': !todos.length})}
-              onClick={this.handleOnClickToggleAll}
-          >
-              {'TOGGLE ALL STATES'}
-          </button>
-          <button
-              className={cx({'hidden': !todos.length})}
-              onClick={this.handleOnClickRemoveAll}
-          >
-              {'CLEAR'}
-          </button>
+          <UxButton label='TOGGLE ALL STATES' onClick={this.handleOnClickToggleAll} show={!todos.length} />
+          <UxButton label='CLEAR' onClick={this.handleOnClickRemoveAll} show={!todos.length} />
         </div>
-        <TodoSnapshots
-            snapshots={storeProps.snapshots}
-            todoLength={todos.length}
-        />
+        <TodoSnapshots snapshots={storeProps.snapshots} todoLength={todos.length} />
       </div>
     );
   }
-
-  static getStores() {
-    return [AppStore, SnapshotStore];
-  }
-
-  static getPropsFromStores() {
-    return {
-      allData: AppStore.getState().get('data').toJS(),
-      areAllComplete: AppStore.areAllComplete(),
-      snapshots: SnapshotStore.getState().get('snapshots').toArray()
-    };
-  }
 };
+/*eslint-enable react/no-set-state*/
 
-todoSection.prototype.displayName = 'TodoSection';
+TodoSection.prototype.displayName = 'TodoSection';
 
-export default connectToStores(todoSection);
+export default TodoSection;

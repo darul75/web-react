@@ -5,34 +5,35 @@ import React from 'react';
 import AppStore from '../../stores/AppStore';
 import AppStoreDepending from '../../stores/AppStoreDepending';
 import HomeSectionActions from './HomeSectionActions';
-import connectToStores from 'alt/utils/connectToStores';
 
 // COMPONENT
 import HomeSectionSubPartOne from './HomeSectionSubPartOne';
 import HomeSectionSubPartTwo from './HomeSectionSubPartTwo';
 
+// css
 if (process.env.BROWSER) {
   require('./_HomeSection.scss');
 }
 
-const homeSection = class HomeSection extends React.Component {
+// stateless functional component
+const HomeSectionMarkup = ({apiData, apiDataDepending}) => {
+  return (
+    <div>
+      <h1>{'HOME PAGE'}</h1>
+      <HomeSectionActions />
+      <HomeSectionSubPartOne apiData={apiData} />
+      <HomeSectionSubPartTwo apiData={apiData}/>
+      <HomeSectionSubPartTwo apiData={apiDataDepending}/>
+    </div>
+  );
+};
+HomeSectionMarkup.prototype.displayName = 'HomeSectionMarkup';
+
+// component
+@connectToStores
+class HomeSection extends React.Component {
   constructor() {
     super();
-  }
-
-  render() {
-    // retrieve data from store
-    const storeProps = HomeSection.getPropsFromStores();
-
-    return (
-      <div>
-        <h1>{'HOME PAGE'}</h1>
-        <HomeSectionActions />
-        <HomeSectionSubPartOne apiData={storeProps.apiData.data} />
-        <HomeSectionSubPartTwo apiData={storeProps.apiData.data}/>
-        <HomeSectionSubPartTwo apiData={storeProps.apiDataDepending.data}/>
-      </div>
-    );
   }
 
   static getStores() {
@@ -45,8 +46,20 @@ const homeSection = class HomeSection extends React.Component {
       apiDataDepending: AppStoreDepending.getState().get('dataByRestApi').toJS()
     };
   }
+
+  render() {
+    // retrieve data from store
+    const {apiData, apiDataDepending} = HomeSection.getPropsFromStores();
+
+    const storeData = {
+      apiData : apiData.data,
+      apiDataDepending : apiDataDepending.data,
+    }
+
+    return <HomeSectionMarkup {...storeData} />;
+  }
 };
 
-homeSection.prototype.displayName = 'HomeSection';
+HomeSection.prototype.displayName = 'HomeSection';
 
-export default connectToStores(homeSection);
+export default HomeSection;

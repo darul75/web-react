@@ -6,12 +6,15 @@ import SnapshotActions from '../actions/SnapshotActions';
 
 // DEPENDENCY
 import alt from '../alt';
-import immutable from 'alt/utils/ImmutableUtil';
+
 // webpack hot reload
-import makeHot from 'alt/utils/makeHot';
+// import makeHot from 'alt/utils/makeHot';
 
 /*eslint-disable react/no-set-state*/
-const snapshotStore = makeHot(alt, immutable(class SnapshotStore {
+
+// store
+@immutable
+class SnapshotStore {
   constructor() {
     this.bindActions(SnapshotActions);
     this.state = new Map({
@@ -27,8 +30,10 @@ const snapshotStore = makeHot(alt, immutable(class SnapshotStore {
     if (idx >= 0) {
       // TODO
       // alt.prepare(AppStor)
-      let snapshot = this.state.get('snapshots').get(idx);
-      alt.bootstrap(Immutable.fromJS(snapshot.data));
+      const snapshot = this.state.get('snapshots').get(idx);
+      const data = Immutable.fromJS(snapshot.data);
+      alt.bootstrap(data);
+      this.setState(this.state.set('idx', idx));
       // alt.rollback();
     }
   }
@@ -50,10 +55,12 @@ const snapshotStore = makeHot(alt, immutable(class SnapshotStore {
 
     if (idx >= 0) {
       const newList = this.state.get('snapshots').delete(idx);
-      this.state = this.state.set('snapshots', newList);
+      this.setState(this.state.set('snapshots', newList));
     }
   }
-}), 'SnapshotStore');
+}
 /*eslint-enable react/no-set-state*/
 
-module.exports = snapshotStore;
+SnapshotStore.prototype.displayName = 'SnapshotStore';
+
+export default SnapshotStore;
