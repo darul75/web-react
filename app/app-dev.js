@@ -4,12 +4,12 @@ import React from 'react';
 /*eslint-enable no-unused-vars*/
 import { render } from 'react-dom';
 import Router from 'react-router';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
+import {createHistory} from 'history';
 
 // DEPENDENCY
 const routes = require('./routes');
 
-const history = createBrowserHistory();
+const history = createHistory();
 
 if(typeof document !== 'undefined' && window) {
   window.onload = () => {
