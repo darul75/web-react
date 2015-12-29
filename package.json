@@ -38,7 +38,6 @@
     "eslint-plugin-react": "^3.13.1",
     "extract-text-webpack-plugin": "^0.6.0",
     "file-loader": "^0.8.1",
-    "history": "^1.12.5",
     "html-webpack-plugin": "^1.2.0",
     "invariant": "2.1.1",
     "jsdom": "^2.0.0",
@@ -54,14 +53,14 @@
     "url-loader": "^0.5.5",
     "warning": "^2.1.0",
     "webpack": "^1.12.9",
-    "webpack-dev-middleware": "^1.2.0",
-    "webpack-dev-server": "^1.8.2"
+    "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
     "alt": "^0.18.1",
     "alt-utils": "^1.0.0",
     "classnames": "^2.1.1",
     "express": "^4.12.3",
+    "history": "^1.17.0",
     "immutable": "^3.7.4",
     "iso": "^4.1.0",
     "lodash": "^3.9.3",
@@ -71,7 +70,7 @@
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-helmet": "^2.1.0",
-    "react-router": "latest",
+    "react-router": "^1.0.3",
     "serve-favicon": "^2.2.1",
     "whatwg-fetch": "^0.8.1"
   },
