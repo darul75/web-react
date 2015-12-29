@@ -21,7 +21,7 @@ describe('Todo-item component', function() {
 
     // Searching for <input> tag within rendered React component
     // Throws an exception if not found
-    conts inputCheckBoxComponent = TestUtils.findRenderedDOMComponentWithClass(
+    const inputCheckBoxComponent = TestUtils.findRenderedDOMComponentWithClass(
       renderedComponent,
       'toggle'
     );

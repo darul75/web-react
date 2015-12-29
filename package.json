@@ -14,7 +14,7 @@
     "dev-server-debug": "node --debug-brk build/server.js --debug --source-maps",
     "build": "webpack --config conf/webpack-prod.js --progress --profile --colors",
     "start": "node dist/server.js",
-    "test": "mocha app/**/*-test.js --colors --compilers js:babel/register --recursive",
+    "test": "mocha app/**/*-test.js --colors --compilers js:babel-core/register --recursive",
     "test-debug": "mocha --debug-brk app/**/*-test.js --colors --compilers js:babel/register --recursive --source-maps"
   },
   "devDependencies": {
