@@ -10,6 +10,8 @@ import HomeSectionActions from './HomeSectionActions';
 import HomeSectionSubPartOne from './HomeSectionSubPartOne';
 import HomeSectionSubPartTwo from './HomeSectionSubPartTwo';
 
+import connectToStores from 'alt-utils/lib/connectToStores';
+
 // css
 if (process.env.BROWSER) {
   require('./_HomeSection.scss');
@@ -30,8 +32,7 @@ const HomeSectionMarkup = ({apiData, apiDataDepending}) => {
 HomeSectionMarkup.prototype.displayName = 'HomeSectionMarkup';
 
 // component
-@connectToStores
-class HomeSection extends React.Component {
+const homeSection = class HomeSection extends React.Component {
   constructor() {
     super();
   }
@@ -60,6 +61,6 @@ class HomeSection extends React.Component {
   }
 };
 
-HomeSection.prototype.displayName = 'HomeSection';
+homeSection.prototype.displayName = 'HomeSection';
 
-export default HomeSection;
+export default connectToStores(homeSection);

@@ -14,13 +14,15 @@ import AppActions from '../../actions/AppActions';
 import AppStore from '../../stores/AppStore';
 import SnapshotStore from '../../stores/SnapshotStore';
 
+import connectToStores from 'alt-utils/lib/connectToStores';
+
 const metas = require('../../../assets/config.json').helmet;
 
 /*eslint-disable react/no-set-state*/
 
 // component
-@connectToStores
-class TodoSection extends React.Component {
+
+let todoSection = class TodoSection extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -98,8 +100,9 @@ class TodoSection extends React.Component {
     );
   }
 };
+
+todoSection.prototype.displayName = 'TodoSection';
+
+export default connectToStores(todoSection);
+
 /*eslint-enable react/no-set-state*/
-
-TodoSection.prototype.displayName = 'TodoSection';
-
-export default TodoSection;

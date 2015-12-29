@@ -7,14 +7,13 @@ import SnapshotActions from '../actions/SnapshotActions';
 // DEPENDENCY
 import alt from '../alt';
 
-// webpack hot reload
-// import makeHot from 'alt/utils/makeHot';
+import makeHot from 'alt-utils/lib/makeHot';
+import immutable from 'alt-utils/lib/ImmutableUtil';
 
 /*eslint-disable react/no-set-state*/
 
 // store
-@immutable
-class SnapshotStore {
+let snapshotStore = makeHot(alt, immutable(class SnapshotStore {
   constructor() {
     this.bindActions(SnapshotActions);
     this.state = new Map({
@@ -58,9 +57,8 @@ class SnapshotStore {
       this.setState(this.state.set('snapshots', newList));
     }
   }
-}
+}), 'SnapshotStore');
+
+module.exports = snapshotStore;
+
 /*eslint-enable react/no-set-state*/
-
-SnapshotStore.prototype.displayName = 'SnapshotStore';
-
-export default SnapshotStore;

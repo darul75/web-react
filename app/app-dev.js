@@ -6,10 +6,10 @@ import {render} from 'react-dom';
 import {Router} from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
+import routes from './routes';
+
 // DEPENDENCY
 const history = createBrowserHistory();
-
-const routes = require('./routes');
 
 if(typeof document !== 'undefined' && window) {
   window.onload = () => {

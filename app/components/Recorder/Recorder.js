@@ -6,6 +6,7 @@ import React from 'react';
 import RecorderActions from '../../actions/RecorderActions';
 import RecorderStore from '../../stores/RecorderStore';
 import makeFinalStore from 'alt-utils/lib/makeFinalStore';
+import connectToStores from 'alt-utils/lib/connectToStores';
 
 // import DispatcherRecorder from 'alt/utils/DispatcherRecorder';
 import alt from '../../alt';
@@ -27,8 +28,7 @@ const RecordButton = ({label, klass, onClick}) => (
 RecordButton.prototype.displayName = 'RecordButton';
 
 // component
-@connectToStores
-class Records extends React.Component {
+const records = class Records extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -130,6 +130,6 @@ class Records extends React.Component {
   }
 };
 
-Records.prototype.displayName = 'Records';
+records.prototype.displayName = 'Records';
 
-export default Records;
+export default connectToStores(records);

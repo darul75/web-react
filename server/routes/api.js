@@ -10,7 +10,8 @@ router.use('/api/*', (req, res, next) => {
   api.todo(req, res, next);
 });
 
-export default router;
+module.exports = router;
+//export default router;
 
 //
 // check if HMR is enabled

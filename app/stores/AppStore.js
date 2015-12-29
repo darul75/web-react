@@ -10,14 +10,13 @@ import SnapshotStore from './SnapshotStore';
 // DEPENDENCY
 import alt from '../alt';
 
-// webpack hot reload
-// import makeHot from 'alt/utils/makeHot';
+import makeHot from 'alt-utils/lib/makeHot';
+import immutable from 'alt-utils/lib/ImmutableUtil';
 
 /*eslint-disable react/no-set-state*/
 
 // store
-@immutable
-class AppStore {
+let appStore = makeHot(alt, immutable(class AppStore {
   constructor() {
 
     // actions
@@ -148,9 +147,8 @@ class AppStore {
     }
     return true;
   }
-}
+}), 'AppStore');
+
+export default appStore;
+
 /*eslint-enable react/no-set-state*/
-
-AppStore.prototype.displayName = 'AppStore';
-
-export default AppStore;

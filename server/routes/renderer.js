@@ -1,13 +1,15 @@
-const renderer = require('../utils/renderer');
+let renderer = require('../utils/renderer');
 
-const profile = 'dev';
+let profile = 'dev';
 
 const routesRenderer = {
   init: (type) => {
     profile = type;
     renderer.init(type);
   },
-  render: renderer.render
+  render: (req, res, next) => {
+    renderer.render(req, res, next);
+  }
 };
 
 //
@@ -20,4 +22,4 @@ if(module.hot) {
   });
 }
 
-export default routesRenderer;
+module.exports = routesRenderer;

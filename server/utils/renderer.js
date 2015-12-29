@@ -15,7 +15,6 @@ import createLocation from 'history/lib/createLocation';
 import routes from '../../app/routes-server';
 import alt from '../../app/alt';
 
-
 let html = '';
 
 const renderer = {
@@ -86,27 +85,6 @@ const renderer = {
           res.send(markup);
         }
       });
-      /*
-      Router.render(routes, req.path, (Handler, state) => {
-				// alt flux flush
-        let content = React.renderToString(React.createElement(Handler));
-        iso.add(content, alt.flush());
-
-        res.contentType = 'text/html; charset=utf8';
-        let notFound = _.find(state.routes, {isNotFound: true});
-
-        if (notFound !== undefined) {
-          res.status(404);
-        }
-
-				// RENDERING back to client
-        let markupContent = iso.render();
-        // DOM <head> instrumentation
-        let head = Helmet.rewind();
-        markup = html.replace('META', head.meta).replace('TITLE', head.title).replace('LINK', head.link).replace('CONTENT', markupContent);
-        // SEND response
-        res.send(markup);
-      });*/
     }
     catch (e) {
       return next(e);
@@ -114,4 +92,4 @@ const renderer = {
   }
 };
 
-export default renderer;
+module.exports = renderer;
