@@ -4,7 +4,7 @@ import Iso from 'iso';
 import React from 'react';
 /*eslint-enable no-unused-vars*/
 import { render } from 'react-dom';
-import Router from 'react-router';
+import {Router} from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import routes from './routes';
