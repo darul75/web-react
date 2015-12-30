@@ -1,11 +1,10 @@
 // LIBRARY
-import React from 'react/addons';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 import assert from 'assert';
 
 // COMPONENT
 import TodoItem from '../TodoItem';
-
-const TestUtils = React.addons.TestUtils;
 
 // https://github.com/jesstelford/react-testing-mocha-jsdom
 
