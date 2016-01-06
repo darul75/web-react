@@ -22,7 +22,8 @@ const metas = require('../../../assets/config.json').helmet;
 
 // component
 
-let todoSection = class TodoSection extends React.Component {
+@connectToStores
+class TodoSection extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -101,8 +102,8 @@ let todoSection = class TodoSection extends React.Component {
   }
 };
 
-todoSection.prototype.displayName = 'TodoSection';
+TodoSection.prototype.displayName = 'TodoSection';
 
-export default connectToStores(todoSection);
+export default TodoSection;
 
 /*eslint-enable react/no-set-state*/

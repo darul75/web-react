@@ -8,14 +8,16 @@ import AppActions from '../actions/AppActions';
 import alt from '../alt';
 import AppStore from './AppStore';
 
-import makeHot from 'alt-utils/lib/makeHot';
+import { createStore } from 'alt-utils/lib/decorators';
 import immutable from 'alt-utils/lib/ImmutableUtil';
 
 /*eslint-disable react/no-set-state*/
 
 // store
 
-let dependingStore = makeHot(alt, immutable(class DependingStore {
+@createStore(alt)
+@immutable
+class DependingStore {
   constructor() {
     this.bindActions(AppActions);
     this.state = new Map({
@@ -27,8 +29,10 @@ let dependingStore = makeHot(alt, immutable(class DependingStore {
     this.waitFor([AppStore.dispatchToken]); // event has to be consumed
     this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data})));
   }
-}), 'DependingStore');
+}
 
-export default dependingStore;
+DependingStore.displayName = 'DependingStore';
+
+export default DependingStore;
 
 /*eslint-enable react/no-set-state*/

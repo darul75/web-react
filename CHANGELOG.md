@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.0
+
+### Changed
+
+* babel 6 integration
+* alt flux implementation version upgraded : decorators usage...
+* refactoring functional stateless component
+
+NOTE: http://stackoverflow.com/questions/33801311/webpack-babel-6-es6-decorators
+
 ## 1.1.0
 
 ### Changed

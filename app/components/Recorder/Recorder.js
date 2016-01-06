@@ -28,7 +28,8 @@ const RecordButton = ({label, klass, onClick}) => (
 RecordButton.prototype.displayName = 'RecordButton';
 
 // component
-const records = class Records extends React.Component {
+@connectToStores
+class Records extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -130,6 +131,6 @@ const records = class Records extends React.Component {
   }
 };
 
-records.prototype.displayName = 'Records';
+Records.prototype.displayName = 'Records';
 
-export default connectToStores(records);
+export default Records;

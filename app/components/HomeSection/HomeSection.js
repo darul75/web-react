@@ -32,7 +32,8 @@ const HomeSectionMarkup = ({apiData, apiDataDepending}) => {
 HomeSectionMarkup.prototype.displayName = 'HomeSectionMarkup';
 
 // component
-const homeSection = class HomeSection extends React.Component {
+@connectToStores
+class HomeSection extends React.Component {
   constructor() {
     super();
   }
@@ -61,6 +62,6 @@ const homeSection = class HomeSection extends React.Component {
   }
 };
 
-homeSection.prototype.displayName = 'HomeSection';
+HomeSection.prototype.displayName = 'HomeSection';
 
-export default connectToStores(homeSection);
+export default HomeSection;

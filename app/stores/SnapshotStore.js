@@ -7,13 +7,15 @@ import SnapshotActions from '../actions/SnapshotActions';
 // DEPENDENCY
 import alt from '../alt';
 
-import makeHot from 'alt-utils/lib/makeHot';
+import { createStore } from 'alt-utils/lib/decorators';
 import immutable from 'alt-utils/lib/ImmutableUtil';
 
 /*eslint-disable react/no-set-state*/
 
 // store
-let snapshotStore = makeHot(alt, immutable(class SnapshotStore {
+@createStore(alt)
+@immutable
+class SnapshotStore {
   constructor() {
     this.bindActions(SnapshotActions);
     this.state = new Map({
@@ -57,8 +59,10 @@ let snapshotStore = makeHot(alt, immutable(class SnapshotStore {
       this.setState(this.state.set('snapshots', newList));
     }
   }
-}), 'SnapshotStore');
+}
 
-module.exports = snapshotStore;
+SnapshotStore.displayName = 'SnapshotStore';
+
+export default SnapshotStore;
 
 /*eslint-enable react/no-set-state*/

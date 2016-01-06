@@ -8,14 +8,16 @@ import RecorderActions from '../actions/RecorderActions';
 import alt from '../alt';
 import DispatcherRecorder from 'alt-utils/lib/DispatcherRecorder';
 
-import makeHot from 'alt-utils/lib/makeHot';
+import { createStore } from 'alt-utils/lib/decorators';
 import immutable from 'alt-utils/lib/ImmutableUtil';
 
 const recorder = new DispatcherRecorder(alt);
 recorder.record();
 
 // store
-let recorderStore = makeHot(alt, immutable(class RecorderStore {
+@createStore(alt)
+@immutable
+class RecorderStore {
   constructor() {
     this.bindActions(RecorderActions);
     this.state = new Map({
@@ -46,6 +48,8 @@ let recorderStore = makeHot(alt, immutable(class RecorderStore {
     return recorder.events;
   }
 
-}), 'RecorderStore');
+}
 
-module.exports = recorderStore;
+RecorderStore.displayName = 'RecorderStore';
+
+export default RecorderStore;

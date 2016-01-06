@@ -1,7 +1,7 @@
 {
   "name": "web-react",
   "description": "Another Webpack/React/Flux starter kit.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "homepage": "https://github.com/darul75/web-react",
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
     "babel-core": "^6.3.26",
     "babel-eslint": "^5.0.0-beta6",
     "babel-loader": "^6.2.0",
-    "babel-plugin-syntax-decorators": "^6.3.13",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-es2015-arrow-functions": "^6.3.13",
     "babel-plugin-transform-es2015-classes": "^6.3.15",
     "babel-plugin-transform-es2015-destructuring": "^6.3.15",

@@ -10,13 +10,17 @@ import SnapshotStore from './SnapshotStore';
 // DEPENDENCY
 import alt from '../alt';
 
-import makeHot from 'alt-utils/lib/makeHot';
+import { createStore } from 'alt-utils/lib/decorators';
 import immutable from 'alt-utils/lib/ImmutableUtil';
+import makeHot  from 'alt-utils/lib/makeHot';
 
 /*eslint-disable react/no-set-state*/
 
 // store
-let appStore = makeHot(alt, immutable(class AppStore {
+
+@createStore(alt)
+@immutable
+class AppStore {
   constructor() {
 
     // actions
@@ -147,8 +151,10 @@ let appStore = makeHot(alt, immutable(class AppStore {
     }
     return true;
   }
-}), 'AppStore');
+}
 
-export default appStore;
+AppStore.displayName = 'AppStore';
+
+export default AppStore;
 
 /*eslint-enable react/no-set-state*/
