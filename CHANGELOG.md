@@ -4,9 +4,24 @@
 
 ### Changed
 
-* babel 6 integration
+* babel 6 integration with following configuration
+
+{
+  "presets": ["react", "es2015", "stage-0"],
+  "plugins": [
+  	"transform-es2015-arrow-functions",
+  	"transform-es2015-classes",
+  	"transform-es2015-destructuring",
+  	"transform-es2015-modules-commonjs",
+  	"transform-es2015-object-super",
+  	"transform-class-properties",
+  	"transform-decorators-legacy"
+  ]
+}
+
 * alt flux implementation version upgraded : decorators usage...
-* refactoring functional stateless component
+* refactoring component to functional stateless component when possible
+* eslint rules...
 
 NOTE: http://stackoverflow.com/questions/33801311/webpack-babel-6-es6-decorators
 

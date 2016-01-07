@@ -154,6 +154,7 @@ Thanks to [react-helmet](https://github.com/nfl/react-helmet), now you will be a
 RELEASE
 -------------
 
+* 1.2.0: see CHANGELOG.md file
 * 1.1.0: react 0.14.0 + react-router 1.0.x => refactoring
 * 1.0.9: bump RHL version, may remove NoErrorsPlugin with React Hot Loader 1.3.0
 * 1.0.8: record/reload all dispatched payload example

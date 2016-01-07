@@ -18,6 +18,9 @@ recorder.record();
 @createStore(alt)
 @immutable
 class RecorderStore {
+
+  static displayName = 'RecorderStore';
+
   constructor() {
     this.bindActions(RecorderActions);
     this.state = new Map({
@@ -49,7 +52,5 @@ class RecorderStore {
   }
 
 }
-
-RecorderStore.displayName = 'RecorderStore';
 
 export default RecorderStore;

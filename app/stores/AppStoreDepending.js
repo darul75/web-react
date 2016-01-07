@@ -18,6 +18,9 @@ import immutable from 'alt-utils/lib/ImmutableUtil';
 @createStore(alt)
 @immutable
 class DependingStore {
+
+  static displayName = 'DependingStore';
+
   constructor() {
     this.bindActions(AppActions);
     this.state = new Map({
@@ -30,8 +33,6 @@ class DependingStore {
     this.setState(this.state.set('dataByRestApi', Immutable.fromJS({data})));
   }
 }
-
-DependingStore.displayName = 'DependingStore';
 
 export default DependingStore;
 

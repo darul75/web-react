@@ -1,19 +1,22 @@
 // LIBRARY
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
+
 import assert from 'assert';
 
 // COMPONENT
 import TodoItem from '../TodoItem';
+
+//const TestUtils = React.addons.TestUtils;
 
 // https://github.com/jesstelford/react-testing-mocha-jsdom
 
 describe('Todo-item component', function() {
 
   before('render and locate element', function() {
-  	require('../../../../conf/tests/setup.js');
+    require('../../../../conf/tests/setup.js');
 
-  	const todoItem = {completed:false, text:'hello'};
+    const todoItem = {completed:false, text:'hello'};
 
     // render component <TodoItem>
     const renderedComponent = TestUtils.renderIntoDocument(<TodoItem todo={todoItem} />);

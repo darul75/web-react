@@ -16,8 +16,7 @@ const history = createBrowserHistory();
 
 if(typeof document !== 'undefined' && window) {
   window.onload = () => {
-    /*eslint-disable no-unused-vars*/
-
+  	/*eslint-disable no-unused-vars*/
     Iso.bootstrap((state, _, container) => {
       alt.bootstrap(state);
       render(<Router history={history}>{routes}</Router>, container);

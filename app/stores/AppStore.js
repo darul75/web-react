@@ -21,6 +21,9 @@ import makeHot  from 'alt-utils/lib/makeHot';
 @createStore(alt)
 @immutable
 class AppStore {
+
+  static displayName = 'AppStore';
+
   constructor() {
 
     // actions
@@ -152,8 +155,6 @@ class AppStore {
     return true;
   }
 }
-
-AppStore.displayName = 'AppStore';
 
 export default AppStore;
 

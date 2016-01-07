@@ -13,6 +13,7 @@
     "__SERVER__": true
   },
   "ecmaFeatures": {
+    "modules": true,
     "jsx": true
   },
   "rules": {

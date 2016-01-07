@@ -16,6 +16,9 @@ import immutable from 'alt-utils/lib/ImmutableUtil';
 @createStore(alt)
 @immutable
 class SnapshotStore {
+
+  static displayName = 'SnapshotStore';
+
   constructor() {
     this.bindActions(SnapshotActions);
     this.state = new Map({
@@ -60,8 +63,6 @@ class SnapshotStore {
     }
   }
 }
-
-SnapshotStore.displayName = 'SnapshotStore';
 
 export default SnapshotStore;
 

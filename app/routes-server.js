@@ -13,7 +13,7 @@ import TodoSection from './components/TodoSection/TodoSection';
 
 import createLocation from 'history/lib/createLocation';
 
-let history = createLocation();
+const history = createLocation();
 
 export default (
   <Router history={history}>
