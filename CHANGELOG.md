@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1
+
+### Changed
+
+* fix HMR for api on server side, bad way of exporting module
+
 ## 1.2.0
 
 ### Changed
