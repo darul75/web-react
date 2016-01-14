@@ -51,7 +51,7 @@ Webpack with hot changes loading but no own server, enough for a single presenta
 
 See changes at [http://127.0.0.1:8080](http://127.0.0.1:8080)
 
-```
+```bash
 npm run dev
 ```
 
@@ -61,19 +61,23 @@ Let's use your own NodeJS server.
 
 Start webpack in background with *hot changes loading* and *debug* in both client/server sides.
 
-```
+```bash
 npm run dev-server-client
 ```
 
-*Then* start your node server which is an express one in this case that will be launched in ES6 thanks to Babel.
+*THEN* when bundle is generated in build folder, start your node server (express), launched in ES6 thanks to Babel.
 
-```
+```bash
 npm run dev-server
 ```
 
 or with debug nodejs mode :
 
+```bash
+node-inspector &
 ```
+
+```bash
 npm run dev-server-debug
 ```
 
