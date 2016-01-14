@@ -81,6 +81,8 @@ node-inspector &
 npm run dev-server-debug
 ```
 
+Go to inspector (because of break mode) [http://localhost:8080/?ws=localhost:8080&port=5858](http://localhost:8080/?ws=localhost:8080&port=5858)
+
 See changes at [http://127.0.0.1:3000](http://127.0.0.1:3000)
 
 *PRODUCTION*
